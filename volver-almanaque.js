@@ -103,15 +103,15 @@
     var estilo = document.createElement('style');
     estilo.textContent =
       '#almanaque-volver{display:flex;align-items:center;gap:.45em;box-sizing:border-box;width:100%;' +
-      'margin:0;padding:.4rem max(1rem,env(safe-area-inset-right)) .4rem max(1rem,env(safe-area-inset-left));' +
-      'padding-top:max(.4rem,env(safe-area-inset-top));' +
-      'font:inherit;font-size:.9rem;line-height:1.2;letter-spacing:.06em;font-variant:small-caps;' +
+      'margin:0;padding:.55rem max(1rem,env(safe-area-inset-right)) .55rem max(1rem,env(safe-area-inset-left));' +
+      'padding-top:max(.55rem,env(safe-area-inset-top));' +
+      'font:inherit;font-size:1.05rem;line-height:1.2;letter-spacing:.06em;font-variant:small-caps;' +
       'color:inherit;text-decoration:none;opacity:.78;position:relative;z-index:1;' +
       'border-bottom:1px solid currentColor;border-bottom-color:color-mix(in srgb,currentColor 18%,transparent);' +
       '-webkit-tap-highlight-color:transparent}' +
       '#almanaque-volver:hover,#almanaque-volver:focus-visible{opacity:1}' +
       '#almanaque-volver:focus-visible{outline:2px solid currentColor;outline-offset:-4px}' +
-      '#almanaque-volver .almanaque-volver__mano{font-size:1.7em;line-height:.8;font-variant:normal;' +
+      '#almanaque-volver .almanaque-volver__mano{font-size:1.8em;line-height:.8;font-variant:normal;' +
       'transition:transform .18s ease}' +
       '#almanaque-volver:hover .almanaque-volver__mano{transform:translateX(-3px)}' +
       '@media (prefers-reduced-motion:reduce){#almanaque-volver .almanaque-volver__mano{transition:none}}';
