@@ -1,0 +1,317 @@
+{
+  "dias": [
+    {
+      "refranes": [
+        {
+          "original": "Más vale tarde que nunca",
+          "variantes": [],
+          "pedante": "Resulta preferible una ejecución con demora que la ausencia total de ejecución.",
+          "significado": "Es mejor hacer algo tarde que no hacerlo.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Better late than never."
+          }
+        },
+        {
+          "original": "Perro ladrador, poco mordedor",
+          "variantes": [],
+          "pedante": "El cánido de vocalización frecuente presenta una baja incidencia de agresiones dentales.",
+          "significado": "Quien amenaza mucho rara vez actúa.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Barking dogs seldom bite."
+          }
+        },
+        {
+          "original": "Cría cuervos y te sacarán los ojos",
+          "variantes": [
+            "Cría cuervos que te sacarán los ojos"
+          ],
+          "pedante": "La crianza de córvidos conlleva un riesgo elevado de extracción ocular por parte de los propios ejemplares.",
+          "significado": "Quien hace favores a quien no lo merece puede recibir ingratitud.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Más vale pájaro en mano que ciento volando",
+          "variantes": [],
+          "pedante": "Resulta preferible un ave efectivamente bajo custodia manual que un centenar de ellas en régimen de vuelo libre.",
+          "significado": "Más vale lo seguro que lo prometido.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "A bird in the hand is worth two in the bush."
+          }
+        },
+        {
+          "original": "Zapatero, a tus zapatos",
+          "variantes": [],
+          "pedante": "Profesional del calzado: limítese usted al ámbito del calzado.",
+          "significado": "Cada cual debe opinar de lo que sabe.",
+          "equivalente": null
+        },
+        {
+          "original": "Cuando el río suena, agua lleva",
+          "variantes": [
+            "Cuando el río suena, piedras trae"
+          ],
+          "pedante": "Si el cauce fluvial emite sonido, cabe inferir razonablemente la presencia de caudal.",
+          "significado": "Si se rumorea algo, probablemente tenga algo de cierto.",
+          "equivalente": {
+            "idioma": "francés",
+            "texto": "Il n'y a pas de fumée sans feu."
+          }
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Ojos que no ven, corazón que no siente",
+          "variantes": [],
+          "pedante": "Aquello que no es captado por el sistema visual no genera respuesta alguna en el órgano cardíaco.",
+          "significado": "Lo que no se sabe no hace sufrir.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Out of sight, out of mind."
+          }
+        },
+        {
+          "original": "A caballo regalado no le mires el diente",
+          "variantes": [
+            "A caballo regalado no se le mira el diente",
+            "A caballo regalado no le mires el dentado"
+          ],
+          "pedante": "Ante un équido recibido a título gratuito, absténgase de inspeccionar su dentadura.",
+          "significado": "No hay que poner pegas a lo que nos regalan.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Don't look a gift horse in the mouth."
+          }
+        },
+        {
+          "original": "Quien siembra vientos recoge tempestades",
+          "variantes": [
+            "El que siembra vientos recoge tempestades"
+          ],
+          "pedante": "El individuo que dispersa corrientes de aire cosechará, a su debido tiempo, fenómenos tormentosos.",
+          "significado": "Quien provoca conflictos acaba sufriéndolos multiplicados.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Sow the wind, reap the whirlwind."
+          }
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "En boca cerrada no entran moscas",
+          "variantes": [],
+          "pedante": "El mantenimiento de la cavidad bucal en posición sellada impide el acceso de dípteros al organismo.",
+          "significado": "Callar a tiempo evita problemas.",
+          "equivalente": null
+        },
+        {
+          "original": "Dime con quién andas y te diré quién eres",
+          "variantes": [],
+          "pedante": "Facilíteme el listado de sus acompañantes habituales y procederé a emitir un diagnóstico de su identidad.",
+          "significado": "Las compañías dicen mucho de cada uno.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "A man is known by the company he keeps."
+          }
+        },
+        {
+          "original": "Gato escaldado del agua fría huye",
+          "variantes": [
+            "Gato escaldado, del agua fría huye"
+          ],
+          "pedante": "El felino previamente expuesto a líquido a alta temperatura evita incluso el contacto con agua fría.",
+          "significado": "Quien ha sufrido un daño se vuelve precavido.",
+          "equivalente": {
+            "idioma": "francés",
+            "texto": "Chat échaudé craint l'eau froide."
+          }
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "A quien madruga, Dios le ayuda",
+          "variantes": [
+            "Al que madruga, Dios lo ayuda",
+            "Al que madruga, Dios le ayuda"
+          ],
+          "pedante": "La divinidad dispensa su asistencia preferente a aquellos individuos que abandonan el lecho con antelación al alba.",
+          "significado": "El esfuerzo y la diligencia tienen recompensa.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "The early bird catches the worm."
+          }
+        },
+        {
+          "original": "No hay mal que por bien no venga",
+          "variantes": [],
+          "pedante": "Todo acontecimiento adverso lleva aparejado algún beneficio colateral.",
+          "significado": "De las desgracias también sale algo bueno.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Every cloud has a silver lining."
+          }
+        },
+        {
+          "original": "Camarón que se duerme, se lo lleva la corriente",
+          "variantes": [],
+          "pedante": "El crustáceo decápodo que incurre en somnolencia es desplazado por el flujo hídrico.",
+          "significado": "Quien se descuida pierde oportunidades.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Al mal tiempo, buena cara",
+          "variantes": [],
+          "pedante": "Frente a condiciones meteorológicas adversas, procede mantener una expresión facial favorable.",
+          "significado": "Hay que afrontar los problemas con optimismo.",
+          "equivalente": null
+        },
+        {
+          "original": "Del dicho al hecho hay mucho trecho",
+          "variantes": [],
+          "pedante": "Entre la enunciación verbal de un propósito y su materialización efectiva media una distancia considerable.",
+          "significado": "Es más fácil prometer que cumplir.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Easier said than done."
+          }
+        },
+        {
+          "original": "Donde hay patrón no manda marinero",
+          "variantes": [],
+          "pedante": "En presencia de un responsable jerárquico, el personal subordinado carece de potestad decisoria.",
+          "significado": "Manda quien tiene la autoridad.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "El que la sigue la consigue",
+          "variantes": [
+            "Quien la sigue la consigue"
+          ],
+          "pedante": "Aquel sujeto que persiste en la persecución de un objetivo termina por alcanzarlo.",
+          "significado": "La constancia da resultados.",
+          "equivalente": null
+        },
+        {
+          "original": "El hábito no hace al monje",
+          "variantes": [],
+          "pedante": "La indumentaria eclesiástica no constituye condición suficiente para ostentar la condición monacal.",
+          "significado": "Las apariencias engañan.",
+          "equivalente": {
+            "idioma": "francés",
+            "texto": "L'habit ne fait pas le moine."
+          }
+        },
+        {
+          "original": "Por la boca muere el pez",
+          "variantes": [],
+          "pedante": "El pez encuentra su final a través de su propio orificio bucal.",
+          "significado": "Hablar de más puede perjudicarnos.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "A falta de pan, buenas son tortas",
+          "variantes": [],
+          "pedante": "En ausencia de producto panificado, las tortas constituyen una alternativa plenamente satisfactoria.",
+          "significado": "Hay que conformarse con lo que hay.",
+          "equivalente": null
+        },
+        {
+          "original": "Agua que no has de beber, déjala correr",
+          "variantes": [],
+          "pedante": "El recurso hídrico cuyo consumo personal no esté previsto debe dejarse fluir sin interferencias.",
+          "significado": "No te metas en lo que no te concierne.",
+          "equivalente": null
+        },
+        {
+          "original": "Ande yo caliente y ríase la gente",
+          "variantes": [],
+          "pedante": "Priorizo mi confort térmico con total independencia de la hilaridad que ello suscite en terceros.",
+          "significado": "Lo importante es estar bien, aunque otros se burlen.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "No por mucho madrugar amanece más temprano",
+          "variantes": [],
+          "pedante": "La anticipación del despertar individual no adelanta en modo alguno la salida del astro rey.",
+          "significado": "Las cosas tienen su tiempo y apresurarse no sirve.",
+          "equivalente": null
+        },
+        {
+          "original": "Quien bien te quiere te hará llorar",
+          "variantes": [],
+          "pedante": "La persona que le profesa un afecto genuino le provocará, en algún momento, secreción lagrimal.",
+          "significado": "Quien te quiere te dice verdades que duelen.",
+          "equivalente": null
+        },
+        {
+          "original": "Muerto el perro, se acabó la rabia",
+          "variantes": [],
+          "pedante": "Una vez constatado el fallecimiento del cánido, cesa la transmisión del virus rábico.",
+          "significado": "Eliminada la causa, desaparece el problema.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "A buen entendedor, pocas palabras bastan",
+          "variantes": [
+            "A buen entendedor, pocas palabras"
+          ],
+          "pedante": "Para el receptor dotado de una capacidad de comprensión eficiente, un volumen léxico reducido resulta suficiente.",
+          "significado": "Quien entiende no necesita largas explicaciones.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "A word to the wise is enough."
+          }
+        },
+        {
+          "original": "Más sabe el diablo por viejo que por diablo",
+          "variantes": [],
+          "pedante": "El ente maligno debe su sabiduría más a su antigüedad que a su naturaleza demoníaca.",
+          "significado": "La experiencia enseña más que el talento.",
+          "equivalente": null
+        },
+        {
+          "original": "Al que a buen árbol se arrima, buena sombra le cobija",
+          "variantes": [
+            "Quien a buen árbol se arrima, buena sombra le cobija",
+            "El que a buen árbol se arrima, buena sombra le cobija"
+          ],
+          "pedante": "El sujeto que se aproxima a un ejemplar arbóreo de calidad disfrutará de una sombra protectora de calidad equivalente.",
+          "significado": "Rodearse de buenas personas o protectores trae beneficios.",
+          "equivalente": null
+        }
+      ]
+    }
+  ]
+}

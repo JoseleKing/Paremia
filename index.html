@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <title>Paremia</title>
+  <meta name="description" content="Cada día, tres refranes de toda la vida reescritos en lenguaje de ventanilla. Adivina el original.">
+  <meta name="theme-color" content="#f3e9d2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Paremia">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+  <div id="portada" aria-hidden="true">
+    <img class="portada__logo" src="icons/icon-512.png" width="128" height="128" alt="">
+    <p class="portada__nombre">Paremia</p>
+  </div>
+  <div class="hoja">
+    <header class="cabecera">
+      <button class="icono-btn" id="btn-ayuda" type="button" aria-label="Cómo se juega">?</button>
+      <div class="cabecera__titulo">
+        <h1><img class="cabecera__logo" src="icons/logo-cabecera.png" width="34" height="34" alt="">Paremia</h1>
+        <p class="cabecera__sub" id="subtitulo">Refranero para tiempos burocráticos</p>
+      </div>
+      <span class="cabecera__hueco" aria-hidden="true"></span>
+    </header>
+
+    <main id="app" aria-live="polite">
+      <p class="cargando">Abriendo el refranero…</p>
+    </main>
+  </div>
+
+  <dialog class="modal" id="modal" aria-labelledby="modal-titulo">
+    <div class="modal__cuerpo" id="modal-cuerpo"></div>
+    <button class="btn btn--sec modal__cerrar" id="modal-cerrar" type="button">Entendido</button>
+  </dialog>
+
+  <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+  <script src="volver-almanaque.js?v=1" defer></script>
+  <script src="app.js?v=2"></script>
+</body>
+</html>

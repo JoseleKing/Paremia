@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Reiniciar Paremia</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../icons/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css?v=1">
+</head>
+<body>
+  <div class="hoja">
+    <header class="cabecera">
+      <span></span>
+      <div class="cabecera__titulo">
+        <h1>Paremia</h1>
+        <p class="cabecera__sub">Reiniciar el juego</p>
+      </div>
+      <span></span>
+    </header>
+
+    <main>
+      <section class="pantalla pantalla--centro" id="pregunta">
+        <p class="kicker">Borrón y cuenta nueva</p>
+        <p>Se borrarán tus partidas, la racha y el historial guardados en este navegador. No se puede deshacer.</p>
+        <div class="pila">
+          <button class="btn btn--grande" id="btn-borrar" type="button">Borrar mi progreso</button>
+          <a class="btn btn--sec" href="../">Volver al juego</a>
+        </div>
+      </section>
+      <section class="pantalla pantalla--centro" id="hecho" hidden>
+        <p class="kicker">Hecho</p>
+        <p>Tu progreso se ha borrado. Volviendo al refranero…</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('btn-borrar').addEventListener('click', function () {
+      try { window.localStorage.removeItem('paremia:v1'); } catch (e) { /* sin almacenamiento */ }
+      document.getElementById('pregunta').hidden = true;
+      document.getElementById('hecho').hidden = false;
+      setTimeout(function () { location.href = '../'; }, 1500);
+    });
+  </script>
+</body>
+</html>
