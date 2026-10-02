@@ -60,7 +60,8 @@
   // El juego avisa de que la partida de hoy está terminada.
   window.almanaqueHecho = function () {
     guardar(CLAVE_HECHO, hoy());
-    actualizarEnlace();
+    // Sin venir de Almanaque no hay mano ni botón de volver que actualizar.
+    if (desdeAlmanaque) actualizarEnlace();
   };
 
   // Los botones de volver siguen ocultos aunque el estilo del juego les dé display.
