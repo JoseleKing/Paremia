@@ -538,7 +538,7 @@
       '<ul class="reglas__lista">' +
       '<li>Bajo el texto verás el <b>esqueleto</b> del refrán: una casilla por palabra, con un hueco por letra.</li>' +
       '<li>Toca el esqueleto y escribe el refrán: las letras irán llenando los huecos y las palabras destapadas se saltan solas. No importan las tildes, las mayúsculas ni alguna errata.</li>' +
-      '<li><b>Destapar palabra</b> te da una pista, pero el refrán vale menos: 3 puntos sin pistas, 2 con una y 1 con más. Si te rindes, 0.</li>' +
+      '<li><b>Pista: desvelar una palabra</b> te enseña una palabra del refrán, pero el refrán vale menos: 3 puntos sin pistas, 2 con una y 1 con más. Si te rindes, 0.</li>' +
       '<li>Fallar no penaliza: prueba cuantas veces quieras.</li>' +
       '</ul>' +
       '</div>';
@@ -569,7 +569,7 @@
       '<p class="respuesta__mensaje" id="mensaje" role="status" aria-live="polite">Toca los huecos y escribe el refrán.</p>' +
       '<button class="btn btn--grande" type="submit">Comprobar</button>' +
       '<div class="respuesta__ayudas">' +
-      '<button class="btn btn--sec" id="btn-pista" type="button">Destapar palabra</button>' +
+      '<button class="btn btn--sec" id="btn-pista" type="button">Pista: desvelar una palabra</button>' +
       '<button class="btn btn--sec btn--rendirse" id="btn-rendirse" type="button">Me rindo</button>' +
       '</div>' +
       '<div id="valor">' + htmlValor(r.pistas) + '</div>' +
