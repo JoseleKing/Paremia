@@ -529,7 +529,7 @@
 
   function htmlComoSeJuega() {
     return '<div class="reglas">' +
-      '<p>Cada día, <b>tres refranes</b> reescritos en el idioma de las ventanillas. Tienes que adivinar el original.</p>' +
+      '<p>Cada día, <b>tres refranes</b> reescritos de forma enrevesada. Tienes que adivinar el original.</p>' +
       '<div class="ejemplo">' +
       '<p class="ejemplo__pedante">«Resulta preferible un ave efectivamente bajo custodia manual que un centenar de ellas en régimen de vuelo libre.»</p>' +
       '<p class="ejemplo__flecha" aria-hidden="true">☟</p>' +
