@@ -65,6 +65,67 @@ test('esqueleto separa palabras y signos', () => {
   assert.equal(e[1].signo, ',');
 });
 
+test('repartirLetras llena los huecos por orden y salta solo de palabra', () => {
+  const e = L.esqueleto('Perro ladrador, poco mordedor');
+  const a = L.repartirLetras('perroladr', e, []);
+  assert.deepEqual(a.letras, ['perro', 'ladr', '', '']);
+  assert.equal(a.actual, 1);
+  // Un espacio tras una palabra llena no se salta la siguiente.
+  assert.deepEqual(L.repartirLetras('perro ladrador poco', e, []).letras, ['perro', 'ladrador', 'poco', '']);
+  // Un espacio a medias deja huecos y pasa a la siguiente; uno de más no cuenta.
+  assert.deepEqual(L.repartirLetras('per  lad', e, []).letras, ['per', 'lad', '', '']);
+  // Con la palabra llena, el cursor ya está en la siguiente.
+  assert.equal(L.repartirLetras('perro', e, []).actual, 1);
+  // Lo que no cabe se descarta y ya no hay palabra en curso.
+  const lleno = L.repartirLetras('perro ladrador poco mordedorxyz', e, []);
+  assert.equal(lleno.letras[3], 'mordedor');
+  assert.equal(lleno.actual, -1);
+  // Signos ignorados; tildes y eñes cuentan como una letra.
+  assert.deepEqual(L.repartirLetras('¡Pá-ja!', L.esqueleto('pájaro'), []).letras, ['Pája']);
+  assert.deepEqual(L.repartirLetras('pa\u0301jaro', L.esqueleto('pájaro'), []).letras, ['pájaro']);
+});
+
+test('repartirLetras se salta las palabras destapadas', () => {
+  const e = L.esqueleto('Perro ladrador, poco mordedor');
+  const a = L.repartirLetras('perro poco', e, [1]);
+  assert.deepEqual(a.letras, ['perro', '', 'poco', '']);
+  assert.equal(a.actual, 3);
+  assert.equal(L.textoDelEsqueleto(e, a.letras, [1]), 'perro ladrador poco');
+});
+
+test('repartirLetras admite que se teclee también la palabra destapada', () => {
+  const e = L.esqueleto('Más vale tarde que nunca');
+  assert.deepEqual(L.repartirLetras('mas vale tarde que nunca', e, [2]).letras, ['mas', 'vale', '', 'que', 'nunca']);
+  // El comienzo de la destapada, al final del texto, no se cuela en la siguiente.
+  assert.deepEqual(L.repartirLetras('mas vale tar', e, [2]).letras, ['mas', 'vale', '', '', '']);
+  // Saltársela también vale.
+  assert.deepEqual(L.repartirLetras('mas vale que', e, [2]).letras, ['mas', 'vale', '', 'que', '']);
+  // Varias destapadas seguidas, también al principio.
+  assert.deepEqual(L.repartirLetras('Más vale tarde que', e, [0, 1]).letras, ['', '', 'tarde', 'que', '']);
+  // Una palabra que solo empieza como la destapada no se la come.
+  assert.deepEqual(L.repartirLetras('no nos', L.esqueleto('no nos dejes'), [0]).letras, ['', 'nos', '']);
+});
+
+test('destapar una palabra conserva lo escrito en las demás', () => {
+  const e = L.esqueleto('Perro ladrador, poco mordedor');
+  const antes = L.repartirLetras('perro lad poco', e, []);
+  const texto = L.textoEscrito(antes.letras, [1]);
+  assert.deepEqual(L.repartirLetras(texto, e, [1]).letras, ['perro', '', 'poco', '']);
+});
+
+test('lo escrito en el esqueleto se da por bueno con la lógica de siempre', () => {
+  for (const r of todos) {
+    const e = L.esqueleto(r.original);
+    const orden = L.ordenPistas(r.original);
+    for (const n of [0, 1, 3]) {
+      const destapadas = orden.slice(0, n);
+      const tecleado = e.filter((_, i) => !destapadas.includes(i)).map((p) => L.normalizar(p.letras)).join('');
+      const { letras } = L.repartirLetras(tecleado, e, destapadas);
+      assert.equal(L.comprobarRespuesta(L.textoDelEsqueleto(e, letras, destapadas), r), 'exacto', r.original);
+    }
+  }
+});
+
 test('orden de pistas: estable, completo y nunca empieza por la primera palabra', () => {
   for (const r of todos) {
     const a = L.ordenPistas(r.original);

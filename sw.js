@@ -3,7 +3,7 @@
    (ver README). Red primero para el juego (así los refranes nuevos llegan en cuanto
    se publican) y copia guardada si no hay conexión. */
 
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const CACHE = `paremia-${CACHE_VERSION}`;
 
 const ARCHIVOS = [

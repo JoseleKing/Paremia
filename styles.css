@@ -446,26 +446,48 @@ summary:focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; }
   scroll-margin-bottom: 16px;
 }
 
-.respuesta__campo {
-  width: 100%;
-  min-height: 3.2em;
-  padding: 10px 12px;
-  resize: none;
-  overflow: hidden;
-  border: 1px solid var(--filete);
-  border-bottom: 2px solid var(--tinta-suave);
-  border-radius: var(--radio) var(--radio) 2px 2px;
-  background: var(--tarjeta);
-  color: var(--tinta);
-  font: inherit;
-  font-size: 1.15rem;   /* ≥16px: evita el zoom de iOS al enfocar */
-  line-height: 1.35;
+/* El esqueleto hace de casilla: un campo invisible lo cubre y recoge lo tecleado. */
+.tablero {
+  position: relative;
+  border-radius: var(--radio);
+  cursor: text;
 }
 
-.respuesta__campo::placeholder { color: var(--tinta-tenue); font-style: italic; }
-.respuesta__campo:focus { outline: none; border-color: var(--verde); box-shadow: 0 0 0 2px var(--verde-tinte); }
+.tablero .esqueleto { margin: 0; padding: 4px 0; }
 
-.respuesta__campo.is-temblando { animation: temblar 0.35s ease; }
+.tablero__campo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  font-size: 16px;   /* ≥16px: evita el zoom de iOS al enfocar */
+  cursor: text;
+}
+
+.tablero:focus-within .casilla { border-color: var(--tinta-suave); }
+.tablero:focus-within .palabra--vista .casilla { border-color: var(--verde); }
+.tablero:has(.tablero__campo:focus-visible) { outline: 2px solid var(--verde-tinte); outline-offset: 4px; }
+
+.hueco.is-lleno { border-bottom-color: var(--tinta); text-transform: lowercase; }
+
+.tablero:focus-within .hueco.is-cursor {
+  border-bottom: 2.5px solid var(--verde);
+  background: var(--verde-tinte);
+  animation: parpadeo 1.1s steps(1) infinite;
+}
+
+@keyframes parpadeo {
+  50% { border-bottom-color: transparent; }
+}
+
+.tablero.is-temblando { animation: temblar 0.35s ease; }
 
 @keyframes temblar {
   20%, 60% { transform: translateX(-5px); }

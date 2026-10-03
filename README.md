@@ -10,7 +10,8 @@ original:
 > de ellas en régimen de vuelo libre.» → *Más vale pájaro en mano que ciento volando.*
 
 Bajo el texto aparece el esqueleto del refrán (una casilla por palabra, un hueco
-por letra). Se puede destapar palabras a cambio de puntos o rendirse:
+por letra), y se escribe directamente en él: las letras van llenando los huecos
+y las palabras destapadas se saltan solas. Se puede destapar palabras a cambio de puntos o rendirse:
 
 | Cómo | Puntos | Al compartir |
 | --- | --- | --- |

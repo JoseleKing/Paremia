@@ -119,6 +119,74 @@
     });
   }
 
+  // Reparte lo tecleado entre los huecos del esqueleto. Las letras llenan las
+  // palabras por orden, saltándose las destapadas; al completar una palabra se
+  // pasa sola a la siguiente, y un espacio adelanta a la siguiente si la actual
+  // ya tiene alguna letra. Si se teclea una palabra destapada (o su comienzo, al
+  // final del texto), se da por escrita y no ocupa huecos. Lo que no cabe se descarta.
+  // Devuelve { letras: [texto de cada palabra], actual: palabra en curso o -1 }.
+  function repartirLetras(texto, palabras, destapadas) {
+    var huecos = palabras.map(function (p) { return Array.from(p.letras).length; });
+    var libres = [];
+    for (var i = 0; i < palabras.length; i++) if (destapadas.indexOf(i) === -1) libres.push(i);
+    var letras = palabras.map(function () { return ''; });
+    var c = Array.from(String(texto || '').normalize('NFC'));
+    var esLetra = function (x) { return /[\p{L}\p{N}]/u.test(x); };
+
+    // Posición tras la palabra destapada si el texto la deletrea desde pos; si no, -1.
+    function saltarDestapada(pos, palabra) {
+      var objetivo = Array.from(normalizar(palabra));
+      var t = 0;
+      while (pos < c.length && t < objetivo.length) {
+        if (/\s/.test(c[pos])) break;
+        if (esLetra(c[pos])) {
+          if (normalizar(c[pos]) !== objetivo[t]) return -1;
+          t++;
+        }
+        pos++;
+      }
+      if (pos >= c.length) return pos;
+      return t === objetivo.length && !esLetra(c[pos]) ? pos : -1;
+    }
+
+    var k = 0, revisada = -1;
+    for (var pos = 0; pos < c.length && k < libres.length; pos++) {
+      var n = Array.from(letras[libres[k]]).length;
+      if (/\s/.test(c[pos])) { if (n > 0) k++; continue; }
+      if (!esLetra(c[pos])) continue;
+      if (n >= huecos[libres[k]]) { k++; n = 0; if (k >= libres.length) break; }
+      if (n === 0 && revisada !== k) {
+        // Al empezar palabra, las destapadas que la preceden se pueden teclear.
+        revisada = k;
+        var antes = k > 0 ? libres[k - 1] + 1 : 0;
+        for (var d = antes; d < libres[k]; d++) {
+          var tras = saltarDestapada(pos, palabras[d].letras);
+          if (tras === -1) break;
+          pos = tras;
+          while (pos < c.length && !esLetra(c[pos])) pos++;
+        }
+        if (d > antes) { pos--; continue; }
+      }
+      letras[libres[k]] += c[pos];
+    }
+    // Si la palabra en curso está llena, la siguiente letra irá a la próxima.
+    if (k < libres.length && Array.from(letras[libres[k]]).length >= huecos[libres[k]]) k++;
+    return { letras: letras, actual: k < libres.length ? libres[k] : -1 };
+  }
+
+  // El refrán tal como ha quedado en el esqueleto: lo escrito más lo destapado.
+  function textoDelEsqueleto(palabras, letras, destapadas) {
+    return palabras.map(function (p, i) {
+      return destapadas.indexOf(i) !== -1 ? p.letras : letras[i];
+    }).filter(Boolean).join(' ');
+  }
+
+  // Lo escrito en las palabras que siguen tapadas, listo para volver a repartirse
+  // (sirve para conservar lo tecleado al destapar una palabra).
+  function textoEscrito(letras, destapadas) {
+    return letras.filter(function (l, i) { return l && destapadas.indexOf(i) === -1; }).join(' ');
+  }
+
   // ---------------------------------------------------------------------------
   // Pistas: orden aleatorio, pero fijo para cada refrán
   // ---------------------------------------------------------------------------
@@ -277,6 +345,9 @@
     levenshtein: levenshtein,
     comprobarRespuesta: comprobarRespuesta,
     esqueleto: esqueleto,
+    repartirLetras: repartirLetras,
+    textoDelEsqueleto: textoDelEsqueleto,
+    textoEscrito: textoEscrito,
     ordenPistas: ordenPistas,
     puntosRefran: puntosRefran,
     puntosPartida: puntosPartida,
@@ -356,14 +427,21 @@
 
   // ---------- Piezas ----------
 
-  function htmlEsqueleto(refran, destapadas, todo) {
+  // escrito (opcional): lo que devuelve repartirLetras, para pintar lo tecleado
+  // en los huecos y marcar dónde irá la siguiente letra.
+  function htmlEsqueleto(refran, destapadas, todo, escrito) {
     var palabras = esqueleto(refran.original);
     return '<p class="esqueleto" aria-label="Esqueleto del refrán: ' + palabras.length + ' palabras">' +
       palabras.map(function (p, i) {
         var visible = todo || destapadas.indexOf(i) !== -1;
         var letras = Array.from(p.letras);
+        var puestas = escrito ? Array.from(escrito.letras[i]) : [];
+        var cursor = escrito && escrito.actual === i ? puestas.length : -1;
         var huecos = visible ? '<span class="destapada">' + esc(p.letras) + '</span>' :
-          letras.map(function () { return '<span class="hueco"></span>'; }).join('');
+          letras.map(function (x, j) {
+            var clase = 'hueco' + (j < puestas.length ? ' is-lleno' : '') + (j === cursor ? ' is-cursor' : '');
+            return '<span class="' + clase + '">' + (j < puestas.length ? esc(puestas[j]) : '') + '</span>';
+          }).join('');
         return '<span class="palabra' + (visible ? ' palabra--vista' : '') + '"' +
           ' aria-label="' + (visible ? esc(p.letras) : letras.length + ' letras') + '">' +
           (p.antes ? '<span class="signo" aria-hidden="true">' + esc(p.antes) + '</span>' : '') +
@@ -459,7 +537,7 @@
       '</div>' +
       '<ul class="reglas__lista">' +
       '<li>Bajo el texto verás el <b>esqueleto</b> del refrán: una casilla por palabra, con un hueco por letra.</li>' +
-      '<li>Escribe el refrán entero. No importan las tildes, las mayúsculas ni alguna errata.</li>' +
+      '<li>Toca el esqueleto y escribe el refrán: las letras irán llenando los huecos y las palabras destapadas se saltan solas. No importan las tildes, las mayúsculas ni alguna errata.</li>' +
       '<li><b>Destapar palabra</b> te da una pista, pero el refrán vale menos: 3 puntos sin pistas, 2 con una y 1 con más. Si te rindes, 0.</li>' +
       '<li>Fallar no penaliza: prueba cuantas veces quieras.</li>' +
       '</ul>' +
@@ -480,12 +558,15 @@
       '<section class="pantalla pantalla--refran">' +
       htmlProgreso(partida, i) +
       htmlDictamen(refran, i, total) +
-      '<div id="esqueleto">' + htmlEsqueleto(refran, orden.slice(0, r.pistas), false) + '</div>' +
       '<form class="respuesta" id="form-respuesta" autocomplete="off" novalidate>' +
-      '<label class="visually-hidden" for="campo">Escribe el refrán original</label>' +
-      '<textarea id="campo" class="respuesta__campo" rows="2" placeholder="Escribe aquí el refrán…" ' +
-      'autocapitalize="sentences" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="done"></textarea>' +
-      '<p class="respuesta__mensaje" id="mensaje" role="status" aria-live="polite"></p>' +
+      // El campo de texto es invisible y cubre el esqueleto: al tocar los huecos
+      // se abre el teclado y lo tecleado se pinta letra a letra en ellos.
+      '<div class="tablero" id="tablero">' +
+      '<div id="esqueleto"></div>' +
+      '<input id="campo" class="tablero__campo" type="text" aria-label="Escribe el refrán original en los huecos" ' +
+      'autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="go">' +
+      '</div>' +
+      '<p class="respuesta__mensaje" id="mensaje" role="status" aria-live="polite">Toca los huecos y escribe el refrán.</p>' +
       '<button class="btn btn--grande" type="submit">Comprobar</button>' +
       '<div class="respuesta__ayudas">' +
       '<button class="btn btn--sec" id="btn-pista" type="button">Destapar palabra</button>' +
@@ -496,51 +577,69 @@
       '</section>'
     );
 
+    var palabras = esqueleto(refran.original);
     var form = document.getElementById('form-respuesta');
+    var tablero = document.getElementById('tablero');
     var campo = document.getElementById('campo');
     var mensaje = document.getElementById('mensaje');
     var btnPista = document.getElementById('btn-pista');
     var btnRendirse = document.getElementById('btn-rendirse');
     var confirmarRendicion = null;
+    var escrito = null;
+
+    function destapadas() { return orden.slice(0, r.pistas); }
+
+    function pintarEsqueleto() {
+      escrito = repartirLetras(campo.value, palabras, destapadas());
+      document.getElementById('esqueleto').innerHTML = htmlEsqueleto(refran, destapadas(), false, escrito);
+    }
 
     function actualizarPistas() {
-      document.getElementById('esqueleto').innerHTML = htmlEsqueleto(refran, orden.slice(0, r.pistas), false);
+      pintarEsqueleto();
       document.getElementById('valor').innerHTML = htmlValor(r.pistas);
       btnPista.disabled = r.pistas >= orden.length;
     }
     actualizarPistas();
 
-    // El área de texto crece con el contenido y no deja que el teclado la tape.
-    function ajustarAltura() {
-      campo.style.height = 'auto';
-      campo.style.height = campo.scrollHeight + 'px';
+    // Se escribe siempre al final: el cursor del campo invisible no se puede mover.
+    function cursorAlFinal() {
+      var n = campo.value.length;
+      if (campo.selectionStart !== n || campo.selectionEnd !== n) campo.setSelectionRange(n, n);
     }
-    function mostrarCampo() {
-      setTimeout(function () { form.scrollIntoView({ block: 'end', behavior: 'smooth' }); }, 300);
+    // Que el teclado no tape el esqueleto ni el botón «Comprobar».
+    function mostrarTablero() {
+      setTimeout(function () { form.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }, 300);
     }
-    campo.addEventListener('input', function () {
-      ajustarAltura();
+    campo.addEventListener('input', function (ev) {
+      pintarEsqueleto();
+      // Lo que ya no cabe en los huecos se descarta, para que borrar actúe enseguida.
+      if (!ev.isComposing && escrito.actual === -1) {
+        var limpio = textoEscrito(escrito.letras, destapadas());
+        if (campo.value !== limpio) campo.value = limpio;
+      }
       mensaje.textContent = '';
       mensaje.className = 'respuesta__mensaje';
     });
-    campo.addEventListener('focus', mostrarCampo);
+    campo.addEventListener('focus', function () { cursorAlFinal(); mostrarTablero(); });
+    campo.addEventListener('click', cursorAlFinal);
+    campo.addEventListener('select', cursorAlFinal);
     if (window.visualViewport) {
       window.visualViewport.addEventListener('resize', function () {
-        if (document.activeElement === campo) mostrarCampo();
+        if (document.activeElement === campo) mostrarTablero();
       });
     }
     campo.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Enter' && !ev.shiftKey && !ev.isComposing) {
-        ev.preventDefault();
-        if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit', { cancelable: true }));
-      }
+      if (/^(Arrow|Home$|End$|Page)/.test(ev.key)) ev.preventDefault();
     });
+    // Con ratón y teclado se puede escribir nada más entrar.
+    if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) campo.focus({ preventScroll: true });
 
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
-      var veredicto = comprobarRespuesta(campo.value, refran);
+      var veredicto = comprobarRespuesta(textoDelEsqueleto(palabras, escrito.letras, destapadas()), refran);
+      if (!escrito.letras.some(Boolean)) veredicto = 'vacio';
       if (veredicto === 'vacio') {
-        mensaje.textContent = 'Escribe primero el refrán.';
+        mensaje.textContent = 'Toca los huecos y escribe primero el refrán.';
         mensaje.className = 'respuesta__mensaje';
         campo.focus();
         return;
@@ -555,15 +654,22 @@
       guardar();
       mensaje.textContent = veredicto === 'casi' ? '¡Casi! Revisa alguna palabra.' : 'No es ese. Prueba otra vez.';
       mensaje.className = 'respuesta__mensaje ' + (veredicto === 'casi' ? 'is-casi' : 'is-mal');
-      campo.classList.remove('is-temblando');
-      void campo.offsetWidth;
-      campo.classList.add('is-temblando');
+      tablero.classList.remove('is-temblando');
+      void tablero.offsetWidth;
+      tablero.classList.add('is-temblando');
     });
 
+    // Si se estaba escribiendo, tras destapar se sigue escribiendo (sin cerrar el teclado).
+    var escribiendo = false;
+    btnPista.addEventListener('pointerdown', function () { escribiendo = document.activeElement === campo; });
     btnPista.addEventListener('click', function () {
+      if (escribiendo) campo.focus({ preventScroll: true });
+      escribiendo = false;
       if (r.pistas >= orden.length) return;
       r.pistas++;
       guardar();
+      // Lo ya escrito se conserva; solo se pierde lo de la palabra destapada.
+      campo.value = textoEscrito(escrito.letras, destapadas());
       actualizarPistas();
       var nueva = document.querySelectorAll('#esqueleto .palabra')[orden[r.pistas - 1]];
       if (nueva) nueva.classList.add('is-recien');
