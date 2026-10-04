@@ -142,6 +142,12 @@ test('puntuación por refrán y por partida', () => {
   assert.equal(L.puntosRefran({ estado: 'resuelto', pistas: 2 }), 1);
   assert.equal(L.puntosRefran({ estado: 'resuelto', pistas: 5 }), 1);
   assert.equal(L.puntosRefran({ estado: 'rendido', pistas: 0 }), 0);
+  // Los fallos restan igual que las pistas
+  assert.equal(L.puntosRefran({ estado: 'resuelto', pistas: 0, fallos: 1 }), 2);
+  assert.equal(L.puntosRefran({ estado: 'resuelto', pistas: 1, fallos: 1 }), 1);
+  assert.equal(L.puntosRefran({ estado: 'resuelto', pistas: 0, fallos: 7 }), 1);
+  assert.equal(L.puntosRefran({ estado: 'rendido', pistas: 0, fallos: 2 }), 0);
+  assert.equal(L.valorRefran({ estado: 'jugando', pistas: 0, fallos: 0 }), 3);
 });
 
 test('texto para compartir', () => {
@@ -151,6 +157,8 @@ test('texto para compartir', () => {
     { estado: 'rendido', pistas: 1 }
   ] };
   assert.equal(L.textoCompartir(4, partida, 'https://x.es/Paremia/'), 'Paremia · Día 4\n🟩🟨⬛  4/9\nhttps://x.es/Paremia/');
+  partida.refranes[0].fallos = 1;
+  assert.equal(L.textoCompartir(4, partida), 'Paremia · Día 4\n🟨🟨⬛  3/9');
 });
 
 test('días: FECHA_INICIO es el día 1 y ?dia=N lo fuerza', () => {

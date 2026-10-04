@@ -11,13 +11,13 @@ original:
 
 Bajo el texto aparece el esqueleto del refrán (una casilla por palabra, un hueco
 por letra), y se escribe directamente en él: las letras van llenando los huecos
-y las palabras destapadas se saltan solas. Se puede destapar palabras a cambio de puntos o rendirse:
+y las palabras destapadas se saltan solas. Cada pista (destapar una palabra) y cada respuesta fallida al comprobar restan un punto; también se puede rendir:
 
 | Cómo | Puntos | Al compartir |
 | --- | --- | --- |
-| Sin pistas | 3 | 🟩 |
-| Con una pista | 2 | 🟨 |
-| Con dos o más pistas | 1 | 🟨 |
+| A la primera, sin pistas | 3 | 🟩 |
+| Con una pista o un fallo | 2 | 🟨 |
+| Con dos o más pistas o fallos | 1 | 🟨 |
 | Rendido | 0 | ⬛ |
 
 Es una PWA estática (HTML, CSS y JavaScript, sin frameworks ni paso de
@@ -100,7 +100,7 @@ ordenados de fácil a difícil:
 Se pasa a minúsculas y se quitan tildes, signos y espacios dobles. Vale si
 coincide con el original o una variante, o si se diferencia en un 15 % o menos
 de las letras (distancia de Levenshtein). Hasta el 30 % se avisa con
-«¡Casi! Revisa alguna palabra». Fallar no resta puntos.
+«¡Casi! Revisa alguna palabra». Cada comprobación fallida (también las de «¡Casi!») resta un punto; comprobar con los huecos vacíos no cuenta.
 
 ## Publicar en GitHub Pages
 

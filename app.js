@@ -234,11 +234,18 @@
   // Puntuación y compartir
   // ---------------------------------------------------------------------------
 
+  // Cada pista y cada respuesta fallida restan un punto, hasta quedarse en 1.
+  function tropiezos(r) {
+    return (r.pistas || 0) + (r.fallos || 0);
+  }
+
+  function valorRefran(r) {
+    return Math.max(1, 3 - tropiezos(r));
+  }
+
   function puntosRefran(r) {
     if (!r || r.estado === 'rendido') return 0;
-    if (r.pistas === 0) return 3;
-    if (r.pistas === 1) return 2;
-    return 1;
+    return valorRefran(r);
   }
 
   function puntosPartida(partida) {
@@ -249,7 +256,7 @@
 
   function emojiRefran(r) {
     if (r.estado === 'rendido') return '⬛';
-    return r.pistas === 0 ? '🟩' : '🟨';
+    return tropiezos(r) === 0 ? '🟩' : '🟨';
   }
 
   function textoCompartir(dia, partida, url) {
@@ -300,7 +307,7 @@
     var p = estado.partidas[dia];
     if (!p || !Array.isArray(p.refranes) || p.refranes.length !== cuantos) {
       p = { refranes: [], terminada: false };
-      for (var i = 0; i < cuantos; i++) p.refranes.push({ estado: 'jugando', pistas: 0, intentos: 0 });
+      for (var i = 0; i < cuantos; i++) p.refranes.push({ estado: 'jugando', pistas: 0, fallos: 0, intentos: 0 });
       estado.partidas[dia] = p;
     }
     return p;
@@ -349,6 +356,7 @@
     textoDelEsqueleto: textoDelEsqueleto,
     textoEscrito: textoEscrito,
     ordenPistas: ordenPistas,
+    valorRefran: valorRefran,
     puntosRefran: puntosRefran,
     puntosPartida: puntosPartida,
     textoCompartir: textoCompartir,
@@ -477,8 +485,8 @@
       '</figure>';
   }
 
-  function htmlValor(pistas) {
-    var puntos = pistas === 0 ? 3 : pistas === 1 ? 2 : 1;
+  function htmlValor(r) {
+    var puntos = valorRefran(r);
     var marcas = '';
     for (var k = 0; k < 3; k++) marcas += '<span class="valor__punto' + (k < puntos ? ' is-lleno' : '') + '"></span>';
     return '<p class="valor" aria-label="Este refrán vale ahora ' + puntos + (puntos === 1 ? ' punto' : ' puntos') + '">' +
@@ -488,8 +496,8 @@
 
   var VEREDICTOS = {
     3: { sello: 'Descifrado', frase: 'A la primera y sin ayuda.' },
-    2: { sello: 'Descifrado', frase: 'Con una palabra de ayuda.' },
-    1: { sello: 'Descifrado', frase: 'Con unas cuantas palabras de ayuda.' },
+    2: { sello: 'Descifrado', frase: 'Con un tropiezo.' },
+    1: { sello: 'Descifrado', frase: 'Con unos cuantos tropiezos.' },
     0: { sello: 'Archivado', frase: 'Te has rendido. Otra vez será.' }
   };
 
@@ -553,8 +561,9 @@
       '<ul class="reglas__lista">' +
       '<li>Bajo el texto verás el <b>esqueleto</b> del refrán: una casilla por palabra, con un hueco por letra.</li>' +
       '<li>Toca el esqueleto y escribe el refrán: las letras irán llenando los huecos y las palabras destapadas se saltan solas. No importan las tildes, las mayúsculas ni alguna errata.</li>' +
-      '<li><b>Pista: desvelar una palabra</b> te enseña una palabra del refrán, pero el refrán vale menos: 3 puntos sin pistas, 2 con una y 1 con más. Si te rindes, 0.</li>' +
-      '<li>Fallar no penaliza: prueba cuantas veces quieras.</li>' +
+      '<li><b>Pista: desvelar una palabra</b> te enseña una palabra del refrán, pero el refrán vale un punto menos.</li>' +
+      '<li>Comprobar un refrán que no es el bueno también resta un punto.</li>' +
+      '<li>Cada refrán vale 3 puntos y nunca baja de 1 si lo aciertas. Si te rindes, 0.</li>' +
       '</ul>' +
       '</div>';
   }
@@ -587,7 +596,7 @@
       '<button class="btn btn--sec" id="btn-pista" type="button">Pista: desvelar una palabra</button>' +
       '<button class="btn btn--sec btn--rendirse" id="btn-rendirse" type="button">Me rindo</button>' +
       '</div>' +
-      '<div id="valor">' + htmlValor(r.pistas) + '</div>' +
+      '<div id="valor">' + htmlValor(r) + '</div>' +
       '</form>' +
       '</section>'
     );
@@ -611,7 +620,7 @@
 
     function actualizarPistas() {
       pintarEsqueleto();
-      document.getElementById('valor').innerHTML = htmlValor(r.pistas);
+      document.getElementById('valor').innerHTML = htmlValor(r);
       btnPista.disabled = r.pistas >= orden.length;
     }
     actualizarPistas();
@@ -666,7 +675,9 @@
         pantallaRecompensa(i);
         return;
       }
+      r.fallos = (r.fallos || 0) + 1;
       guardar();
+      document.getElementById('valor').innerHTML = htmlValor(r);
       mensaje.textContent = veredicto === 'casi' ? '¡Casi! Revisa alguna palabra.' : 'No es ese. Prueba otra vez.';
       mensaje.className = 'respuesta__mensaje ' + (veredicto === 'casi' ? 'is-casi' : 'is-mal');
       tablero.classList.remove('is-temblando');
@@ -710,7 +721,7 @@
 
   function htmlProgreso(partida, actual) {
     return '<ol class="progreso" aria-label="Progreso del día">' + partida.refranes.map(function (r, k) {
-      var clase = r.estado === 'jugando' ? (k === actual ? 'is-actual' : '') : (r.estado === 'rendido' ? 'is-rendido' : r.pistas ? 'is-pistas' : 'is-limpio');
+      var clase = r.estado === 'jugando' ? (k === actual ? 'is-actual' : '') : (r.estado === 'rendido' ? 'is-rendido' : tropiezos(r) ? 'is-pistas' : 'is-limpio');
       return '<li class="' + clase + '"><span>' + NUMERALES[k] + '</span></li>';
     }).join('') + '</ol>';
   }
@@ -766,7 +777,7 @@
       '<div class="marcador">' +
       '<p class="marcador__cifra"><b>' + puntos + '</b><span>/' + maximo + '</span></p>' +
       '<p class="marcador__emojis" aria-hidden="true">' + partida.refranes.map(function (r) {
-        return r.estado === 'rendido' ? '⬛' : r.pistas ? '🟨' : '🟩';
+        return emojiRefran(r);
       }).join('') + '</p>' +
       '<p class="marcador__frase">' + FRASES[Math.round(puntos * 9 / maximo)] + '</p>' +
       '</div>' +
@@ -777,7 +788,7 @@
       '<ol class="repaso">' + dias[hoy - 1].refranes.map(function (refran, k) {
         var r = partida.refranes[k];
         return '<li><details>' +
-          '<summary><span class="repaso__marca repaso__marca--' + (r.estado === 'rendido' ? 'rendido' : r.pistas ? 'pistas' : 'limpio') + '" aria-hidden="true"></span>' +
+          '<summary><span class="repaso__marca repaso__marca--' + (r.estado === 'rendido' ? 'rendido' : tropiezos(r) ? 'pistas' : 'limpio') + '" aria-hidden="true"></span>' +
           '<span class="repaso__refran">' + esc(refran.original) + '</span><span class="repaso__puntos">+' + puntosRefran(r) + '</span></summary>' +
           '<div class="repaso__detalle">' +
           '<p class="repaso__pedante">«' + esc(refran.pedante) + '»</p>' +
@@ -835,7 +846,7 @@
 
   function abrirAyuda() {
     modalCuerpo.innerHTML = '<h2 id="modal-titulo">Cómo se juega</h2>' + htmlComoSeJuega() +
-      '<p class="reglas__nota">Al compartir: 🟩 sin pistas, 🟨 con pistas, ⬛ rendido. Cada medianoche hay tres refranes nuevos.</p>';
+      '<p class="reglas__nota">Al compartir: 🟩 a la primera, 🟨 con pistas o fallos, ⬛ rendido. Cada medianoche hay tres refranes nuevos.</p>';
     if (modal.showModal) modal.showModal(); else modal.setAttribute('open', '');
   }
 
