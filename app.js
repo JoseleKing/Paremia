@@ -91,6 +91,8 @@
 
   var UMBRAL_ACIERTO = 0.15;
   var UMBRAL_CASI = 0.30;
+  // Al tercer fallo el refrán se da por perdido, como si te rindieras.
+  var MAX_FALLOS = 3;
 
   // Devuelve 'exacto', 'aproximado', 'casi' o 'mal'.
   // Se compara con el texto canónico y con cada variante; el umbral se mide
@@ -243,6 +245,15 @@
     return Math.max(1, 3 - tropiezos(r));
   }
 
+  // Apunta una respuesta fallida. Al llegar a MAX_FALLOS el refrán queda
+  // rendido (0 puntos); devuelve true en ese caso.
+  function registrarFallo(r) {
+    r.fallos = (r.fallos || 0) + 1;
+    if (r.fallos < MAX_FALLOS) return false;
+    r.estado = 'rendido';
+    return true;
+  }
+
   function puntosRefran(r) {
     if (!r || r.estado === 'rendido') return 0;
     return valorRefran(r);
@@ -351,6 +362,8 @@
     normalizar: normalizar,
     levenshtein: levenshtein,
     comprobarRespuesta: comprobarRespuesta,
+    MAX_FALLOS: MAX_FALLOS,
+    registrarFallo: registrarFallo,
     esqueleto: esqueleto,
     repartirLetras: repartirLetras,
     textoDelEsqueleto: textoDelEsqueleto,
@@ -504,6 +517,7 @@
   function htmlRecompensa(refran, r) {
     var puntos = puntosRefran(r);
     var v = VEREDICTOS[puntos];
+    if (puntos === 0 && (r.fallos || 0) >= MAX_FALLOS) v = { sello: v.sello, frase: 'Tres intentos fallidos. Otra vez será.' };
     var eq = refran.equivalente;
     return '<article class="recompensa' + (puntos === 0 ? ' recompensa--rendido' : '') + '">' +
       '<span class="sello" aria-hidden="true">' + v.sello + '</span>' +
@@ -562,7 +576,7 @@
       '<li>Bajo el texto verás el <b>esqueleto</b> del refrán: una casilla por palabra, con un hueco por letra.</li>' +
       '<li>Toca el esqueleto y escribe el refrán: las letras irán llenando los huecos y las palabras destapadas se saltan solas. No importan las tildes, las mayúsculas ni alguna errata.</li>' +
       '<li><b>Pista: desvelar una palabra</b> te enseña una palabra del refrán, pero el refrán vale un punto menos.</li>' +
-      '<li>Comprobar un refrán que no es el bueno también resta un punto.</li>' +
+      '<li>Comprobar un refrán que no es el bueno también resta un punto. Al tercer fallo, el refrán se da por perdido (0 puntos).</li>' +
       '<li>Cada refrán vale 3 puntos y nunca baja de 1 si lo aciertas. Si te rindes, 0.</li>' +
       '</ul>' +
       '</div>';
@@ -675,10 +689,17 @@
         pantallaRecompensa(i);
         return;
       }
-      r.fallos = (r.fallos || 0) + 1;
+      var perdido = registrarFallo(r);
       guardar();
+      if (perdido) {
+        clearTimeout(confirmarRendicion);
+        pantallaRecompensa(i);
+        return;
+      }
       document.getElementById('valor').innerHTML = htmlValor(r);
-      mensaje.textContent = veredicto === 'casi' ? '¡Casi! Revisa alguna palabra.' : 'No es ese. Prueba otra vez.';
+      var quedan = MAX_FALLOS - r.fallos;
+      mensaje.textContent = (veredicto === 'casi' ? '¡Casi! Revisa alguna palabra.' : 'No es ese.') +
+        (quedan === 1 ? ' Te queda un intento.' : ' Te quedan ' + quedan + ' intentos.');
       mensaje.className = 'respuesta__mensaje ' + (veredicto === 'casi' ? 'is-casi' : 'is-mal');
       tablero.classList.remove('is-temblando');
       void tablero.offsetWidth;

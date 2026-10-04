@@ -18,7 +18,7 @@ y las palabras destapadas se saltan solas. Cada pista (destapar una palabra) y c
 | A la primera, sin pistas | 3 | 🟩 |
 | Con una pista o un fallo | 2 | 🟨 |
 | Con dos o más pistas o fallos | 1 | 🟨 |
-| Rendido | 0 | ⬛ |
+| Rendido o tres fallos | 0 | ⬛ |
 
 Es una PWA estática (HTML, CSS y JavaScript, sin frameworks ni paso de
 compilación) que forma parte de la colección de [Almanaque](https://joseleking.github.io/Almanaque/).
@@ -100,7 +100,7 @@ ordenados de fácil a difícil:
 Se pasa a minúsculas y se quitan tildes, signos y espacios dobles. Vale si
 coincide con el original o una variante, o si se diferencia en un 15 % o menos
 de las letras (distancia de Levenshtein). Hasta el 30 % se avisa con
-«¡Casi! Revisa alguna palabra». Cada comprobación fallida (también las de «¡Casi!») resta un punto; comprobar con los huecos vacíos no cuenta.
+«¡Casi! Revisa alguna palabra». Cada comprobación fallida (también las de «¡Casi!») resta un punto; comprobar con los huecos vacíos no cuenta. Al tercer fallo el refrán cuenta como rendido (0 puntos, ⬛).
 
 ## Publicar en GitHub Pages
 

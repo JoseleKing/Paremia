@@ -150,6 +150,17 @@ test('puntuación por refrán y por partida', () => {
   assert.equal(L.valorRefran({ estado: 'jugando', pistas: 0, fallos: 0 }), 3);
 });
 
+test('al tercer fallo el refrán se da por perdido', () => {
+  const r = { estado: 'jugando', pistas: 0, fallos: 0, intentos: 0 };
+  assert.equal(L.registrarFallo(r), false);
+  assert.equal(L.registrarFallo(r), false);
+  assert.equal(r.estado, 'jugando');
+  assert.equal(L.registrarFallo(r), true);
+  assert.equal(r.estado, 'rendido');
+  assert.equal(r.fallos, L.MAX_FALLOS);
+  assert.equal(L.puntosRefran(r), 0);
+});
+
 test('texto para compartir', () => {
   const partida = { refranes: [
     { estado: 'resuelto', pistas: 0 },
