@@ -401,9 +401,26 @@
 
   function guardar() { guardarEstado(almacen, estado); }
 
-  // Con la partida de hoy terminada, la mano ☜ marca Paremia como «Hecho» en Almanaque.
+  // Con la partida de hoy terminada, la mano ☜ marca Paremia como «Hecho» en Almanaque,
+  // y su hoja muestra un punto por refrán resuelto (vacío si te rendiste), los puntos
+  // del día y la racha: «Hoy ● ● ○ 5 de 9 · racha 3». Con ?dia=N no se manda el
+  // resultado: es un día de prueba.
   function avisarAlmanaque() {
-    if (window.almanaqueHecho) window.almanaqueHecho();
+    var partida = partidaHoy();
+    function avisar() {
+      if (!window.almanaqueHecho) return;
+      if (forzado) { window.almanaqueHecho(); return; }
+      window.almanaqueHecho({
+        aciertos: partida.refranes.filter(function (r) { return r.estado !== 'rendido'; }).length,
+        total: partida.refranes.length,
+        texto: puntosPartida(partida) + ' de ' + partida.refranes.length * 3,
+        racha: rachaVigente(estado, hoy)
+      });
+    }
+    // Este script corre antes que volver-almanaque.js (que lleva defer): si aún no existe,
+    // se espera a DOMContentLoaded, que llega después de los scripts con defer.
+    if (window.almanaqueHecho) avisar();
+    else document.addEventListener('DOMContentLoaded', avisar, { once: true });
   }
 
   function subtitulo(texto) { document.getElementById('subtitulo').textContent = texto; }

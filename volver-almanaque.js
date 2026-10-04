@@ -6,6 +6,13 @@
      window.almanaqueHecho && window.almanaqueHecho();
    (también al abrir el juego con la partida de hoy ya terminada). Así la mano ☜ lleva
    a Almanaque el aviso y la hoja del juego se marca como «Hecho».
+   Resultado de hoy: el juego puede pasarle a almanaqueHecho lo que ha sacado el jugador,
+   y Almanaque lo muestra en la hoja del juego:
+     window.almanaqueHecho({ aciertos: 2, total: 3 });          // ● ● ○
+     window.almanaqueHecho({ aciertos: 2, total: 3, racha: 5 }); // ● ● ○ · racha 5
+     window.almanaqueHecho({ texto: 'Resuelto' });               // texto libre y corto
+   Se guarda en localStorage (todos los juegos comparten origen con Almanaque), así que
+   llega aunque el jugador no vuelva con la mano ☜.
    Botón de volver junto a «Compartir resultado»: el juego pone en su pantalla final
      <a data-almanaque-volver hidden href="https://joseleking.github.io/Almanaque/">…</a>
    con el estilo que quiera. Si se llegó desde Almanaque, este script lo muestra y le da
@@ -21,6 +28,7 @@
   var CLAVE = 'almanaque:volver';
   var CLAVE_JUEGO = 'almanaque:juego';
   var CLAVE_HECHO = 'almanaque:hecho';
+  var CLAVE_RESULTADOS = 'almanaque:resultados';
   var desdeAlmanaque = false;
   var juego = null;
 
@@ -57,9 +65,58 @@
     return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
   }
 
-  // El juego avisa de que la partida de hoy está terminada.
-  window.almanaqueHecho = function () {
+  // Misma forma de fecha que usa la portada (AAAA-MM-DD).
+  function claveDeHoy() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  // Sin venir de Almanaque, el id sale de la ruta: /Periplo/ → periplo.
+  function idDelJuego() {
+    if (juego) return juego;
+    var partes = window.location.pathname.split('/').filter(Boolean);
+    return partes.length ? partes[0].toLowerCase() : null;
+  }
+
+  function numero(n) {
+    return typeof n === 'number' && isFinite(n) && n >= 0 ? Math.floor(n) : null;
+  }
+
+  // Solo se guardan los campos conocidos, ya comprobados.
+  function limpiarResultado(r) {
+    if (!r || typeof r !== 'object') return null;
+    var limpio = {};
+    var aciertos = numero(r.aciertos);
+    var total = numero(r.total);
+    if (aciertos !== null && total) {
+      limpio.aciertos = Math.min(aciertos, total);
+      limpio.total = total;
+    }
+    if (typeof r.texto === 'string' && r.texto.trim()) limpio.texto = r.texto.trim().slice(0, 40);
+    var racha = numero(r.racha);
+    if (racha) limpio.racha = racha;
+    return Object.keys(limpio).length ? limpio : null;
+  }
+
+  function guardarResultado(resultado) {
+    var id = idDelJuego();
+    var limpio = limpiarResultado(resultado);
+    if (!id || !limpio) return;
+    try {
+      var datos = null;
+      try { datos = JSON.parse(window.localStorage.getItem(CLAVE_RESULTADOS) || 'null'); } catch (e) { /* corrupto */ }
+      if (!datos || datos.fecha !== claveDeHoy() || typeof datos.juegos !== 'object' || !datos.juegos) {
+        datos = { fecha: claveDeHoy(), juegos: {} };
+      }
+      datos.juegos[id] = limpio;
+      window.localStorage.setItem(CLAVE_RESULTADOS, JSON.stringify(datos));
+    } catch (e) { /* sin almacenamiento */ }
+  }
+
+  // El juego avisa de que la partida de hoy está terminada (y, si quiere, de cómo ha ido).
+  window.almanaqueHecho = function (resultado) {
     guardar(CLAVE_HECHO, hoy());
+    guardarResultado(resultado);
     // Sin venir de Almanaque no hay mano ni botón de volver que actualizar.
     if (desdeAlmanaque) actualizarEnlace();
   };
