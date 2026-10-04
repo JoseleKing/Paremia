@@ -402,9 +402,8 @@
   function guardar() { guardarEstado(almacen, estado); }
 
   // Con la partida de hoy terminada, la mano ☜ marca Paremia como «Hecho» en Almanaque,
-  // y su hoja muestra un punto por refrán resuelto (vacío si te rendiste), los puntos
-  // del día y la racha: «Hoy ● ● ○ 5 de 9 · racha 3». Con ?dia=N no se manda el
-  // resultado: es un día de prueba.
+  // y su hoja muestra un punto por refrán resuelto (vacío si te rendiste) y la racha:
+  // «Hoy ● ● ○ · racha 3». Con ?dia=N no se manda el resultado: es un día de prueba.
   function avisarAlmanaque() {
     var partida = partidaHoy();
     function avisar() {
@@ -413,7 +412,6 @@
       window.almanaqueHecho({
         aciertos: partida.refranes.filter(function (r) { return r.estado !== 'rendido'; }).length,
         total: partida.refranes.length,
-        texto: puntosPartida(partida) + ' de ' + partida.refranes.length * 3,
         racha: rachaVigente(estado, hoy)
       });
     }
