@@ -34,6 +34,11 @@
     return Math.floor((b - a) / 86400000) + 1;
   }
 
+  // Contenido del día `dia`: al acabarse los días, el ciclo vuelve a empezar por el primero.
+  function diaDeContenido(dias, dia) {
+    return dias[(dia - 1) % dias.length];
+  }
+
   // ?dia=N fuerza el día N (para probar el prototipo).
   function diaForzado(search) {
     var m = /[?&]dia=(\d+)/.exec(search || '');
@@ -356,6 +361,7 @@
     CLAVE_ALMACEN: CLAVE_ALMACEN,
     leerFechaISO: leerFechaISO,
     numeroDia: numeroDia,
+    diaDeContenido: diaDeContenido,
     diaForzado: diaForzado,
     msHastaMedianoche: msHastaMedianoche,
     formatoCuentaAtras: formatoCuentaAtras,
@@ -458,7 +464,7 @@
   }
 
   function partidaHoy() {
-    return partidaDelDia(estado, hoy, dias[hoy - 1].refranes.length);
+    return partidaDelDia(estado, hoy, diaDeContenido(dias, hoy).refranes.length);
   }
 
   // ---------- Piezas ----------
@@ -586,7 +592,7 @@
     var partida = partidaHoy();
     var i = refranActual(partida);
     if (i === -1) { pantallaResultado(); return; }
-    var refran = dias[hoy - 1].refranes[i];
+    var refran = diaDeContenido(dias, hoy).refranes[i];
     var r = partida.refranes[i];
     var orden = ordenPistas(refran.original);
     var total = partida.refranes.length;
@@ -749,7 +755,7 @@
 
   function pantallaRecompensa(i) {
     var partida = partidaHoy();
-    var refran = dias[hoy - 1].refranes[i];
+    var refran = diaDeContenido(dias, hoy).refranes[i];
     var r = partida.refranes[i];
     var quedan = refranActual(partida) !== -1;
     if (!quedan && terminarPartida(estado, hoy)) guardar();
@@ -789,7 +795,6 @@
     avisarAlmanaque();
     var puntos = puntosPartida(partida);
     var maximo = partida.refranes.length * 3;
-    var ultimo = hoy >= dias.length;
     subtitulo('Día ' + hoy + ' · Resultado');
 
     pintar(
@@ -806,7 +811,7 @@
       '<button class="btn btn--grande" id="btn-compartir" type="button">Compartir</button>' +
       '<a class="btn btn--sec btn--enlace" data-almanaque-volver hidden href="https://joseleking.github.io/Almanaque/">☜ Regresar al Almanaque</a>' +
       '</div>' +
-      '<ol class="repaso">' + dias[hoy - 1].refranes.map(function (refran, k) {
+      '<ol class="repaso">' + diaDeContenido(dias, hoy).refranes.map(function (refran, k) {
         var r = partida.refranes[k];
         return '<li><details>' +
           '<summary><span class="repaso__marca repaso__marca--' + (r.estado === 'rendido' ? 'rendido' : tropiezos(r) ? 'pistas' : 'limpio') + '" aria-hidden="true"></span>' +
@@ -818,7 +823,7 @@
           '</div></details></li>';
       }).join('') + '</ol>' +
       htmlEstadisticas() +
-      '<p class="cuenta-atras">' + (ultimo ? 'Era el último día del prototipo. Se cierra el refranero en' : 'Próximos refranes en') +
+      '<p class="cuenta-atras">Próximos refranes en' +
       ' <time id="cuenta-atras">--:--:--</time></p>' +
       '</section>'
     );
@@ -827,19 +832,6 @@
       compartir(textoCompartir(hoy, partida));
     });
     empezarCuentaAtras();
-  }
-
-  function pantallaFin() {
-    subtitulo('Fin del prototipo');
-    pintar(
-      '<section class="pantalla pantalla--centro">' +
-      '<p class="kicker">Se acabó el refranero</p>' +
-      '<div class="floron" aria-hidden="true">❦</div>' +
-      '<p class="lema">Vuelve pronto: estamos afilando más refranes.</p>' +
-      '<p>Ya has visto los ' + dias.length + ' días de este prototipo de <b>Paremia</b>. Más vale tarde que nunca: habrá más.</p>' +
-      (Object.keys(estado.historial).length ? htmlEstadisticas() : '') +
-      '</section>'
-    );
   }
 
   function pantallaAntes() {
@@ -951,7 +943,6 @@
         dias = datos.dias;
         hoy = forzado || numeroDia(new Date());
         if (hoy < 1) { pantallaAntes(); return; }
-        if (hoy > dias.length) { pantallaFin(); return; }
         if (!estado.visto) pantallaInicio();
         else pantallaRefran();   // con la partida terminada, muestra el resultado
       })

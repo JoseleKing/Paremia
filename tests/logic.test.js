@@ -14,8 +14,8 @@ function almacenEnMemoria() {
   return { getItem: (k) => (m.has(k) ? m.get(k) : null), setItem: (k, v) => m.set(k, String(v)) };
 }
 
-test('refranes.json: 10 días × 3 refranes con todos los campos', () => {
-  assert.equal(datos.dias.length, 10);
+test('refranes.json: 40 días × 3 refranes con todos los campos', () => {
+  assert.equal(datos.dias.length, 40);
   for (const dia of datos.dias) {
     assert.equal(dia.refranes.length, 3);
     for (const r of dia.refranes) {
@@ -24,6 +24,16 @@ test('refranes.json: 10 días × 3 refranes con todos los campos', () => {
       if (r.equivalente) assert.ok(r.equivalente.idioma && r.equivalente.texto, r.original);
     }
   }
+});
+
+test('ciclo: tras el último día se vuelve al primero', () => {
+  // 10 de noviembre de 2026 = día 40 (el último); el 11 vuelve a empezar.
+  const n = L.numeroDia(new Date(2026, 10, 10, 12));
+  assert.equal(n, 40);
+  assert.equal(L.diaDeContenido(datos.dias, n), datos.dias[39]);
+  assert.equal(L.diaDeContenido(datos.dias, n + 1), datos.dias[0]);
+  const originales = datos.dias.flatMap(d => d.refranes.map(r => L.normalizar(r.original)));
+  assert.equal(new Set(originales).size, originales.length, 'hay refranes repetidos');
 });
 
 test('normalizar quita mayúsculas, tildes, signos y espacios dobles', () => {

@@ -312,6 +312,969 @@
           "equivalente": null
         }
       ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Más vale prevenir que curar",
+          "variantes": [],
+          "pedante": "Resulta más rentable la adopción de medidas anticipatorias que la posterior aplicación de tratamientos correctivos.",
+          "significado": "Es mejor evitar un problema que tener que solucionarlo después.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Prevention is better than cure."
+          }
+        },
+        {
+          "original": "Quien mucho abarca poco aprieta",
+          "variantes": [
+            "El que mucho abarca poco aprieta"
+          ],
+          "pedante": "El sujeto que pretende rodear un volumen excesivo con los brazos ejerce una presión escasa sobre él.",
+          "significado": "Quien emprende demasiadas cosas a la vez no hace bien ninguna.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Jack of all trades, master of none."
+          }
+        },
+        {
+          "original": "Cuando a Roma fueres, haz lo que vieres",
+          "variantes": [
+            "Donde fueres, haz lo que vieres",
+            "Allá donde fueres, haz lo que vieres"
+          ],
+          "pedante": "En caso de desplazamiento a la capital transalpina, procédase a replicar las conductas que se observen in situ.",
+          "significado": "Hay que adaptarse a las costumbres del lugar en que uno se encuentra.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "When in Rome, do as the Romans do."
+          }
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Dios los cría y ellos se juntan",
+          "variantes": [],
+          "pedante": "La divinidad efectúa la crianza de los individuos, quienes posteriormente proceden por iniciativa propia a su agrupación.",
+          "significado": "Las personas parecidas, sobre todo en lo malo, acaban reuniéndose.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Birds of a feather flock together."
+          }
+        },
+        {
+          "original": "No hay mal que cien años dure",
+          "variantes": [],
+          "pedante": "Ninguna circunstancia adversa presenta una vigencia temporal que alcance el siglo completo.",
+          "significado": "Las desgracias, por grandes que sean, acaban pasando.",
+          "equivalente": null
+        },
+        {
+          "original": "El que avisa no es traidor",
+          "variantes": [
+            "Quien avisa no es traidor"
+          ],
+          "pedante": "Aquel que comunica sus intenciones con la debida antelación queda eximido de la calificación de desleal.",
+          "significado": "Quien advierte antes de actuar no puede ser acusado de engañar.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Las apariencias engañan",
+          "variantes": [],
+          "pedante": "La imagen exterior de las cosas induce con frecuencia a errores de apreciación.",
+          "significado": "No hay que juzgar por lo que se ve a primera vista.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Appearances can be deceptive."
+          }
+        },
+        {
+          "original": "Quien calla, otorga",
+          "variantes": [
+            "El que calla, otorga"
+          ],
+          "pedante": "La ausencia de manifestación verbal por parte del interesado se interpretará como conformidad.",
+          "significado": "Quien no protesta da a entender que está de acuerdo.",
+          "equivalente": {
+            "idioma": "latín",
+            "texto": "Qui tacet consentire videtur."
+          }
+        },
+        {
+          "original": "A lo hecho, pecho",
+          "variantes": [],
+          "pedante": "Ante las actuaciones ya consumadas, procede la exposición de la región torácica.",
+          "significado": "Hay que asumir con valor las consecuencias de lo que uno ha hecho.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Ojo por ojo, diente por diente",
+          "variantes": [],
+          "pedante": "Por cada órgano visual dañado se reclamará otro órgano visual, y análogamente con las piezas dentales.",
+          "significado": "Quien causa un daño debe recibir uno igual.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "An eye for an eye, a tooth for a tooth."
+          }
+        },
+        {
+          "original": "Hablando del rey de Roma, por la puerta asoma",
+          "variantes": [
+            "Hablando del rey de Roma, y él que se asoma"
+          ],
+          "pedante": "En el transcurso de una conversación sobre el monarca romano, este se presenta a través del vano de acceso.",
+          "significado": "Se dice cuando aparece justo la persona de la que se estaba hablando.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Speak of the devil."
+          }
+        },
+        {
+          "original": "Cada loco con su tema",
+          "variantes": [],
+          "pedante": "Todo individuo de juicio alterado mantiene una vinculación exclusiva con su asunto predilecto.",
+          "significado": "Cada persona tiene sus manías y sus asuntos favoritos.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Quien ríe el último ríe mejor",
+          "variantes": [
+            "El que ríe el último ríe mejor",
+            "Quien ríe último ríe mejor"
+          ],
+          "pedante": "La carcajada emitida en la posición final de la secuencia presenta una calidad superior a las anteriores.",
+          "significado": "No hay que alegrarse antes de tiempo: el triunfo definitivo se ve al final.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "He who laughs last laughs best."
+          }
+        },
+        {
+          "original": "En casa del herrero, cuchillo de palo",
+          "variantes": [
+            "En casa de herrero, cuchillo de palo"
+          ],
+          "pedante": "En el domicilio del profesional de la forja, el instrumental de corte es de material leñoso.",
+          "significado": "A veces falta algo precisamente donde más debería abundar.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "The shoemaker's children go barefoot."
+          }
+        },
+        {
+          "original": "A otro perro con ese hueso",
+          "variantes": [],
+          "pedante": "Sírvase usted trasladar dicho resto óseo a un cánido distinto del que suscribe.",
+          "significado": "Se dice para rechazar algo que no nos creemos o que no queremos aceptar.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "No dejes para mañana lo que puedas hacer hoy",
+          "variantes": [
+            "No dejes para mañana lo que puedes hacer hoy"
+          ],
+          "pedante": "Absténgase de aplazar a la jornada siguiente las tareas susceptibles de ejecución en la presente.",
+          "significado": "Hay que hacer las cosas cuanto antes, sin aplazarlas.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Don't put off until tomorrow what you can do today."
+          }
+        },
+        {
+          "original": "Más vale maña que fuerza",
+          "variantes": [],
+          "pedante": "La destreza presenta un rendimiento superior al de la mera aplicación de potencia física.",
+          "significado": "La habilidad consigue más que la fuerza bruta.",
+          "equivalente": null
+        },
+        {
+          "original": "Poderoso caballero es don Dinero",
+          "variantes": [],
+          "pedante": "El numerario, en calidad de hidalgo de notable influencia, ostenta un poder considerable.",
+          "significado": "El dinero lo puede casi todo.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Quien tiene boca se equivoca",
+          "variantes": [
+            "El que tiene boca se equivoca"
+          ],
+          "pedante": "Todo individuo provisto de cavidad bucal está expuesto a la comisión de errores.",
+          "significado": "Cualquiera puede cometer un error.",
+          "equivalente": {
+            "idioma": "latín",
+            "texto": "Errare humanum est."
+          }
+        },
+        {
+          "original": "Mal de muchos, consuelo de tontos",
+          "variantes": [],
+          "pedante": "El perjuicio que afecta a un colectivo amplio solo proporciona alivio a los individuos de escasas luces.",
+          "significado": "Que otros sufran lo mismo no arregla nada, aunque a algunos los consuele.",
+          "equivalente": null
+        },
+        {
+          "original": "A palabras necias, oídos sordos",
+          "variantes": [],
+          "pedante": "Ante expresiones verbales carentes de juicio, se recomienda la inhabilitación temporal del aparato auditivo.",
+          "significado": "Lo mejor es no hacer caso de las tonterías o los insultos.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "El tiempo es oro",
+          "variantes": [],
+          "pedante": "La magnitud cronológica presenta una equivalencia directa con el metal precioso de número atómico 79.",
+          "significado": "El tiempo es valioso y no hay que desperdiciarlo.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Time is money."
+          }
+        },
+        {
+          "original": "La avaricia rompe el saco",
+          "variantes": [],
+          "pedante": "El afán desmedido de acumulación provoca la rotura del recipiente textil destinado a tal fin.",
+          "significado": "Quien quiere demasiado acaba perdiéndolo todo.",
+          "equivalente": null
+        },
+        {
+          "original": "Hecha la ley, hecha la trampa",
+          "variantes": [],
+          "pedante": "Simultáneamente a la promulgación de la norma se produce la elaboración del correspondiente subterfugio.",
+          "significado": "Siempre hay quien encuentra la forma de saltarse una norma nueva.",
+          "equivalente": {
+            "idioma": "italiano",
+            "texto": "Fatta la legge, trovato l'inganno."
+          }
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Todos los caminos llevan a Roma",
+          "variantes": [
+            "Todos los caminos conducen a Roma"
+          ],
+          "pedante": "La totalidad de las vías de comunicación terrestre confluye en la capital de Italia.",
+          "significado": "Hay muchas maneras de llegar a un mismo resultado.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "All roads lead to Rome."
+          }
+        },
+        {
+          "original": "Al pan, pan, y al vino, vino",
+          "variantes": [],
+          "pedante": "Al producto de panificación se le denominará producto de panificación, y al caldo de uva fermentada, caldo de uva fermentada.",
+          "significado": "Hay que hablar claro y llamar a las cosas por su nombre.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Call a spade a spade."
+          }
+        },
+        {
+          "original": "Más vale solo que mal acompañado",
+          "variantes": [],
+          "pedante": "Resulta preferible la situación de soledad a la de compañía de calidad deficiente.",
+          "significado": "Es mejor estar solo que con quien no conviene.",
+          "equivalente": {
+            "idioma": "francés",
+            "texto": "Mieux vaut être seul que mal accompagné."
+          }
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "A rey muerto, rey puesto",
+          "variantes": [],
+          "pedante": "Producido el fallecimiento del monarca, se procede sin dilación a la colocación de su sucesor.",
+          "significado": "Quien falta es sustituido enseguida; nadie es imprescindible.",
+          "equivalente": {
+            "idioma": "francés",
+            "texto": "Le roi est mort, vive le roi."
+          }
+        },
+        {
+          "original": "El que no llora no mama",
+          "variantes": [
+            "Quien no llora no mama"
+          ],
+          "pedante": "El lactante que omite la emisión de llanto queda excluido del suministro de leche materna.",
+          "significado": "Quien no pide o no reclama no consigue nada.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "The squeaky wheel gets the grease."
+          }
+        },
+        {
+          "original": "Piensa el ladrón que todos son de su condición",
+          "variantes": [],
+          "pedante": "El sustractor de bienes ajenos presupone que la totalidad de la población comparte su misma naturaleza.",
+          "significado": "Cada uno juzga a los demás por cómo es él mismo.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "No es oro todo lo que reluce",
+          "variantes": [
+            "No todo lo que reluce es oro",
+            "No es oro todo lo que brilla",
+            "No todo lo que brilla es oro"
+          ],
+          "pedante": "No la totalidad de los objetos que emiten destellos está compuesta de metal precioso.",
+          "significado": "Lo que parece valioso por fuera no siempre lo es.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "All that glitters is not gold."
+          }
+        },
+        {
+          "original": "Una golondrina no hace verano",
+          "variantes": [
+            "Una golondrina sola no hace verano"
+          ],
+          "pedante": "La presencia de un único ejemplar de ave migratoria hirundínida no basta para declarar la estación estival.",
+          "significado": "Un solo caso no permite sacar conclusiones generales.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "One swallow does not make a summer."
+          }
+        },
+        {
+          "original": "Arrieros somos y en el camino nos encontraremos",
+          "variantes": [
+            "Arrieros somos, en el camino nos encontraremos"
+          ],
+          "pedante": "Los aquí presentes ejercemos el transporte de mercancías con bestias de carga y coincidiremos en la vía pública.",
+          "significado": "Advierte de que la vida da muchas vueltas y algún día se devolverá el favor o la ofensa.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "De tal palo, tal astilla",
+          "variantes": [],
+          "pedante": "El fragmento leñoso desprendido presenta características idénticas a las del madero de procedencia.",
+          "significado": "Los hijos se parecen a sus padres.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Like father, like son."
+          }
+        },
+        {
+          "original": "Quien a hierro mata, a hierro muere",
+          "variantes": [
+            "El que a hierro mata, a hierro muere"
+          ],
+          "pedante": "El sujeto que provoca defunciones mediante armas metálicas fallecerá por el mismo procedimiento.",
+          "significado": "Quien hace daño acaba recibiendo el mismo trato.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Live by the sword, die by the sword."
+          }
+        },
+        {
+          "original": "Cada cual cosecha lo que siembra",
+          "variantes": [
+            "Cada uno cosecha lo que siembra",
+            "Uno cosecha lo que siembra"
+          ],
+          "pedante": "Todo sujeto procederá a la recolección exacta de aquello que previamente haya sembrado.",
+          "significado": "Cada uno recibe las consecuencias de sus propios actos.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "You reap what you sow."
+          }
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Quien busca, halla",
+          "variantes": [
+            "El que busca, halla",
+            "El que busca encuentra",
+            "Quien busca encuentra"
+          ],
+          "pedante": "Todo individuo que efectúe una labor de indagación obtendrá un resultado positivo.",
+          "significado": "Con esfuerzo y empeño se consigue lo que uno quiere.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Seek and you shall find."
+          }
+        },
+        {
+          "original": "Genio y figura hasta la sepultura",
+          "variantes": [],
+          "pedante": "El carácter y la complexión del individuo se mantendrán inalterados hasta su inhumación.",
+          "significado": "Las personas no cambian su forma de ser.",
+          "equivalente": null
+        },
+        {
+          "original": "Obras son amores, que no buenas razones",
+          "variantes": [
+            "Obras son amores y no buenas razones"
+          ],
+          "pedante": "El afecto se acredita mediante actuaciones efectivas y no a través de argumentaciones bien construidas.",
+          "significado": "El cariño se demuestra con hechos, no con palabras.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Actions speak louder than words."
+          }
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Agua pasada no mueve molino",
+          "variantes": [],
+          "pedante": "El caudal hídrico que ya ha transitado carece de capacidad para accionar la maquinaria de molienda.",
+          "significado": "Lo que ya pasó no tiene remedio ni importancia; no merece la pena lamentarse.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "It's water under the bridge."
+          }
+        },
+        {
+          "original": "Haz bien y no mires a quién",
+          "variantes": [],
+          "pedante": "Proceda a la realización de buenas acciones sin efectuar comprobaciones sobre la identidad del beneficiario.",
+          "significado": "Hay que hacer el bien sin esperar nada a cambio.",
+          "equivalente": null
+        },
+        {
+          "original": "El pez grande se come al chico",
+          "variantes": [
+            "El pez grande se come al pequeño"
+          ],
+          "pedante": "El ejemplar ictícola de mayores dimensiones procede a la ingesta del de menor tamaño.",
+          "significado": "Los poderosos se aprovechan de los débiles.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Big fish eat little fish."
+          }
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "No hay peor sordo que el que no quiere oír",
+          "variantes": [
+            "No hay peor sordo que quien no quiere oír"
+          ],
+          "pedante": "No existe deficiencia auditiva más grave que la del sujeto que rehúsa voluntariamente la escucha.",
+          "significado": "Es inútil hablar con quien no quiere atender razones.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "There are none so deaf as those who will not hear."
+          }
+        },
+        {
+          "original": "Hombre prevenido vale por dos",
+          "variantes": [],
+          "pedante": "El varón que ha adoptado medidas de anticipación computa a efectos prácticos como dos unidades.",
+          "significado": "Quien se prepara con antelación tiene mucha ventaja.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Forewarned is forearmed."
+          }
+        },
+        {
+          "original": "Cuando las barbas de tu vecino veas pelar, pon las tuyas a remojar",
+          "variantes": [
+            "Cuando las barbas de tu vecino veas cortar, pon las tuyas a remojar"
+          ],
+          "pedante": "Al constatar el rasurado del vello facial del residente colindante, sométase el propio a hidratación preventiva.",
+          "significado": "Si le pasa algo malo a alguien cercano, conviene prepararse por si nos toca a nosotros.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "No se ganó Zamora en una hora",
+          "variantes": [],
+          "pedante": "La conquista de la ciudad castellana a orillas del Duero no se completó en el plazo de sesenta minutos.",
+          "significado": "Las cosas importantes requieren tiempo y paciencia.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Rome wasn't built in a day."
+          }
+        },
+        {
+          "original": "Más vale caer en gracia que ser gracioso",
+          "variantes": [],
+          "pedante": "Resulta más provechoso obtener la simpatía ajena que estar dotado de ingenio propio.",
+          "significado": "Agradar a los demás importa más que tener verdadero mérito.",
+          "equivalente": null
+        },
+        {
+          "original": "Al buen callar llaman Sancho",
+          "variantes": [],
+          "pedante": "A la conducta de mantener un silencio oportuno se le asigna el nombre propio del escudero cervantino.",
+          "significado": "Es prudente callar a tiempo.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Sobre gustos no hay nada escrito",
+          "variantes": [],
+          "pedante": "En materia de preferencias personales no consta documentación normativa alguna.",
+          "significado": "Cada uno tiene sus gustos y no se pueden discutir.",
+          "equivalente": {
+            "idioma": "latín",
+            "texto": "De gustibus non est disputandum."
+          }
+        },
+        {
+          "original": "Las cuentas claras y el chocolate espeso",
+          "variantes": [
+            "Las cuentas claras y el chocolate, espeso"
+          ],
+          "pedante": "Los balances contables deberán presentar la máxima transparencia, y la bebida de cacao, la máxima densidad.",
+          "significado": "En asuntos de dinero conviene que todo quede claro.",
+          "equivalente": null
+        },
+        {
+          "original": "En el término medio está la virtud",
+          "variantes": [
+            "En el medio está la virtud"
+          ],
+          "pedante": "La excelencia moral se localiza en el punto equidistante de ambos extremos.",
+          "significado": "Lo mejor es evitar los excesos y buscar el equilibrio.",
+          "equivalente": {
+            "idioma": "latín",
+            "texto": "In medio virtus."
+          }
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Aunque la mona se vista de seda, mona se queda",
+          "variantes": [],
+          "pedante": "Pese a la adopción de indumentaria de fibra noble por parte de la primate, esta conserva su condición de primate.",
+          "significado": "Por mucho que alguien se arregle o disimule, no cambia lo que es.",
+          "equivalente": null
+        },
+        {
+          "original": "Tanto va el cántaro a la fuente que al final se rompe",
+          "variantes": [
+            "Tanto va el cántaro a la fuente que al fin se rompe",
+            "Tanto va el cántaro a la fuente que se rompe"
+          ],
+          "pedante": "La reiteración de los desplazamientos de la vasija de barro al manantial culmina en su fractura.",
+          "significado": "Quien se arriesga una y otra vez acaba teniendo un percance.",
+          "equivalente": {
+            "idioma": "francés",
+            "texto": "Tant va la cruche à l'eau qu'à la fin elle se casse."
+          }
+        },
+        {
+          "original": "Unos nacen con estrella y otros nacen estrellados",
+          "variantes": [],
+          "pedante": "Determinados individuos vienen al mundo dotados de astro favorable y otros, en cambio, en estado de colisión.",
+          "significado": "Unos tienen buena suerte en la vida y otros, muy mala.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "No hay dos sin tres",
+          "variantes": [],
+          "pedante": "Toda incidencia producida por duplicado conlleva necesariamente una tercera ocurrencia.",
+          "significado": "Si algo ha pasado dos veces, es probable que pase una tercera.",
+          "equivalente": {
+            "idioma": "italiano",
+            "texto": "Non c'è due senza tre."
+          }
+        },
+        {
+          "original": "Quien con niños se acuesta, mojado se levanta",
+          "variantes": [
+            "El que con niños se acuesta, mojado se levanta"
+          ],
+          "pedante": "El adulto que pernocta junto a menores de edad amanecerá en condiciones de humedad.",
+          "significado": "Si confías algo a quien no está preparado, saldrás perjudicado.",
+          "equivalente": null
+        },
+        {
+          "original": "Al freír será el reír",
+          "variantes": [
+            "Al freír será el reír, y al pagar será el llorar"
+          ],
+          "pedante": "La manifestación de hilaridad queda aplazada hasta la fase de fritura.",
+          "significado": "Hasta ver el resultado final no se sabe quién saldrá ganando.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Más vale malo conocido que bueno por conocer",
+          "variantes": [],
+          "pedante": "Resulta preferible un elemento deficiente ya identificado a uno satisfactorio pendiente de identificación.",
+          "significado": "Mejor no arriesgarse a cambiar algo que conocemos por algo nuevo y dudoso.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Better the devil you know than the devil you don't."
+          }
+        },
+        {
+          "original": "Dios aprieta pero no ahoga",
+          "variantes": [
+            "Dios aprieta, pero no ahoga"
+          ],
+          "pedante": "La divinidad ejerce presión sobre el sujeto sin llegar a provocarle la asfixia.",
+          "significado": "Por mal que vayan las cosas, siempre queda alguna salida.",
+          "equivalente": null
+        },
+        {
+          "original": "Lo cortés no quita lo valiente",
+          "variantes": [],
+          "pedante": "La observancia de las normas de urbanidad no merma en modo alguno el arrojo del individuo.",
+          "significado": "Se puede ser educado y firme a la vez.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "A la tercera va la vencida",
+          "variantes": [],
+          "pedante": "En el tercer intento se producirá, con carácter definitivo, la consecución del objetivo.",
+          "significado": "Tras dos fracasos, a la tercera suele salir bien.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Third time lucky."
+          }
+        },
+        {
+          "original": "Cada oveja con su pareja",
+          "variantes": [],
+          "pedante": "Todo ejemplar ovino deberá permanecer junto a su correspondiente compañero de igual condición.",
+          "significado": "Cada uno debe juntarse con los de su clase.",
+          "equivalente": null
+        },
+        {
+          "original": "Quien parte y reparte se queda con la mejor parte",
+          "variantes": [
+            "El que parte y reparte se queda con la mejor parte"
+          ],
+          "pedante": "El encargado de la división y distribución de los bienes se adjudica la fracción de mayor calidad.",
+          "significado": "Quien se encarga de repartir algo suele salir beneficiado.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Cuando una puerta se cierra, otra se abre",
+          "variantes": [
+            "Cuando una puerta se cierra, se abre otra"
+          ],
+          "pedante": "La clausura de un vano de acceso conlleva la apertura simultánea de otro distinto.",
+          "significado": "Cuando se pierde una oportunidad, suele aparecer otra.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "When one door closes, another opens."
+          }
+        },
+        {
+          "original": "Ladrón que roba a ladrón tiene cien años de perdón",
+          "variantes": [],
+          "pedante": "El sustractor que despoja a otro sustractor obtiene una exención de culpa de vigencia secular.",
+          "significado": "Engañar a quien engaña no se considera tan grave.",
+          "equivalente": null
+        },
+        {
+          "original": "A Dios rogando y con el mazo dando",
+          "variantes": [],
+          "pedante": "Simultanéense las peticiones a la divinidad con la aplicación de golpes mediante herramienta de percusión.",
+          "significado": "Hay que pedir ayuda, pero sin dejar de trabajar uno mismo.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Mucho ruido y pocas nueces",
+          "variantes": [],
+          "pedante": "Se registra un elevado nivel de contaminación acústica con un rendimiento escaso de fruto seco.",
+          "significado": "Se dice de lo que parece importante y luego resulta ser poca cosa.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Much ado about nothing."
+          }
+        },
+        {
+          "original": "El que se fue a Sevilla perdió su silla",
+          "variantes": [
+            "Quien se fue a Sevilla perdió su silla",
+            "Quien fue a Sevilla perdió su silla"
+          ],
+          "pedante": "El individuo que se desplazó a la capital hispalense causó baja en su asiento.",
+          "significado": "Quien abandona su sitio puede encontrárselo ocupado al volver.",
+          "equivalente": null
+        },
+        {
+          "original": "El ojo del amo engorda al caballo",
+          "variantes": [],
+          "pedante": "La supervisión visual por parte del propietario incrementa la masa corporal del equino.",
+          "significado": "Las cosas marchan mejor cuando el dueño se ocupa de ellas en persona.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "A grandes males, grandes remedios",
+          "variantes": [],
+          "pedante": "Ante perjuicios de magnitud considerable, procede la aplicación de soluciones de dimensión equivalente.",
+          "significado": "Los problemas graves exigen soluciones drásticas.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Desperate times call for desperate measures."
+          }
+        },
+        {
+          "original": "Los niños y los locos dicen las verdades",
+          "variantes": [
+            "Los niños y los borrachos dicen la verdad",
+            "Los niños y los locos dicen la verdad"
+          ],
+          "pedante": "Los menores de edad y las personas de juicio alterado emiten declaraciones ajustadas a la realidad.",
+          "significado": "Quien no tiene filtro dice lo que otros callan.",
+          "equivalente": null
+        },
+        {
+          "original": "Cría fama y échate a dormir",
+          "variantes": [],
+          "pedante": "Una vez generada la reputación correspondiente, el interesado podrá adoptar la posición de reposo.",
+          "significado": "Cuando uno tiene una fama, buena o mala, ya no se la quita aunque no haga nada.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Quien no arriesga no gana",
+          "variantes": [
+            "El que no arriesga no gana"
+          ],
+          "pedante": "El sujeto que rehúsa asumir peligros queda excluido de la obtención de beneficios.",
+          "significado": "Para conseguir algo hay que atreverse.",
+          "equivalente": {
+            "idioma": "inglés",
+            "texto": "Nothing ventured, nothing gained."
+          }
+        },
+        {
+          "original": "Del árbol caído todos hacen leña",
+          "variantes": [],
+          "pedante": "Del vegetal leñoso abatido, la totalidad de los presentes extrae combustible.",
+          "significado": "Cuando alguien cae en desgracia, todos se aprovechan para criticarlo.",
+          "equivalente": null
+        },
+        {
+          "original": "Antes se coge al mentiroso que al cojo",
+          "variantes": [
+            "Antes se pilla al mentiroso que al cojo",
+            "Antes se pilla a un mentiroso que a un cojo"
+          ],
+          "pedante": "La captura del individuo que falta a la verdad se produce con mayor celeridad que la del que presenta una deficiencia locomotora.",
+          "significado": "Las mentiras se descubren enseguida.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Siempre llueve sobre mojado",
+          "variantes": [],
+          "pedante": "Las precipitaciones se producen sistemáticamente sobre superficies que ya presentan humedad.",
+          "significado": "Las desgracias suelen caer sobre quien ya tiene otras.",
+          "equivalente": null
+        },
+        {
+          "original": "Bicho malo nunca muere",
+          "variantes": [],
+          "pedante": "El ejemplar animal de condición perniciosa goza de una longevidad ilimitada.",
+          "significado": "Se dice, a menudo en broma, de quien sale bien parado de todo.",
+          "equivalente": null
+        },
+        {
+          "original": "Quien guarda, halla",
+          "variantes": [
+            "El que guarda, halla"
+          ],
+          "pedante": "El sujeto que procede al almacenamiento de objetos dispondrá de ellos cuando los precise.",
+          "significado": "Quien es previsor y ahorra tiene lo que necesita cuando le hace falta.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Las palabras se las lleva el viento",
+          "variantes": [],
+          "pedante": "Los enunciados orales son objeto de transporte por las corrientes de aire.",
+          "significado": "Lo que solo se dice de palabra se olvida o no compromete; mejor que conste por escrito o en hechos.",
+          "equivalente": {
+            "idioma": "latín",
+            "texto": "Verba volant, scripta manent."
+          }
+        },
+        {
+          "original": "Al que no quiere caldo, tres tazas",
+          "variantes": [
+            "Al que no quiere caldo, taza y media"
+          ],
+          "pedante": "Al ciudadano que manifieste su rechazo al consomé se le servirán tres recipientes del mismo.",
+          "significado": "A veces nos toca en abundancia justo lo que no queremos.",
+          "equivalente": null
+        },
+        {
+          "original": "Cada maestrillo tiene su librillo",
+          "variantes": [],
+          "pedante": "Todo docente de rango menor dispone de su propio manual de reducidas dimensiones.",
+          "significado": "Cada persona tiene su manera particular de hacer las cosas.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Dame pan y dime tonto",
+          "variantes": [],
+          "pedante": "Suminístreseme producto de panificación y aplíquese a mi persona el calificativo de necio.",
+          "significado": "No importa lo que digan de uno mientras saque provecho.",
+          "equivalente": null
+        },
+        {
+          "original": "Cada uno en su casa y Dios en la de todos",
+          "variantes": [],
+          "pedante": "Cada ciudadano permanecerá en su domicilio particular, y la divinidad en la totalidad de ellos.",
+          "significado": "Cada cual debe ocuparse de lo suyo sin meterse en lo ajeno.",
+          "equivalente": null
+        },
+        {
+          "original": "A cada cerdo le llega su San Martín",
+          "variantes": [
+            "A cada puerco le llega su San Martín",
+            "A todo cerdo le llega su San Martín"
+          ],
+          "pedante": "Todo ejemplar porcino recibirá, en su momento, la visita de la festividad del 11 de noviembre.",
+          "significado": "A todos les llega tarde o temprano el castigo o el momento de pagar.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "Lo que no mata engorda",
+          "variantes": [],
+          "pedante": "Todo aquello que no provoca el fallecimiento produce un incremento de peso.",
+          "significado": "Se dice, a menudo en broma, para quitar importancia a lo que se come o se aguanta.",
+          "equivalente": null
+        },
+        {
+          "original": "No hay atajo sin trabajo",
+          "variantes": [],
+          "pedante": "Todo itinerario abreviado conlleva un esfuerzo adicional.",
+          "significado": "Lo que parece más fácil o rápido también tiene su coste.",
+          "equivalente": null
+        },
+        {
+          "original": "Oveja que bala, bocado que pierde",
+          "variantes": [],
+          "pedante": "El ejemplar ovino que emite su vocalización característica deja de ingerir la correspondiente porción de pasto.",
+          "significado": "Quien se distrae hablando pierde oportunidades.",
+          "equivalente": null
+        }
+      ]
+    },
+    {
+      "refranes": [
+        {
+          "original": "El saber no ocupa lugar",
+          "variantes": [],
+          "pedante": "Los conocimientos adquiridos no requieren superficie de almacenamiento.",
+          "significado": "Nunca está de más aprender.",
+          "equivalente": null
+        },
+        {
+          "original": "Más vale un toma que dos te daré",
+          "variantes": [],
+          "pedante": "Resulta preferible una entrega efectiva a dos promesas de entrega futura.",
+          "significado": "Es mejor tener algo seguro ahora que muchas promesas.",
+          "equivalente": null
+        },
+        {
+          "original": "El que tenga tienda, que la atienda",
+          "variantes": [
+            "Quien tenga tienda, que la atienda",
+            "El que tenga tienda que la atienda, y si no, que la venda"
+          ],
+          "pedante": "El titular de un establecimiento comercial deberá proceder a su atención personal.",
+          "significado": "Cada uno debe ocuparse de sus asuntos sin descuidarlos.",
+          "equivalente": null
+        }
+      ]
     }
   ]
 }

@@ -30,7 +30,7 @@ compilación) que forma parte de la colección de [Almanaque](https://joseleking
 | `index.html` | Estructura de la página |
 | `styles.css` | Estética de refranero viejo, modo oscuro automático |
 | `app.js` | Lógica: día, validación tolerante, pistas, puntos, racha, compartir |
-| `data/refranes.json` | Contenido: 10 días × 3 refranes |
+| `data/refranes.json` | Contenido: 40 días × 3 refranes |
 | `sw.js` | Service worker (funciona sin conexión) |
 | `manifest.json` | Datos para instalar la app |
 | `icons/` | Iconos de la app (normal, adaptable y `apple-touch-icon`), logo de la cabecera y logotipo horizontal |
@@ -49,8 +49,8 @@ python3 -m http.server 8000
 
 Y abre <http://localhost:8000>.
 
-- **Forzar un día:** `http://localhost:8000/?dia=4` juega el día 4. Con `?dia=11`
-  (o más) se ve el mensaje de fin del prototipo.
+- **Forzar un día:** `http://localhost:8000/?dia=4` juega el día 4. Con `?dia=41`
+  (o más) se ve que el ciclo vuelve a empezar.
 - **Empezar de cero:** `http://localhost:8000/reiniciar/` borra la partida, el
   historial y la racha de ese navegador (clave `paremia:v1` del `localStorage`).
 - **Pruebas:** `node --test tests/logic.test.js`
@@ -64,8 +64,10 @@ var FECHA_INICIO = '2026-10-02';
 ```
 
 Esa fecha (en hora local del jugador) es el día 1; cada medianoche se pasa al
-siguiente. Antes de esa fecha se ve un aviso de «próximamente» y, cuando se
-acaban los días del JSON, «Vuelve pronto: estamos afilando más refranes».
+siguiente. Antes de esa fecha se ve un aviso de «próximamente». Cuando se
+acaban los días del JSON, el ciclo vuelve a empezar por el primero; el número
+del día sigue creciendo (Día 41, Día 42…). Con 40 días, el último es el 10 de
+noviembre de 2026 y el 11 vuelve el día 1.
 
 ## Añadir días
 
@@ -92,8 +94,8 @@ ordenados de fácil a difícil:
   «En francés»…).
 - El esqueleto y el orden de las pistas salen del texto `original`: si lo
   cambias, cambia también el orden en que se destapan las palabras.
-- Las pruebas comprueban que haya exactamente 10 días: si añades más, cambia ese
-  número en `tests/logic.test.js`.
+- Las pruebas comprueban que haya exactamente 40 días y que no se repita ningún
+  refrán: si añades más, cambia ese número en `tests/logic.test.js`.
 
 ### Cómo se valida la respuesta
 
