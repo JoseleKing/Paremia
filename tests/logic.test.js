@@ -116,11 +116,35 @@ test('repartirLetras admite que se teclee también la palabra destapada', () => 
   assert.deepEqual(L.repartirLetras('no nos', L.esqueleto('no nos dejes'), [0]).letras, ['', 'nos', '']);
 });
 
-test('destapar una palabra conserva lo escrito en las demás', () => {
+test('repartirLetras escribe desde la casilla tocada sobre lo ya puesto', () => {
   const e = L.esqueleto('Perro ladrador, poco mordedor');
-  const antes = L.repartirLetras('perro lad poco', e, []);
-  const texto = L.textoEscrito(antes.letras, [1]);
-  assert.deepEqual(L.repartirLetras(texto, e, [1]).letras, ['perro', '', 'poco', '']);
+  const antes = L.repartirLetras('perro lad', e, []);
+  // Se toca la tercera letra de «perro» y se corrige: se sobrescribe y lo demás queda.
+  const a = L.repartirLetras('xy', e, [], antes.celdas, { palabra: 0, hueco: 2 });
+  assert.deepEqual(a.letras, ['pexyo', 'lad', '', '']);
+  assert.equal(a.actual, 0);
+  assert.equal(a.hueco, 4);
+  // Se puede empezar por una palabra suelta, dejando huecos antes.
+  const b = L.repartirLetras('poco', e, [], null, { palabra: 2, hueco: 0 });
+  assert.deepEqual(b.letras, ['', '', 'poco', '']);
+  assert.equal(b.actual, 3);
+  // Un espacio a media palabra salta a la siguiente.
+  assert.deepEqual(L.repartirLetras('p mor', e, [], antes.celdas, { palabra: 2, hueco: 0 }).letras, ['perro', 'lad', 'p', 'mor']);
+  // Desde una destapada se pasa a la siguiente libre, y lo puesto en ella no cuenta.
+  assert.deepEqual(L.repartirLetras('poco', e, [1], antes.celdas, { palabra: 1, hueco: 1 }).letras, ['perro', '', 'poco', '']);
+  // Lo que no cabe se descarta.
+  assert.equal(L.repartirLetras('dorxyz', e, [], null, { palabra: 3, hueco: 5 }).consumido, 'dor');
+});
+
+test('casillaVecina recorre los huecos libres', () => {
+  const e = L.esqueleto('no nos dejes');
+  assert.deepEqual(L.casillaVecina(e, [1], { palabra: 0, hueco: 1 }, 1), { palabra: 2, hueco: 0 });
+  assert.deepEqual(L.casillaVecina(e, [1], { palabra: 2, hueco: 0 }, -1), { palabra: 0, hueco: 1 });
+  assert.equal(L.casillaVecina(e, [], { palabra: 0, hueco: 0 }, -1), null);
+  assert.deepEqual(L.casillaVecina(e, [], { palabra: 2, hueco: 4 }, 1), { palabra: -1, hueco: 0 });
+  assert.deepEqual(L.casillaVecina(e, [], { palabra: -1, hueco: 0 }, -1), { palabra: 2, hueco: 4 });
+  // Desde una destapada, la siguiente libre.
+  assert.deepEqual(L.casillaVecina(e, [1], { palabra: 1, hueco: Infinity }, 1), { palabra: 2, hueco: 0 });
 });
 
 test('lo escrito en el esqueleto se da por bueno con la lógica de siempre', () => {

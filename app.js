@@ -131,12 +131,21 @@
   // pasa sola a la siguiente, y un espacio adelanta a la siguiente si la actual
   // ya tiene alguna letra. Si se teclea una palabra destapada (o su comienzo, al
   // final del texto), se da por escrita y no ocupa huecos. Lo que no cabe se descarta.
-  // Devuelve { letras: [texto de cada palabra], actual: palabra en curso o -1 }.
-  function repartirLetras(texto, palabras, destapadas) {
+  // base (opcional): letras ya puestas, una lista de huecos por palabra ('' si está
+  // vacío); lo tecleado las sobrescribe a partir de ancla ({ palabra, hueco }), que
+  // es la casilla tocada (por omisión, la primera).
+  // Devuelve { celdas: [huecos de cada palabra], letras: [texto de cada palabra],
+  // actual: palabra en curso o -1, hueco: hueco en curso, consumido: lo que cupo }.
+  function repartirLetras(texto, palabras, destapadas, base, ancla) {
     var huecos = palabras.map(function (p) { return Array.from(p.letras).length; });
     var libres = [];
     for (var i = 0; i < palabras.length; i++) if (destapadas.indexOf(i) === -1) libres.push(i);
-    var letras = palabras.map(function () { return ''; });
+    var celdas = palabras.map(function (p, i) {
+      var previas = (base && base[i]) || [];
+      var fila = [];
+      for (var j = 0; j < huecos[i]; j++) fila.push(destapadas.indexOf(i) === -1 && previas[j] || '');
+      return fila;
+    });
     var c = Array.from(String(texto || '').normalize('NFC'));
     var esLetra = function (x) { return /[\p{L}\p{N}]/u.test(x); };
 
@@ -156,13 +165,21 @@
       return t === objetivo.length && !esLetra(c[pos]) ? pos : -1;
     }
 
-    var k = 0, revisada = -1;
+    // Se empieza en la casilla del ancla, o en la siguiente palabra libre.
+    var k = 0, h = 0;
+    if (ancla) {
+      if (ancla.palabra === -1) k = libres.length;
+      else {
+        while (k < libres.length && libres[k] < ancla.palabra) k++;
+        if (libres[k] === ancla.palabra) h = Math.min(ancla.hueco | 0, huecos[ancla.palabra] - 1);
+      }
+    }
+    var revisada = -1;
     for (var pos = 0; pos < c.length && k < libres.length; pos++) {
-      var n = Array.from(letras[libres[k]]).length;
-      if (/\s/.test(c[pos])) { if (n > 0) k++; continue; }
+      if (/\s/.test(c[pos])) { if (h > 0) { k++; h = 0; } continue; }
       if (!esLetra(c[pos])) continue;
-      if (n >= huecos[libres[k]]) { k++; n = 0; if (k >= libres.length) break; }
-      if (n === 0 && revisada !== k) {
+      if (h >= huecos[libres[k]]) { k++; h = 0; if (k >= libres.length) break; }
+      if (h === 0 && revisada !== k) {
         // Al empezar palabra, las destapadas que la preceden se pueden teclear.
         revisada = k;
         var antes = k > 0 ? libres[k - 1] + 1 : 0;
@@ -174,11 +191,36 @@
         }
         if (d > antes) { pos--; continue; }
       }
-      letras[libres[k]] += c[pos];
+      celdas[libres[k]][h++] = c[pos];
     }
     // Si la palabra en curso está llena, la siguiente letra irá a la próxima.
-    if (k < libres.length && Array.from(letras[libres[k]]).length >= huecos[libres[k]]) k++;
-    return { letras: letras, actual: k < libres.length ? libres[k] : -1 };
+    if (k < libres.length && h >= huecos[libres[k]]) { k++; h = 0; }
+    return {
+      celdas: celdas,
+      letras: celdas.map(function (fila) { return fila.join(''); }),
+      actual: k < libres.length ? libres[k] : -1,
+      hueco: h,
+      consumido: c.slice(0, pos).join('')
+    };
+  }
+
+  // La casilla libre anterior (paso -1) o siguiente (paso 1) a la dada: null si no
+  // hay anterior, { palabra: -1 } («después de la última») si no hay siguiente.
+  function casillaVecina(palabras, destapadas, casilla, paso) {
+    var lista = [];
+    palabras.forEach(function (p, i) {
+      if (destapadas.indexOf(i) !== -1) return;
+      for (var j = 0; j < Array.from(p.letras).length; j++) lista.push({ palabra: i, hueco: j });
+    });
+    var n = lista.length;
+    for (var k = 0; k < lista.length; k++) {
+      var x = lista[k];
+      if (casilla.palabra !== -1 && (x.palabra > casilla.palabra || (x.palabra === casilla.palabra && x.hueco >= casilla.hueco))) { n = k; break; }
+    }
+    var exacta = n < lista.length && lista[n].palabra === casilla.palabra && lista[n].hueco === casilla.hueco;
+    var destino = paso > 0 ? (exacta ? n + 1 : n) : n - 1;
+    if (destino < 0) return null;
+    return destino < lista.length ? lista[destino] : { palabra: -1, hueco: 0 };
   }
 
   // El refrán tal como ha quedado en el esqueleto: lo escrito más lo destapado.
@@ -186,12 +228,6 @@
     return palabras.map(function (p, i) {
       return destapadas.indexOf(i) !== -1 ? p.letras : letras[i];
     }).filter(Boolean).join(' ');
-  }
-
-  // Lo escrito en las palabras que siguen tapadas, listo para volver a repartirse
-  // (sirve para conservar lo tecleado al destapar una palabra).
-  function textoEscrito(letras, destapadas) {
-    return letras.filter(function (l, i) { return l && destapadas.indexOf(i) === -1; }).join(' ');
   }
 
   // ---------------------------------------------------------------------------
@@ -372,8 +408,8 @@
     registrarFallo: registrarFallo,
     esqueleto: esqueleto,
     repartirLetras: repartirLetras,
+    casillaVecina: casillaVecina,
     textoDelEsqueleto: textoDelEsqueleto,
-    textoEscrito: textoEscrito,
     ordenPistas: ordenPistas,
     valorRefran: valorRefran,
     puntosRefran: puntosRefran,
@@ -477,14 +513,14 @@
       palabras.map(function (p, i) {
         var visible = todo || destapadas.indexOf(i) !== -1;
         var letras = Array.from(p.letras);
-        var puestas = escrito ? Array.from(escrito.letras[i]) : [];
-        var cursor = escrito && escrito.actual === i ? puestas.length : -1;
+        var puestas = escrito ? escrito.celdas[i] : [];
+        var cursor = escrito && escrito.actual === i ? escrito.hueco : -1;
         var huecos = visible ? '<span class="destapada">' + esc(p.letras) + '</span>' :
           letras.map(function (x, j) {
-            var clase = 'hueco' + (j < puestas.length ? ' is-lleno' : '') + (j === cursor ? ' is-cursor' : '');
-            return '<span class="' + clase + '">' + (j < puestas.length ? esc(puestas[j]) : '') + '</span>';
+            var clase = 'hueco' + (puestas[j] ? ' is-lleno' : '') + (j === cursor ? ' is-cursor' : '');
+            return '<span class="' + clase + '" data-palabra="' + i + '" data-hueco="' + j + '">' + esc(puestas[j] || '') + '</span>';
           }).join('');
-        return '<span class="palabra' + (visible ? ' palabra--vista' : '') + '"' +
+        return '<span class="palabra' + (visible ? ' palabra--vista' : '') + '" data-palabra="' + i + '"' +
           ' aria-label="' + (visible ? esc(p.letras) : letras.length + ' letras') + '">' +
           (p.antes ? '<span class="signo" aria-hidden="true">' + esc(p.antes) + '</span>' : '') +
           '<span class="casilla" aria-hidden="true">' + huecos + '</span>' +
@@ -580,7 +616,7 @@
       '</div>' +
       '<ul class="reglas__lista">' +
       '<li>Bajo el texto verás el <b>esqueleto</b> del refrán: una casilla por palabra, con un hueco por letra.</li>' +
-      '<li>Toca el esqueleto y escribe el refrán: las letras irán llenando los huecos y las palabras destapadas se saltan solas. No importan las tildes, las mayúsculas ni alguna errata.</li>' +
+      '<li>Toca el esqueleto y escribe el refrán: las letras irán llenando los huecos y las palabras destapadas se saltan solas. Para corregir, toca cualquier hueco y escribe desde ahí. No importan las tildes, las mayúsculas ni alguna errata.</li>' +
       '<li><b>Pista: desvelar una palabra</b> te enseña una palabra del refrán, pero el refrán vale un punto menos.</li>' +
       '<li>Comprobar un refrán que no es el bueno también resta un punto. Al tercer fallo, el refrán se da por perdido (0 puntos).</li>' +
       '<li>Cada refrán vale 3 puntos y nunca baja de 1 si lo aciertas. Si te rindes, 0.</li>' +
@@ -630,12 +666,25 @@
     var btnRendirse = document.getElementById('btn-rendirse');
     var confirmarRendicion = null;
     var escrito = null;
+    // Lo ya fijado en los huecos y la casilla desde la que se escribe ahora; el campo
+    // invisible guarda solo lo tecleado desde entonces, que se reparte a partir de ahí.
+    var base = null;
+    var ancla = null;
 
     function destapadas() { return orden.slice(0, r.pistas); }
 
     function pintarEsqueleto() {
-      escrito = repartirLetras(campo.value, palabras, destapadas());
+      escrito = repartirLetras(campo.value, palabras, destapadas(), base, ancla);
       document.getElementById('esqueleto').innerHTML = htmlEsqueleto(refran, destapadas(), false, escrito);
+    }
+
+    // Da por puesto lo tecleado y sigue escribiendo desde la casilla indicada
+    // (por omisión, donde está el cursor).
+    function fijar(casilla) {
+      base = escrito ? escrito.celdas : null;
+      ancla = casilla || (escrito ? { palabra: escrito.actual, hueco: escrito.hueco } : null);
+      campo.value = '';
+      pintarEsqueleto();
     }
 
     function actualizarPistas() {
@@ -645,7 +694,8 @@
     }
     actualizarPistas();
 
-    // Se escribe siempre al final: el cursor del campo invisible no se puede mover.
+    // Se escribe siempre al final: el cursor del campo invisible no se puede mover
+    // (para cambiar de sitio se toca una casilla o se usan las flechas).
     function cursorAlFinal() {
       var n = campo.value.length;
       if (campo.selectionStart !== n || campo.selectionEnd !== n) campo.setSelectionRange(n, n);
@@ -657,15 +707,27 @@
     campo.addEventListener('input', function (ev) {
       pintarEsqueleto();
       // Lo que ya no cabe en los huecos se descarta, para que borrar actúe enseguida.
-      if (!ev.isComposing && escrito.actual === -1) {
-        var limpio = textoEscrito(escrito.letras, destapadas());
-        if (campo.value !== limpio) campo.value = limpio;
-      }
+      if (!ev.isComposing && escrito.actual === -1 && campo.value !== escrito.consumido) campo.value = escrito.consumido;
       mensaje.textContent = '';
       mensaje.className = 'respuesta__mensaje';
     });
     campo.addEventListener('focus', function () { cursorAlFinal(); mostrarTablero(); });
-    campo.addEventListener('click', cursorAlFinal);
+    // El campo cubre el esqueleto: se mira qué casilla hay debajo del toque.
+    campo.addEventListener('click', function (ev) {
+      cursorAlFinal();
+      var debajo = document.elementsFromPoint ? document.elementsFromPoint(ev.clientX, ev.clientY) : [];
+      for (var k = 0; k < debajo.length; k++) {
+        var el = debajo[k];
+        if (el.classList.contains('hueco')) {
+          fijar({ palabra: +el.dataset.palabra, hueco: +el.dataset.hueco });
+          return;
+        }
+        if (el.classList.contains('palabra') && !el.classList.contains('palabra--vista')) {
+          fijar({ palabra: +el.dataset.palabra, hueco: 0 });
+          return;
+        }
+      }
+    });
     campo.addEventListener('select', cursorAlFinal);
     if (window.visualViewport) {
       window.visualViewport.addEventListener('resize', function () {
@@ -673,7 +735,25 @@
       });
     }
     campo.addEventListener('keydown', function (ev) {
-      if (/^(Arrow|Home$|End$|Page)/.test(ev.key)) ev.preventDefault();
+      if (ev.isComposing) return;
+      if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
+        ev.preventDefault();
+        fijar();
+        var otra = casillaVecina(palabras, destapadas(), ancla, ev.key === 'ArrowLeft' ? -1 : 1);
+        if (otra) fijar(otra);
+        return;
+      }
+      if (/^(Arrow|Home$|End$|Page)/.test(ev.key)) { ev.preventDefault(); return; }
+      // Borrar sin nada recién tecleado: se borra la casilla del cursor si tiene
+      // letra y, si no, la anterior, como en un crucigrama.
+      if ((ev.key === 'Backspace' || ev.keyCode === 8) && campo.value === '') {
+        ev.preventDefault();
+        var aqui = { palabra: escrito.actual, hueco: escrito.hueco };
+        if (aqui.palabra === -1 || !escrito.celdas[aqui.palabra][aqui.hueco]) aqui = casillaVecina(palabras, destapadas(), aqui, -1);
+        if (!aqui) return;
+        escrito.celdas[aqui.palabra][aqui.hueco] = '';
+        fijar(aqui);
+      }
     });
     // Con ratón y teclado se puede escribir nada más entrar.
     if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) campo.focus({ preventScroll: true });
@@ -721,8 +801,11 @@
       if (r.pistas >= orden.length) return;
       r.pistas++;
       guardar();
-      // Lo ya escrito se conserva; solo se pierde lo de la palabra destapada.
-      campo.value = textoEscrito(escrito.letras, destapadas());
+      // Lo ya escrito se conserva; solo se pierde lo de la palabra destapada, y si
+      // el cursor estaba en ella pasa a la siguiente casilla libre.
+      var ahora = { palabra: escrito.actual, hueco: escrito.hueco };
+      if (ahora.palabra === orden[r.pistas - 1]) ahora = casillaVecina(palabras, destapadas(), { palabra: ahora.palabra, hueco: Infinity }, 1);
+      fijar(ahora);
       actualizarPistas();
       var nueva = document.querySelectorAll('#esqueleto .palabra')[orden[r.pistas - 1]];
       if (nueva) nueva.classList.add('is-recien');
