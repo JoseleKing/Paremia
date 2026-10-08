@@ -311,10 +311,11 @@
     return tropiezos(r) === 0 ? '🟩' : '🟨';
   }
 
-  function textoCompartir(dia, partida, url) {
-    return 'Paremia · Día ' + dia + '\n' +
-      partida.refranes.map(emojiRefran).join('') + '  ' + puntosPartida(partida) + '/' + (partida.refranes.length * 3) +
-      (url ? '\n' + url : '');
+  // Una marca por refrán: ▰ adivinado, ▱ rendido. «Paremia nº 7 ▰▱▰ 2/3 aciertos» y el enlace.
+  function textoCompartir(dia, partida) {
+    var marcas = partida.refranes.map(function (r) { return r.estado === 'rendido' ? '▱' : '▰'; });
+    var aciertos = marcas.filter(function (m) { return m === '▰'; }).length;
+    return 'Paremia nº ' + dia + ' ' + marcas.join('') + ' ' + aciertos + '/' + marcas.length + ' aciertos\njoseleking.github.io/Paremia';
   }
 
   // ---------------------------------------------------------------------------
@@ -956,9 +957,7 @@
 
   // ---------- Compartir ----------
 
-  function compartir(texto) {
-    var url = location.origin + location.pathname;
-    var completo = texto + (location.protocol.indexOf('http') === 0 ? '\n' + url : '');
+  function compartir(completo) {
     if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
       navigator.share({ text: completo }).catch(function (err) {
         if (err && err.name !== 'AbortError') copiar(completo);
