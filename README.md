@@ -49,7 +49,7 @@ python3 -m http.server 8000
 
 Y abre <http://localhost:8000>.
 
-- **Forzar un día:** `http://localhost:8000/?dia=4` juega el día 4. Con `?dia=41`
+- **Forzar un día:** `http://localhost:8000/?dia=4` juega el día 4. Con `?dia=71`
   (o más) se ve que el ciclo vuelve a empezar.
 - **Empezar de cero:** `http://localhost:8000/reiniciar/` borra la partida, el
   historial y la racha de ese navegador (clave `paremia:v1` del `localStorage`).
@@ -66,8 +66,8 @@ var FECHA_INICIO = '2026-10-02';
 Esa fecha (en hora local del jugador) es el día 1; cada medianoche se pasa al
 siguiente. Antes de esa fecha se ve un aviso de «próximamente». Cuando se
 acaban los días del JSON, el ciclo vuelve a empezar por el primero; el número
-del día sigue creciendo (Día 41, Día 42…). Con 40 días, el último es el 10 de
-noviembre de 2026 y el 11 vuelve el día 1.
+del día sigue creciendo (Día 71, Día 72…). Con 70 días, el último es el 10 de
+diciembre de 2026 y el 11 vuelve el día 1.
 
 ## Añadir días
 
@@ -94,7 +94,7 @@ ordenados de fácil a difícil:
   «En francés»…).
 - El esqueleto y el orden de las pistas salen del texto `original`: si lo
   cambias, cambia también el orden en que se destapan las palabras.
-- Las pruebas comprueban que haya exactamente 40 días y que no se repita ningún
+- Las pruebas comprueban que haya exactamente 70 días y que no se repita ningún
   refrán: si añades más, cambia ese número en `tests/logic.test.js`.
 
 ### Cómo se valida la respuesta

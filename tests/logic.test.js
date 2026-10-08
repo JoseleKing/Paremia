@@ -14,8 +14,8 @@ function almacenEnMemoria() {
   return { getItem: (k) => (m.has(k) ? m.get(k) : null), setItem: (k, v) => m.set(k, String(v)) };
 }
 
-test('refranes.json: 40 días × 3 refranes con todos los campos', () => {
-  assert.equal(datos.dias.length, 40);
+test('refranes.json: 70 días × 3 refranes con todos los campos', () => {
+  assert.equal(datos.dias.length, 70);
   for (const dia of datos.dias) {
     assert.equal(dia.refranes.length, 3);
     for (const r of dia.refranes) {
@@ -27,10 +27,10 @@ test('refranes.json: 40 días × 3 refranes con todos los campos', () => {
 });
 
 test('ciclo: tras el último día se vuelve al primero', () => {
-  // 10 de noviembre de 2026 = día 40 (el último); el 11 vuelve a empezar.
-  const n = L.numeroDia(new Date(2026, 10, 10, 12));
-  assert.equal(n, 40);
-  assert.equal(L.diaDeContenido(datos.dias, n), datos.dias[39]);
+  // 10 de diciembre de 2026 = día 70 (el último); el 11 vuelve a empezar.
+  const n = L.numeroDia(new Date(2026, 11, 10, 12));
+  assert.equal(n, 70);
+  assert.equal(L.diaDeContenido(datos.dias, n), datos.dias[69]);
   assert.equal(L.diaDeContenido(datos.dias, n + 1), datos.dias[0]);
   const originales = datos.dias.flatMap(d => d.refranes.map(r => L.normalizar(r.original)));
   assert.equal(new Set(originales).size, originales.length, 'hay refranes repetidos');
