@@ -1,7 +1,6 @@
 /* Volver a Almanaque
    Muestra una franja con una mano ☜ en lo alto del juego para regresar a Almanaque.
-   Solo aparece si se llegó desde Almanaque (que añade ?desde=almanaque&juego=<id> al enlace)
-   y se mantiene mientras siga abierta esa pestaña.
+   Sale siempre, se llegue desde Almanaque o se entre al juego directamente.
    Cuando el jugador termine la partida de hoy, el juego debe llamar a
      window.almanaqueHecho && window.almanaqueHecho();
    (también al abrir el juego con la partida de hoy ya terminada). Así la mano ☜ lleva
@@ -15,9 +14,10 @@
    llega aunque el jugador no vuelva con la mano ☜.
    Botón de volver junto a «Compartir resultado»: el juego pone en su pantalla final
      <a data-almanaque-volver hidden href="https://joseleking.github.io/Almanaque/">…</a>
-   con el estilo que quiera. Si se llegó desde Almanaque, este script lo muestra y le da
-   el mismo destino que la mano ☜; si no, sigue oculto. Puede pintarse en cualquier
-   momento: el script vigila la página.
+   con el estilo que quiera. Este script lo muestra y le da el mismo destino que la
+   mano ☜. Puede pintarse en cualquier momento: el script vigila la página.
+   Id del juego: Almanaque abre cada juego con ?desde=almanaque&juego=<id> y el id se
+   recuerda mientras siga abierta la pestaña; si no, sale de la ruta (/Periplo/ → periplo).
    Copia de referencia: se guarda en el repo de Almanaque, en para-los-juegos/.
    Cada juego incluye su propia copia con:
    <script src="volver-almanaque.js" defer></script> */
@@ -25,11 +25,9 @@
   'use strict';
 
   var ALMANAQUE = 'https://joseleking.github.io/Almanaque/';
-  var CLAVE = 'almanaque:volver';
   var CLAVE_JUEGO = 'almanaque:juego';
   var CLAVE_HECHO = 'almanaque:hecho';
   var CLAVE_RESULTADOS = 'almanaque:resultados';
-  var desdeAlmanaque = false;
   var juego = null;
 
   function leer(clave) {
@@ -43,7 +41,6 @@
   try {
     var url = new URL(window.location.href);
     if (url.searchParams.get('desde') === 'almanaque') {
-      desdeAlmanaque = true;
       juego = url.searchParams.get('juego');
       // Limpia la dirección para que no se comparta con los parámetros.
       url.searchParams.delete('desde');
@@ -52,13 +49,8 @@
     }
   } catch (e) { /* navegador antiguo: se ignora */ }
 
-  if (desdeAlmanaque) {
-    guardar(CLAVE, '1');
-    if (juego) guardar(CLAVE_JUEGO, juego);
-  } else {
-    desdeAlmanaque = leer(CLAVE) === '1';
-    juego = leer(CLAVE_JUEGO);
-  }
+  if (juego) guardar(CLAVE_JUEGO, juego);
+  else juego = leer(CLAVE_JUEGO);
 
   function hoy() {
     var d = new Date();
@@ -71,7 +63,7 @@
     return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   }
 
-  // Sin venir de Almanaque, el id sale de la ruta: /Periplo/ → periplo.
+  // Sin id de Almanaque, sale de la ruta: /Periplo/ → periplo.
   function idDelJuego() {
     if (juego) return juego;
     var partes = window.location.pathname.split('/').filter(Boolean);
@@ -117,21 +109,20 @@
   window.almanaqueHecho = function (resultado) {
     guardar(CLAVE_HECHO, hoy());
     guardarResultado(resultado);
-    // Sin venir de Almanaque no hay mano ni botón de volver que actualizar.
-    if (desdeAlmanaque) actualizarEnlace();
+    actualizarEnlace();
   };
 
-  // Los botones de volver siguen ocultos aunque el estilo del juego les dé display.
+  // Los botones de volver siguen ocultos hasta que este script los activa, aunque el estilo
+  // del juego les dé display.
   var estiloOculto = document.createElement('style');
   estiloOculto.textContent = '[data-almanaque-volver][hidden]{display:none!important}';
   document.head.appendChild(estiloOculto);
 
-  if (!desdeAlmanaque) return;
-
   // La mano lleva ?hecho=<id> solo si el juego ha avisado hoy en esta pestaña.
   function destino() {
-    if (!juego || leer(CLAVE_HECHO) !== hoy()) return ALMANAQUE;
-    return ALMANAQUE + '?hecho=' + encodeURIComponent(juego);
+    var id = idDelJuego();
+    if (!id || leer(CLAVE_HECHO) !== hoy()) return ALMANAQUE;
+    return ALMANAQUE + '?hecho=' + encodeURIComponent(id);
   }
 
   function actualizarEnlace() {
