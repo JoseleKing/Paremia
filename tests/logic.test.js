@@ -270,3 +270,24 @@ test('cuenta atrás', () => {
   assert.equal(L.formatoCuentaAtras(3661000), '01:01:01');
   assert.equal(L.msHastaMedianoche(new Date(2026, 9, 2, 23, 59, 0)), 60000);
 });
+
+test('pista: se salta las palabras bien escritas y corrige las mal escritas', () => {
+  const r = buscar('Cría cuervos y te sacarán los ojos');
+  const e = L.esqueleto(r.original);
+  const orden = L.ordenPistas(r); // los → sacarán → cuervos → …
+  const vacias = e.map(() => '');
+  assert.equal(L.siguientePista(orden, e, [], vacias), orden[0]);
+  // «los» ya está bien escrita: se destapa la siguiente del orden.
+  const conLos = vacias.slice(); conLos[orden[0]] = 'LOS';
+  assert.equal(L.siguientePista(orden, e, [], conLos), orden[1]);
+  // «sacaran» (sin tilde) cuenta como bien; «cuerbos», no, y se corrige.
+  const varias = conLos.slice(); varias[orden[1]] = 'sacaran'; varias[orden[2]] = 'cuerbos';
+  assert.equal(L.siguientePista(orden, e, [], varias), orden[2]);
+  // A medio escribir no cuenta como bien escrita.
+  const media = vacias.slice(); media[orden[0]] = 'lo';
+  assert.equal(L.siguientePista(orden, e, [], media), orden[0]);
+  // Ya destapada, no se repite; si todo lo que falta está bien, no hay pista.
+  assert.equal(L.siguientePista(orden, e, [orden[0]], vacias), orden[1]);
+  const todo = e.map((p) => p.letras);
+  assert.equal(L.siguientePista(orden, e, [], todo), -1);
+});

@@ -301,6 +301,19 @@
     return [primera, segunda, clave].filter(function (i) { return i !== undefined && i !== -1; }).concat(resto);
   }
 
+  // Palabra que destapa la siguiente pista: la primera del orden que no esté ya
+  // destapada ni bien escrita en los huecos (las mal escritas sí se corrigen).
+  // -1 si no queda ninguna.
+  function siguientePista(orden, palabras, destapadas, letras) {
+    for (var k = 0; k < orden.length; k++) {
+      var i = orden[k];
+      if (destapadas.indexOf(i) !== -1) continue;
+      if (letras && letras[i] && normalizar(letras[i]) === normalizar(palabras[i].letras)) continue;
+      return i;
+    }
+    return -1;
+  }
+
   // ---------------------------------------------------------------------------
   // Puntuación y compartir
   // ---------------------------------------------------------------------------
@@ -353,7 +366,7 @@
   function estadoVacio() {
     return {
       visto: false,          // ya vio la explicación inicial
-      partidas: {},          // { [dia]: { refranes: [{ estado, pistas, intentos }], terminada } }
+      partidas: {},          // { [dia]: { refranes: [{ estado, pistas, destapadas, intentos }], terminada } }
       historial: {},         // { [dia]: puntos }
       racha: { actual: 0, maxima: 0, ultimoDia: null }
     };
@@ -440,6 +453,7 @@
     casillaVecina: casillaVecina,
     textoDelEsqueleto: textoDelEsqueleto,
     ordenPistas: ordenPistas,
+    siguientePista: siguientePista,
     valorRefran: valorRefran,
     puntosRefran: puntosRefran,
     puntosPartida: puntosPartida,
@@ -646,7 +660,7 @@
       '<ul class="reglas__lista">' +
       '<li>Bajo el texto verás el <b>esqueleto</b> del refrán: una casilla por palabra, con un hueco por letra.</li>' +
       '<li>Toca el esqueleto y escribe el refrán: las letras irán llenando los huecos y las palabras destapadas se saltan solas. Para corregir, toca cualquier hueco y escribe desde ahí. No importan las tildes, las mayúsculas ni alguna errata.</li>' +
-      '<li><b>Pista: desvelar una palabra</b> te enseña una palabra del refrán, cada vez más reveladora (la tercera lo delata), pero el refrán vale un punto menos.</li>' +
+      '<li><b>Pista: desvelar una palabra</b> te enseña una palabra del refrán, cada vez más reveladora (la tercera lo delata); se salta las que ya hayas escrito bien y corrige las que estén mal. Cada pista hace que el refrán valga un punto menos.</li>' +
       '<li>Comprobar un refrán que no es el bueno también resta un punto. Al tercer fallo, el refrán se da por perdido (0 puntos).</li>' +
       '<li>Cada refrán vale 3 puntos y nunca baja de 1 si lo aciertas. Si te rindes, 0.</li>' +
       '</ul>' +
@@ -700,7 +714,8 @@
     var base = null;
     var ancla = null;
 
-    function destapadas() { return orden.slice(0, r.pistas); }
+    // Las partidas guardadas antes de existir r.destapadas siguen el orden de pistas.
+    function destapadas() { return r.destapadas || orden.slice(0, r.pistas); }
 
     function pintarEsqueleto() {
       escrito = repartirLetras(campo.value, palabras, destapadas(), base, ancla);
@@ -719,7 +734,7 @@
     function actualizarPistas() {
       pintarEsqueleto();
       document.getElementById('valor').innerHTML = htmlValor(r);
-      btnPista.disabled = r.pistas >= orden.length;
+      btnPista.disabled = destapadas().length >= orden.length;
     }
     actualizarPistas();
 
@@ -827,16 +842,23 @@
     btnPista.addEventListener('click', function () {
       if (escribiendo) campo.focus({ preventScroll: true });
       escribiendo = false;
-      if (r.pistas >= orden.length) return;
+      if (destapadas().length >= orden.length) return;
+      var toca = siguientePista(orden, palabras, destapadas(), escrito.letras);
+      if (toca === -1) {
+        mensaje.textContent = 'Las palabras que faltan ya están bien escritas: dale a Comprobar.';
+        mensaje.className = 'respuesta__mensaje';
+        return;
+      }
+      r.destapadas = destapadas().concat(toca);
       r.pistas++;
       guardar();
       // Lo ya escrito se conserva; solo se pierde lo de la palabra destapada, y si
       // el cursor estaba en ella pasa a la siguiente casilla libre.
       var ahora = { palabra: escrito.actual, hueco: escrito.hueco };
-      if (ahora.palabra === orden[r.pistas - 1]) ahora = casillaVecina(palabras, destapadas(), { palabra: ahora.palabra, hueco: Infinity }, 1);
+      if (ahora.palabra === toca) ahora = casillaVecina(palabras, destapadas(), { palabra: ahora.palabra, hueco: Infinity }, 1);
       fijar(ahora);
       actualizarPistas();
-      var nueva = document.querySelectorAll('#esqueleto .palabra')[orden[r.pistas - 1]];
+      var nueva = document.querySelectorAll('#esqueleto .palabra')[toca];
       if (nueva) nueva.classList.add('is-recien');
     });
 

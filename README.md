@@ -96,7 +96,9 @@ ordenados de fácil a difícil:
 - `clave` es la palabra del `original` que delata el refrán sin lugar a dudas
   (escrita tal cual aparece). Las pistas se destapan así: la 1.ª, una palabra
   al azar; la 2.ª, una importante (la más larga que no sea artículo,
-  preposición o similar); la 3.ª, la `clave`; luego, el resto al azar. Las
+  preposición o similar); la 3.ª, la `clave`; luego, el resto al azar. Las palabras que el jugador ya
+  ha escrito bien se saltan (la pista pasa a la siguiente del orden); las mal
+  escritas sí se destapan y quedan corregidas. Las
   pruebas comprueban que la `clave` esté en el refrán.
 - El esqueleto y el orden de las pistas salen del texto `original`: si lo
   cambias, cambia también el orden en que se destapan las palabras.
