@@ -1083,14 +1083,16 @@
   }
 
   // La portada con el logo se ve al menos PORTADA_MS desde que se abre la página y luego se desvanece.
+  // Si tarda en pintarse (la primera visita), se queda al menos PINTADA_MS desde entonces.
   function retirarPortada() {
-    var PORTADA_MS = 1500, FUNDIDO_MS = 500;
+    var PORTADA_MS = 1500, PINTADA_MS = 1400, FUNDIDO_MS = 500;
     var portada = document.getElementById('portada');
     if (!portada) return;
+    var pintada = (performance.getEntriesByName('first-contentful-paint')[0] || { startTime: performance.now() }).startTime;
     setTimeout(function () {
       portada.classList.add('oculta');
       setTimeout(function () { portada.remove(); }, FUNDIDO_MS);
-    }, Math.max(0, PORTADA_MS - performance.now()));
+    }, Math.max(0, PORTADA_MS - performance.now(), PINTADA_MS - (performance.now() - pintada)));
   }
 
   arrancar();
