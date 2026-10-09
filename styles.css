@@ -826,7 +826,28 @@ summary:focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; }
   width: 8rem;
   height: 8rem;
   filter: drop-shadow(0 3px 8px rgba(40, 25, 10, 0.22));
+  position: relative;
   animation: asomar 0.5s ease-out both;
+}
+
+/* El logo va en capas para que las comillas se abran y cierren alrededor de la P. */
+.portada__logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.portada__comilla { animation: 0.9s ease-in-out infinite; }
+.portada__comilla--izq { animation-name: comilla-izq; }
+.portada__comilla--der { animation-name: comilla-der; }
+
+@keyframes comilla-izq {
+  50% { transform: translateX(-5%); }
+}
+
+@keyframes comilla-der {
+  50% { transform: translateX(5%); }
 }
 
 .portada__nombre {

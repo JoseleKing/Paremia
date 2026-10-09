@@ -3,7 +3,7 @@
    (ver README). Red primero para el juego (así los refranes nuevos llegan en cuanto
    se publican) y copia guardada si no hay conexión. */
 
-const CACHE_VERSION = 'v18';
+const CACHE_VERSION = 'v19';
 const CACHE = `paremia-${CACHE_VERSION}`;
 
 const ARCHIVOS = [
@@ -18,7 +18,9 @@ const ARCHIVOS = [
   './icons/favicon-32.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './icons/logo-portada.png',
+  './icons/logo-portada-fondo.png',
+  './icons/logo-portada-comilla-izq.png',
+  './icons/logo-portada-comilla-der.png',
   './icons/icon-maskable-192.png',
   './icons/icon-maskable-512.png',
   './icons/apple-touch-icon.png'
