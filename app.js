@@ -1084,7 +1084,7 @@
 
   // La portada con el logo se ve al menos PORTADA_MS desde que se abre la página y luego se desvanece.
   function retirarPortada() {
-    var PORTADA_MS = 900, FUNDIDO_MS = 400;
+    var PORTADA_MS = 1500, FUNDIDO_MS = 500;
     var portada = document.getElementById('portada');
     if (!portada) return;
     setTimeout(function () {

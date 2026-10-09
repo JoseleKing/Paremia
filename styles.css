@@ -818,7 +818,7 @@ summary:focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; }
   align-content: center;
   gap: 1rem;
   background: var(--papel);
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 #portada.oculta { opacity: 0; visibility: hidden; }
 
