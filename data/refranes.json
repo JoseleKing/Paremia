@@ -4,6 +4,7 @@
       "refranes": [
         {
           "original": "Más vale tarde que nunca",
+          "clave": "tarde",
           "variantes": [],
           "pedante": "Resulta preferible una ejecución con demora que la ausencia total de ejecución.",
           "significado": "Es mejor hacer algo tarde que no hacerlo.",
@@ -14,6 +15,7 @@
         },
         {
           "original": "Perro ladrador, poco mordedor",
+          "clave": "ladrador",
           "variantes": [],
           "pedante": "El cánido de vocalización frecuente presenta una baja incidencia de agresiones dentales.",
           "significado": "Quien amenaza mucho rara vez actúa.",
@@ -24,6 +26,7 @@
         },
         {
           "original": "Cría cuervos y te sacarán los ojos",
+          "clave": "cuervos",
           "variantes": [
             "Cría cuervos que te sacarán los ojos"
           ],
@@ -37,6 +40,7 @@
       "refranes": [
         {
           "original": "Más vale pájaro en mano que ciento volando",
+          "clave": "pájaro",
           "variantes": [],
           "pedante": "Resulta preferible un ave efectivamente bajo custodia manual que un centenar de ellas en régimen de vuelo libre.",
           "significado": "Más vale lo seguro que lo prometido.",
@@ -47,6 +51,7 @@
         },
         {
           "original": "Zapatero, a tus zapatos",
+          "clave": "Zapatero",
           "variantes": [],
           "pedante": "Profesional del calzado: limítese usted al ámbito del calzado.",
           "significado": "Cada cual debe opinar de lo que sabe.",
@@ -54,6 +59,7 @@
         },
         {
           "original": "Cuando el río suena, agua lleva",
+          "clave": "río",
           "variantes": [
             "Cuando el río suena, piedras trae"
           ],
@@ -70,6 +76,7 @@
       "refranes": [
         {
           "original": "Ojos que no ven, corazón que no siente",
+          "clave": "siente",
           "variantes": [],
           "pedante": "Aquello que no es captado por el sistema visual no genera respuesta alguna en el órgano cardíaco.",
           "significado": "Lo que no se sabe no hace sufrir.",
@@ -80,6 +87,7 @@
         },
         {
           "original": "A caballo regalado no le mires el diente",
+          "clave": "regalado",
           "variantes": [
             "A caballo regalado no se le mira el diente",
             "A caballo regalado no le mires el dentado"
@@ -93,6 +101,7 @@
         },
         {
           "original": "Quien siembra vientos recoge tempestades",
+          "clave": "vientos",
           "variantes": [
             "El que siembra vientos recoge tempestades"
           ],
@@ -109,6 +118,7 @@
       "refranes": [
         {
           "original": "En boca cerrada no entran moscas",
+          "clave": "moscas",
           "variantes": [],
           "pedante": "El mantenimiento de la cavidad bucal en posición sellada impide el acceso de dípteros al organismo.",
           "significado": "Callar a tiempo evita problemas.",
@@ -116,6 +126,7 @@
         },
         {
           "original": "Dime con quién andas y te diré quién eres",
+          "clave": "andas",
           "variantes": [],
           "pedante": "Facilíteme el listado de sus acompañantes habituales y procederé a emitir un diagnóstico de su identidad.",
           "significado": "Las compañías dicen mucho de cada uno.",
@@ -126,6 +137,7 @@
         },
         {
           "original": "Gato escaldado del agua fría huye",
+          "clave": "escaldado",
           "variantes": [
             "Gato escaldado, del agua fría huye"
           ],
@@ -142,6 +154,7 @@
       "refranes": [
         {
           "original": "A quien madruga, Dios le ayuda",
+          "clave": "madruga",
           "variantes": [
             "Al que madruga, Dios lo ayuda",
             "Al que madruga, Dios le ayuda"
@@ -155,6 +168,7 @@
         },
         {
           "original": "No hay mal que por bien no venga",
+          "clave": "venga",
           "variantes": [],
           "pedante": "Todo acontecimiento adverso lleva aparejado algún beneficio colateral.",
           "significado": "De las desgracias también sale algo bueno.",
@@ -165,6 +179,7 @@
         },
         {
           "original": "Camarón que se duerme, se lo lleva la corriente",
+          "clave": "Camarón",
           "variantes": [],
           "pedante": "El crustáceo decápodo que incurre en somnolencia es desplazado por el flujo hídrico.",
           "significado": "Quien se descuida pierde oportunidades.",
@@ -176,6 +191,7 @@
       "refranes": [
         {
           "original": "Al mal tiempo, buena cara",
+          "clave": "cara",
           "variantes": [],
           "pedante": "Frente a condiciones meteorológicas adversas, procede mantener una expresión facial favorable.",
           "significado": "Hay que afrontar los problemas con optimismo.",
@@ -183,6 +199,7 @@
         },
         {
           "original": "Del dicho al hecho hay mucho trecho",
+          "clave": "trecho",
           "variantes": [],
           "pedante": "Entre la enunciación verbal de un propósito y su materialización efectiva media una distancia considerable.",
           "significado": "Es más fácil prometer que cumplir.",
@@ -193,6 +210,7 @@
         },
         {
           "original": "Donde hay patrón no manda marinero",
+          "clave": "marinero",
           "variantes": [],
           "pedante": "En presencia de un responsable jerárquico, el personal subordinado carece de potestad decisoria.",
           "significado": "Manda quien tiene la autoridad.",
@@ -204,6 +222,7 @@
       "refranes": [
         {
           "original": "El que la sigue la consigue",
+          "clave": "consigue",
           "variantes": [
             "Quien la sigue la consigue"
           ],
@@ -213,6 +232,7 @@
         },
         {
           "original": "El hábito no hace al monje",
+          "clave": "monje",
           "variantes": [],
           "pedante": "La indumentaria eclesiástica no constituye condición suficiente para ostentar la condición monacal.",
           "significado": "Las apariencias engañan.",
@@ -223,6 +243,7 @@
         },
         {
           "original": "Por la boca muere el pez",
+          "clave": "pez",
           "variantes": [],
           "pedante": "El pez encuentra su final a través de su propio orificio bucal.",
           "significado": "Hablar de más puede perjudicarnos.",
@@ -234,6 +255,7 @@
       "refranes": [
         {
           "original": "A falta de pan, buenas son tortas",
+          "clave": "tortas",
           "variantes": [],
           "pedante": "En ausencia de producto panificado, las tortas constituyen una alternativa plenamente satisfactoria.",
           "significado": "Hay que conformarse con lo que hay.",
@@ -241,6 +263,7 @@
         },
         {
           "original": "Agua que no has de beber, déjala correr",
+          "clave": "beber",
           "variantes": [],
           "pedante": "El recurso hídrico cuyo consumo personal no esté previsto debe dejarse fluir sin interferencias.",
           "significado": "No te metas en lo que no te concierne.",
@@ -248,6 +271,7 @@
         },
         {
           "original": "Ande yo caliente y ríase la gente",
+          "clave": "caliente",
           "variantes": [],
           "pedante": "Priorizo mi confort térmico con total independencia de la hilaridad que ello suscite en terceros.",
           "significado": "Lo importante es estar bien, aunque otros se burlen.",
@@ -259,6 +283,7 @@
       "refranes": [
         {
           "original": "No por mucho madrugar amanece más temprano",
+          "clave": "madrugar",
           "variantes": [],
           "pedante": "La anticipación del despertar individual no adelanta en modo alguno la salida del astro rey.",
           "significado": "Las cosas tienen su tiempo y apresurarse no sirve.",
@@ -266,6 +291,7 @@
         },
         {
           "original": "Quien bien te quiere te hará llorar",
+          "clave": "llorar",
           "variantes": [],
           "pedante": "La persona que le profesa un afecto genuino le provocará, en algún momento, secreción lagrimal.",
           "significado": "Quien te quiere te dice verdades que duelen.",
@@ -273,6 +299,7 @@
         },
         {
           "original": "Muerto el perro, se acabó la rabia",
+          "clave": "rabia",
           "variantes": [],
           "pedante": "Una vez constatado el fallecimiento del cánido, cesa la transmisión del virus rábico.",
           "significado": "Eliminada la causa, desaparece el problema.",
@@ -284,6 +311,7 @@
       "refranes": [
         {
           "original": "A buen entendedor, pocas palabras bastan",
+          "clave": "entendedor",
           "variantes": [
             "A buen entendedor, pocas palabras"
           ],
@@ -296,6 +324,7 @@
         },
         {
           "original": "Más sabe el diablo por viejo que por diablo",
+          "clave": "diablo",
           "variantes": [],
           "pedante": "El ente maligno debe su sabiduría más a su antigüedad que a su naturaleza demoníaca.",
           "significado": "La experiencia enseña más que el talento.",
@@ -303,6 +332,7 @@
         },
         {
           "original": "Al que a buen árbol se arrima, buena sombra le cobija",
+          "clave": "árbol",
           "variantes": [
             "Quien a buen árbol se arrima, buena sombra le cobija",
             "El que a buen árbol se arrima, buena sombra le cobija"
@@ -317,6 +347,7 @@
       "refranes": [
         {
           "original": "Más vale prevenir que curar",
+          "clave": "prevenir",
           "variantes": [],
           "pedante": "Resulta más rentable la adopción de medidas anticipatorias que la posterior aplicación de tratamientos correctivos.",
           "significado": "Es mejor evitar un problema que tener que solucionarlo después.",
@@ -327,6 +358,7 @@
         },
         {
           "original": "Quien mucho abarca poco aprieta",
+          "clave": "abarca",
           "variantes": [
             "El que mucho abarca poco aprieta"
           ],
@@ -339,6 +371,7 @@
         },
         {
           "original": "Cuando a Roma fueres, haz lo que vieres",
+          "clave": "fueres",
           "variantes": [
             "Donde fueres, haz lo que vieres",
             "Allá donde fueres, haz lo que vieres"
@@ -356,6 +389,7 @@
       "refranes": [
         {
           "original": "Dios los cría y ellos se juntan",
+          "clave": "juntan",
           "variantes": [],
           "pedante": "La divinidad efectúa la crianza de los individuos, quienes posteriormente proceden por iniciativa propia a su agrupación.",
           "significado": "Las personas parecidas, sobre todo en lo malo, acaban reuniéndose.",
@@ -366,6 +400,7 @@
         },
         {
           "original": "No hay mal que cien años dure",
+          "clave": "dure",
           "variantes": [],
           "pedante": "Ninguna circunstancia adversa presenta una vigencia temporal que alcance el siglo completo.",
           "significado": "Las desgracias, por grandes que sean, acaban pasando.",
@@ -373,6 +408,7 @@
         },
         {
           "original": "El que avisa no es traidor",
+          "clave": "avisa",
           "variantes": [
             "Quien avisa no es traidor"
           ],
@@ -386,6 +422,7 @@
       "refranes": [
         {
           "original": "Las apariencias engañan",
+          "clave": "apariencias",
           "variantes": [],
           "pedante": "La imagen exterior de las cosas induce con frecuencia a errores de apreciación.",
           "significado": "No hay que juzgar por lo que se ve a primera vista.",
@@ -396,6 +433,7 @@
         },
         {
           "original": "Quien calla, otorga",
+          "clave": "otorga",
           "variantes": [
             "El que calla, otorga"
           ],
@@ -408,6 +446,7 @@
         },
         {
           "original": "A lo hecho, pecho",
+          "clave": "pecho",
           "variantes": [],
           "pedante": "Ante las actuaciones ya consumadas, procede la exposición de la región torácica.",
           "significado": "Hay que asumir con valor las consecuencias de lo que uno ha hecho.",
@@ -419,6 +458,7 @@
       "refranes": [
         {
           "original": "Ojo por ojo, diente por diente",
+          "clave": "diente",
           "variantes": [],
           "pedante": "Por cada órgano visual dañado se reclamará otro órgano visual, y análogamente con las piezas dentales.",
           "significado": "Quien causa un daño debe recibir uno igual.",
@@ -429,6 +469,7 @@
         },
         {
           "original": "Hablando del rey de Roma, por la puerta asoma",
+          "clave": "asoma",
           "variantes": [
             "Hablando del rey de Roma, y él que se asoma"
           ],
@@ -441,6 +482,7 @@
         },
         {
           "original": "Cada loco con su tema",
+          "clave": "loco",
           "variantes": [],
           "pedante": "Todo individuo de juicio alterado mantiene una vinculación exclusiva con su asunto predilecto.",
           "significado": "Cada persona tiene sus manías y sus asuntos favoritos.",
@@ -452,6 +494,7 @@
       "refranes": [
         {
           "original": "Quien ríe el último ríe mejor",
+          "clave": "último",
           "variantes": [
             "El que ríe el último ríe mejor",
             "Quien ríe último ríe mejor"
@@ -465,6 +508,7 @@
         },
         {
           "original": "En casa del herrero, cuchillo de palo",
+          "clave": "herrero",
           "variantes": [
             "En casa de herrero, cuchillo de palo"
           ],
@@ -477,6 +521,7 @@
         },
         {
           "original": "A otro perro con ese hueso",
+          "clave": "hueso",
           "variantes": [],
           "pedante": "Sírvase usted trasladar dicho resto óseo a un cánido distinto del que suscribe.",
           "significado": "Se dice para rechazar algo que no nos creemos o que no queremos aceptar.",
@@ -488,6 +533,7 @@
       "refranes": [
         {
           "original": "No dejes para mañana lo que puedas hacer hoy",
+          "clave": "mañana",
           "variantes": [
             "No dejes para mañana lo que puedes hacer hoy"
           ],
@@ -500,6 +546,7 @@
         },
         {
           "original": "Más vale maña que fuerza",
+          "clave": "maña",
           "variantes": [],
           "pedante": "La destreza presenta un rendimiento superior al de la mera aplicación de potencia física.",
           "significado": "La habilidad consigue más que la fuerza bruta.",
@@ -507,6 +554,7 @@
         },
         {
           "original": "Poderoso caballero es don Dinero",
+          "clave": "Dinero",
           "variantes": [],
           "pedante": "El numerario, en calidad de hidalgo de notable influencia, ostenta un poder considerable.",
           "significado": "El dinero lo puede casi todo.",
@@ -518,6 +566,7 @@
       "refranes": [
         {
           "original": "Quien tiene boca se equivoca",
+          "clave": "equivoca",
           "variantes": [
             "El que tiene boca se equivoca"
           ],
@@ -530,6 +579,7 @@
         },
         {
           "original": "Mal de muchos, consuelo de tontos",
+          "clave": "tontos",
           "variantes": [],
           "pedante": "El perjuicio que afecta a un colectivo amplio solo proporciona alivio a los individuos de escasas luces.",
           "significado": "Que otros sufran lo mismo no arregla nada, aunque a algunos los consuele.",
@@ -537,6 +587,7 @@
         },
         {
           "original": "A palabras necias, oídos sordos",
+          "clave": "necias",
           "variantes": [],
           "pedante": "Ante expresiones verbales carentes de juicio, se recomienda la inhabilitación temporal del aparato auditivo.",
           "significado": "Lo mejor es no hacer caso de las tonterías o los insultos.",
@@ -548,6 +599,7 @@
       "refranes": [
         {
           "original": "El tiempo es oro",
+          "clave": "oro",
           "variantes": [],
           "pedante": "La magnitud cronológica presenta una equivalencia directa con el metal precioso de número atómico 79.",
           "significado": "El tiempo es valioso y no hay que desperdiciarlo.",
@@ -558,6 +610,7 @@
         },
         {
           "original": "La avaricia rompe el saco",
+          "clave": "avaricia",
           "variantes": [],
           "pedante": "El afán desmedido de acumulación provoca la rotura del recipiente textil destinado a tal fin.",
           "significado": "Quien quiere demasiado acaba perdiéndolo todo.",
@@ -565,6 +618,7 @@
         },
         {
           "original": "Hecha la ley, hecha la trampa",
+          "clave": "trampa",
           "variantes": [],
           "pedante": "Simultáneamente a la promulgación de la norma se produce la elaboración del correspondiente subterfugio.",
           "significado": "Siempre hay quien encuentra la forma de saltarse una norma nueva.",
@@ -579,6 +633,7 @@
       "refranes": [
         {
           "original": "Todos los caminos llevan a Roma",
+          "clave": "caminos",
           "variantes": [
             "Todos los caminos conducen a Roma"
           ],
@@ -591,6 +646,7 @@
         },
         {
           "original": "Al pan, pan, y al vino, vino",
+          "clave": "vino",
           "variantes": [],
           "pedante": "Al producto de panificación se le denominará producto de panificación, y al caldo de uva fermentada, caldo de uva fermentada.",
           "significado": "Hay que hablar claro y llamar a las cosas por su nombre.",
@@ -601,6 +657,7 @@
         },
         {
           "original": "Más vale solo que mal acompañado",
+          "clave": "acompañado",
           "variantes": [],
           "pedante": "Resulta preferible la situación de soledad a la de compañía de calidad deficiente.",
           "significado": "Es mejor estar solo que con quien no conviene.",
@@ -615,6 +672,7 @@
       "refranes": [
         {
           "original": "A rey muerto, rey puesto",
+          "clave": "puesto",
           "variantes": [],
           "pedante": "Producido el fallecimiento del monarca, se procede sin dilación a la colocación de su sucesor.",
           "significado": "Quien falta es sustituido enseguida; nadie es imprescindible.",
@@ -625,6 +683,7 @@
         },
         {
           "original": "El que no llora no mama",
+          "clave": "mama",
           "variantes": [
             "Quien no llora no mama"
           ],
@@ -637,6 +696,7 @@
         },
         {
           "original": "Piensa el ladrón que todos son de su condición",
+          "clave": "condición",
           "variantes": [],
           "pedante": "El sustractor de bienes ajenos presupone que la totalidad de la población comparte su misma naturaleza.",
           "significado": "Cada uno juzga a los demás por cómo es él mismo.",
@@ -648,6 +708,7 @@
       "refranes": [
         {
           "original": "No es oro todo lo que reluce",
+          "clave": "reluce",
           "variantes": [
             "No todo lo que reluce es oro",
             "No es oro todo lo que brilla",
@@ -662,6 +723,7 @@
         },
         {
           "original": "Una golondrina no hace verano",
+          "clave": "golondrina",
           "variantes": [
             "Una golondrina sola no hace verano"
           ],
@@ -674,6 +736,7 @@
         },
         {
           "original": "Arrieros somos y en el camino nos encontraremos",
+          "clave": "Arrieros",
           "variantes": [
             "Arrieros somos, en el camino nos encontraremos"
           ],
@@ -687,6 +750,7 @@
       "refranes": [
         {
           "original": "De tal palo, tal astilla",
+          "clave": "astilla",
           "variantes": [],
           "pedante": "El fragmento leñoso desprendido presenta características idénticas a las del madero de procedencia.",
           "significado": "Los hijos se parecen a sus padres.",
@@ -697,6 +761,7 @@
         },
         {
           "original": "Quien a hierro mata, a hierro muere",
+          "clave": "hierro",
           "variantes": [
             "El que a hierro mata, a hierro muere"
           ],
@@ -709,6 +774,7 @@
         },
         {
           "original": "Cada cual cosecha lo que siembra",
+          "clave": "cosecha",
           "variantes": [
             "Cada uno cosecha lo que siembra",
             "Uno cosecha lo que siembra"
@@ -726,6 +792,7 @@
       "refranes": [
         {
           "original": "Quien busca, halla",
+          "clave": "busca",
           "variantes": [
             "El que busca, halla",
             "El que busca encuentra",
@@ -740,6 +807,7 @@
         },
         {
           "original": "Genio y figura hasta la sepultura",
+          "clave": "sepultura",
           "variantes": [],
           "pedante": "El carácter y la complexión del individuo se mantendrán inalterados hasta su inhumación.",
           "significado": "Las personas no cambian su forma de ser.",
@@ -747,6 +815,7 @@
         },
         {
           "original": "Obras son amores, que no buenas razones",
+          "clave": "amores",
           "variantes": [
             "Obras son amores y no buenas razones"
           ],
@@ -763,6 +832,7 @@
       "refranes": [
         {
           "original": "Agua pasada no mueve molino",
+          "clave": "molino",
           "variantes": [],
           "pedante": "El caudal hídrico que ya ha transitado carece de capacidad para accionar la maquinaria de molienda.",
           "significado": "Lo que ya pasó no tiene remedio ni importancia; no merece la pena lamentarse.",
@@ -773,6 +843,7 @@
         },
         {
           "original": "Haz bien y no mires a quién",
+          "clave": "mires",
           "variantes": [],
           "pedante": "Proceda a la realización de buenas acciones sin efectuar comprobaciones sobre la identidad del beneficiario.",
           "significado": "Hay que hacer el bien sin esperar nada a cambio.",
@@ -780,6 +851,7 @@
         },
         {
           "original": "El pez grande se come al chico",
+          "clave": "chico",
           "variantes": [
             "El pez grande se come al pequeño"
           ],
@@ -796,6 +868,7 @@
       "refranes": [
         {
           "original": "No hay peor sordo que el que no quiere oír",
+          "clave": "sordo",
           "variantes": [
             "No hay peor sordo que quien no quiere oír"
           ],
@@ -808,6 +881,7 @@
         },
         {
           "original": "Hombre prevenido vale por dos",
+          "clave": "prevenido",
           "variantes": [],
           "pedante": "El varón que ha adoptado medidas de anticipación computa a efectos prácticos como dos unidades.",
           "significado": "Quien se prepara con antelación tiene mucha ventaja.",
@@ -818,6 +892,7 @@
         },
         {
           "original": "Cuando las barbas de tu vecino veas pelar, pon las tuyas a remojar",
+          "clave": "barbas",
           "variantes": [
             "Cuando las barbas de tu vecino veas cortar, pon las tuyas a remojar"
           ],
@@ -831,6 +906,7 @@
       "refranes": [
         {
           "original": "No se ganó Zamora en una hora",
+          "clave": "Zamora",
           "variantes": [],
           "pedante": "La conquista de la ciudad castellana a orillas del Duero no se completó en el plazo de sesenta minutos.",
           "significado": "Las cosas importantes requieren tiempo y paciencia.",
@@ -841,6 +917,7 @@
         },
         {
           "original": "Más vale caer en gracia que ser gracioso",
+          "clave": "gracioso",
           "variantes": [],
           "pedante": "Resulta más provechoso obtener la simpatía ajena que estar dotado de ingenio propio.",
           "significado": "Agradar a los demás importa más que tener verdadero mérito.",
@@ -848,6 +925,7 @@
         },
         {
           "original": "Al buen callar llaman Sancho",
+          "clave": "Sancho",
           "variantes": [],
           "pedante": "A la conducta de mantener un silencio oportuno se le asigna el nombre propio del escudero cervantino.",
           "significado": "Es prudente callar a tiempo.",
@@ -859,6 +937,7 @@
       "refranes": [
         {
           "original": "Sobre gustos no hay nada escrito",
+          "clave": "gustos",
           "variantes": [],
           "pedante": "En materia de preferencias personales no consta documentación normativa alguna.",
           "significado": "Cada uno tiene sus gustos y no se pueden discutir.",
@@ -869,6 +948,7 @@
         },
         {
           "original": "Las cuentas claras y el chocolate espeso",
+          "clave": "chocolate",
           "variantes": [
             "Las cuentas claras y el chocolate, espeso"
           ],
@@ -878,6 +958,7 @@
         },
         {
           "original": "En el término medio está la virtud",
+          "clave": "virtud",
           "variantes": [
             "En el medio está la virtud"
           ],
@@ -894,6 +975,7 @@
       "refranes": [
         {
           "original": "Aunque la mona se vista de seda, mona se queda",
+          "clave": "mona",
           "variantes": [],
           "pedante": "Pese a la adopción de indumentaria de fibra noble por parte de la primate, esta conserva su condición de primate.",
           "significado": "Por mucho que alguien se arregle o disimule, no cambia lo que es.",
@@ -901,6 +983,7 @@
         },
         {
           "original": "Tanto va el cántaro a la fuente que al final se rompe",
+          "clave": "cántaro",
           "variantes": [
             "Tanto va el cántaro a la fuente que al fin se rompe",
             "Tanto va el cántaro a la fuente que se rompe"
@@ -914,6 +997,7 @@
         },
         {
           "original": "Unos nacen con estrella y otros nacen estrellados",
+          "clave": "estrellados",
           "variantes": [],
           "pedante": "Determinados individuos vienen al mundo dotados de astro favorable y otros, en cambio, en estado de colisión.",
           "significado": "Unos tienen buena suerte en la vida y otros, muy mala.",
@@ -925,6 +1009,7 @@
       "refranes": [
         {
           "original": "No hay dos sin tres",
+          "clave": "tres",
           "variantes": [],
           "pedante": "Toda incidencia producida por duplicado conlleva necesariamente una tercera ocurrencia.",
           "significado": "Si algo ha pasado dos veces, es probable que pase una tercera.",
@@ -935,6 +1020,7 @@
         },
         {
           "original": "Quien con niños se acuesta, mojado se levanta",
+          "clave": "niños",
           "variantes": [
             "El que con niños se acuesta, mojado se levanta"
           ],
@@ -944,6 +1030,7 @@
         },
         {
           "original": "Al freír será el reír",
+          "clave": "freír",
           "variantes": [
             "Al freír será el reír, y al pagar será el llorar"
           ],
@@ -957,6 +1044,7 @@
       "refranes": [
         {
           "original": "Más vale malo conocido que bueno por conocer",
+          "clave": "conocido",
           "variantes": [],
           "pedante": "Resulta preferible un elemento deficiente ya identificado a uno satisfactorio pendiente de identificación.",
           "significado": "Mejor no arriesgarse a cambiar algo que conocemos por algo nuevo y dudoso.",
@@ -967,6 +1055,7 @@
         },
         {
           "original": "Dios aprieta pero no ahoga",
+          "clave": "ahoga",
           "variantes": [
             "Dios aprieta, pero no ahoga"
           ],
@@ -976,6 +1065,7 @@
         },
         {
           "original": "Lo cortés no quita lo valiente",
+          "clave": "cortés",
           "variantes": [],
           "pedante": "La observancia de las normas de urbanidad no merma en modo alguno el arrojo del individuo.",
           "significado": "Se puede ser educado y firme a la vez.",
@@ -987,6 +1077,7 @@
       "refranes": [
         {
           "original": "A la tercera va la vencida",
+          "clave": "vencida",
           "variantes": [],
           "pedante": "En el tercer intento se producirá, con carácter definitivo, la consecución del objetivo.",
           "significado": "Tras dos fracasos, a la tercera suele salir bien.",
@@ -997,6 +1088,7 @@
         },
         {
           "original": "Cada oveja con su pareja",
+          "clave": "pareja",
           "variantes": [],
           "pedante": "Todo ejemplar ovino deberá permanecer junto a su correspondiente compañero de igual condición.",
           "significado": "Cada uno debe juntarse con los de su clase.",
@@ -1004,6 +1096,7 @@
         },
         {
           "original": "Quien parte y reparte se queda con la mejor parte",
+          "clave": "reparte",
           "variantes": [
             "El que parte y reparte se queda con la mejor parte"
           ],
@@ -1017,6 +1110,7 @@
       "refranes": [
         {
           "original": "Cuando una puerta se cierra, otra se abre",
+          "clave": "puerta",
           "variantes": [
             "Cuando una puerta se cierra, se abre otra"
           ],
@@ -1029,6 +1123,7 @@
         },
         {
           "original": "Ladrón que roba a ladrón tiene cien años de perdón",
+          "clave": "perdón",
           "variantes": [],
           "pedante": "El sustractor que despoja a otro sustractor obtiene una exención de culpa de vigencia secular.",
           "significado": "Engañar a quien engaña no se considera tan grave.",
@@ -1036,6 +1131,7 @@
         },
         {
           "original": "A Dios rogando y con el mazo dando",
+          "clave": "mazo",
           "variantes": [],
           "pedante": "Simultanéense las peticiones a la divinidad con la aplicación de golpes mediante herramienta de percusión.",
           "significado": "Hay que pedir ayuda, pero sin dejar de trabajar uno mismo.",
@@ -1047,6 +1143,7 @@
       "refranes": [
         {
           "original": "Mucho ruido y pocas nueces",
+          "clave": "nueces",
           "variantes": [],
           "pedante": "Se registra un elevado nivel de contaminación acústica con un rendimiento escaso de fruto seco.",
           "significado": "Se dice de lo que parece importante y luego resulta ser poca cosa.",
@@ -1057,6 +1154,7 @@
         },
         {
           "original": "El que se fue a Sevilla perdió su silla",
+          "clave": "Sevilla",
           "variantes": [
             "Quien se fue a Sevilla perdió su silla",
             "Quien fue a Sevilla perdió su silla"
@@ -1067,6 +1165,7 @@
         },
         {
           "original": "El ojo del amo engorda al caballo",
+          "clave": "amo",
           "variantes": [],
           "pedante": "La supervisión visual por parte del propietario incrementa la masa corporal del equino.",
           "significado": "Las cosas marchan mejor cuando el dueño se ocupa de ellas en persona.",
@@ -1078,6 +1177,7 @@
       "refranes": [
         {
           "original": "A grandes males, grandes remedios",
+          "clave": "remedios",
           "variantes": [],
           "pedante": "Ante perjuicios de magnitud considerable, procede la aplicación de soluciones de dimensión equivalente.",
           "significado": "Los problemas graves exigen soluciones drásticas.",
@@ -1088,6 +1188,7 @@
         },
         {
           "original": "Los niños y los locos dicen las verdades",
+          "clave": "locos",
           "variantes": [
             "Los niños y los borrachos dicen la verdad",
             "Los niños y los locos dicen la verdad"
@@ -1098,6 +1199,7 @@
         },
         {
           "original": "Cría fama y échate a dormir",
+          "clave": "fama",
           "variantes": [],
           "pedante": "Una vez generada la reputación correspondiente, el interesado podrá adoptar la posición de reposo.",
           "significado": "Cuando uno tiene una fama, buena o mala, ya no se la quita aunque no haga nada.",
@@ -1109,6 +1211,7 @@
       "refranes": [
         {
           "original": "Quien no arriesga no gana",
+          "clave": "arriesga",
           "variantes": [
             "El que no arriesga no gana"
           ],
@@ -1121,6 +1224,7 @@
         },
         {
           "original": "Del árbol caído todos hacen leña",
+          "clave": "leña",
           "variantes": [],
           "pedante": "Del vegetal leñoso abatido, la totalidad de los presentes extrae combustible.",
           "significado": "Cuando alguien cae en desgracia, todos se aprovechan para criticarlo.",
@@ -1128,6 +1232,7 @@
         },
         {
           "original": "Antes se coge al mentiroso que al cojo",
+          "clave": "mentiroso",
           "variantes": [
             "Antes se pilla al mentiroso que al cojo",
             "Antes se pilla a un mentiroso que a un cojo"
@@ -1142,6 +1247,7 @@
       "refranes": [
         {
           "original": "Siempre llueve sobre mojado",
+          "clave": "llueve",
           "variantes": [],
           "pedante": "Las precipitaciones se producen sistemáticamente sobre superficies que ya presentan humedad.",
           "significado": "Las desgracias suelen caer sobre quien ya tiene otras.",
@@ -1149,6 +1255,7 @@
         },
         {
           "original": "Bicho malo nunca muere",
+          "clave": "Bicho",
           "variantes": [],
           "pedante": "El ejemplar animal de condición perniciosa goza de una longevidad ilimitada.",
           "significado": "Se dice, a menudo en broma, de quien sale bien parado de todo.",
@@ -1156,6 +1263,7 @@
         },
         {
           "original": "Quien guarda, halla",
+          "clave": "guarda",
           "variantes": [
             "El que guarda, halla"
           ],
@@ -1169,6 +1277,7 @@
       "refranes": [
         {
           "original": "Las palabras se las lleva el viento",
+          "clave": "viento",
           "variantes": [],
           "pedante": "Los enunciados orales son objeto de transporte por las corrientes de aire.",
           "significado": "Lo que solo se dice de palabra se olvida o no compromete; mejor que conste por escrito o en hechos.",
@@ -1179,6 +1288,7 @@
         },
         {
           "original": "Al que no quiere caldo, tres tazas",
+          "clave": "caldo",
           "variantes": [
             "Al que no quiere caldo, taza y media"
           ],
@@ -1188,6 +1298,7 @@
         },
         {
           "original": "Cada maestrillo tiene su librillo",
+          "clave": "maestrillo",
           "variantes": [],
           "pedante": "Todo docente de rango menor dispone de su propio manual de reducidas dimensiones.",
           "significado": "Cada persona tiene su manera particular de hacer las cosas.",
@@ -1199,6 +1310,7 @@
       "refranes": [
         {
           "original": "Dame pan y dime tonto",
+          "clave": "tonto",
           "variantes": [],
           "pedante": "Suminístreseme producto de panificación y aplíquese a mi persona el calificativo de necio.",
           "significado": "No importa lo que digan de uno mientras saque provecho.",
@@ -1206,6 +1318,7 @@
         },
         {
           "original": "Cada uno en su casa y Dios en la de todos",
+          "clave": "casa",
           "variantes": [],
           "pedante": "Cada ciudadano permanecerá en su domicilio particular, y la divinidad en la totalidad de ellos.",
           "significado": "Cada cual debe ocuparse de lo suyo sin meterse en lo ajeno.",
@@ -1213,6 +1326,7 @@
         },
         {
           "original": "A cada cerdo le llega su San Martín",
+          "clave": "Martín",
           "variantes": [
             "A cada puerco le llega su San Martín",
             "A todo cerdo le llega su San Martín"
@@ -1227,6 +1341,7 @@
       "refranes": [
         {
           "original": "Lo que no mata engorda",
+          "clave": "engorda",
           "variantes": [],
           "pedante": "Todo aquello que no provoca el fallecimiento produce un incremento de peso.",
           "significado": "Se dice, a menudo en broma, para quitar importancia a lo que se come o se aguanta.",
@@ -1234,6 +1349,7 @@
         },
         {
           "original": "No hay atajo sin trabajo",
+          "clave": "atajo",
           "variantes": [],
           "pedante": "Todo itinerario abreviado conlleva un esfuerzo adicional.",
           "significado": "Lo que parece más fácil o rápido también tiene su coste.",
@@ -1241,6 +1357,7 @@
         },
         {
           "original": "Oveja que bala, bocado que pierde",
+          "clave": "bala",
           "variantes": [],
           "pedante": "El ejemplar ovino que emite su vocalización característica deja de ingerir la correspondiente porción de pasto.",
           "significado": "Quien se distrae hablando pierde oportunidades.",
@@ -1252,6 +1369,7 @@
       "refranes": [
         {
           "original": "El saber no ocupa lugar",
+          "clave": "saber",
           "variantes": [],
           "pedante": "Los conocimientos adquiridos no requieren superficie de almacenamiento.",
           "significado": "Nunca está de más aprender.",
@@ -1259,6 +1377,7 @@
         },
         {
           "original": "Más vale un toma que dos te daré",
+          "clave": "toma",
           "variantes": [],
           "pedante": "Resulta preferible una entrega efectiva a dos promesas de entrega futura.",
           "significado": "Es mejor tener algo seguro ahora que muchas promesas.",
@@ -1266,6 +1385,7 @@
         },
         {
           "original": "El que tenga tienda, que la atienda",
+          "clave": "tienda",
           "variantes": [
             "Quien tenga tienda, que la atienda",
             "El que tenga tienda que la atienda, y si no, que la venda"
@@ -1280,6 +1400,7 @@
       "refranes": [
         {
           "original": "Hasta el cuarenta de mayo no te quites el sayo",
+          "clave": "sayo",
           "variantes": [],
           "pedante": "No te despojes de la prenda de abrigo hasta la cuadragésima jornada del quinto mes.",
           "significado": "En primavera aún puede hacer frío: no hay que guardar la ropa de abrigo demasiado pronto.",
@@ -1287,6 +1408,7 @@
         },
         {
           "original": "La cabra siempre tira al monte",
+          "clave": "cabra",
           "variantes": [],
           "pedante": "El rumiante caprino manifiesta una invariable inclinación hacia la sierra.",
           "significado": "Cada uno acaba volviendo a lo que es su naturaleza.",
@@ -1294,6 +1416,7 @@
         },
         {
           "original": "Dijo la sartén al cazo: apártate que me tiznas",
+          "clave": "sartén",
           "variantes": [
             "Dijo la sartén al cazo: quítate que me tiznas",
             "Le dijo la sartén al cazo: apártate que me tiznas"
@@ -1311,6 +1434,7 @@
       "refranes": [
         {
           "original": "Quien la hace, la paga",
+          "clave": "paga",
           "variantes": [],
           "pedante": "El autor de una fechoría abona indefectiblemente su importe.",
           "significado": "Quien obra mal acaba sufriendo las consecuencias.",
@@ -1318,6 +1442,7 @@
         },
         {
           "original": "Más vale paso que dure que trote que canse",
+          "clave": "trote",
           "variantes": [],
           "pedante": "Es preferible un andar sostenido que una carrera que agote.",
           "significado": "Mejor avanzar despacio y sin parar que deprisa y quedarse sin fuerzas.",
@@ -1325,6 +1450,7 @@
         },
         {
           "original": "A pan duro, diente agudo",
+          "clave": "agudo",
           "variantes": [],
           "pedante": "Ante hogaza endurecida, pieza dental afilada.",
           "significado": "A las dificultades hay que hacerles frente con decisión.",
@@ -1336,6 +1462,7 @@
       "refranes": [
         {
           "original": "Ver para creer",
+          "clave": "creer",
           "variantes": [],
           "pedante": "Es preciso percibir algo con la vista para concederle crédito.",
           "significado": "Hay cosas tan raras que solo se creen viéndolas.",
@@ -1346,6 +1473,7 @@
         },
         {
           "original": "Tanto tienes, tanto vales",
+          "clave": "vales",
           "variantes": [],
           "pedante": "Tu cotización es directamente proporcional a tus posesiones.",
           "significado": "Se critica que a la gente se la valore por su dinero.",
@@ -1353,6 +1481,7 @@
         },
         {
           "original": "Mientras dura, vida y dulzura",
+          "clave": "dulzura",
           "variantes": [],
           "pedante": "En tanto se prolongue, existencia y melosidad.",
           "significado": "Hay que disfrutar de lo bueno mientras dure.",
@@ -1364,6 +1493,7 @@
       "refranes": [
         {
           "original": "Mente sana en cuerpo sano",
+          "clave": "Mente",
           "variantes": [],
           "pedante": "Un intelecto saludable se aloja en un organismo saludable.",
           "significado": "Cuidar el cuerpo ayuda a tener la cabeza en orden.",
@@ -1374,6 +1504,7 @@
         },
         {
           "original": "De casta le viene al galgo",
+          "clave": "galgo",
           "variantes": [
             "De casta le viene al galgo el ser rabilargo"
           ],
@@ -1383,6 +1514,7 @@
         },
         {
           "original": "No hay peor cuña que la de la misma madera",
+          "clave": "cuña",
           "variantes": [],
           "pedante": "No existe calce más dañino que el fabricado con el mismo leño.",
           "significado": "El peor enemigo es el que sale de los tuyos.",
@@ -1394,6 +1526,7 @@
       "refranes": [
         {
           "original": "Donde comen dos, comen tres",
+          "clave": "comen",
           "variantes": [],
           "pedante": "En el lugar donde se alimenta una pareja hay sustento suficiente para un tercer comensal.",
           "significado": "Siempre se puede compartir con uno más.",
@@ -1401,6 +1534,7 @@
         },
         {
           "original": "Cada uno sabe dónde le aprieta el zapato",
+          "clave": "zapato",
           "variantes": [],
           "pedante": "Cada individuo conoce el punto exacto en que su calzado le oprime.",
           "significado": "Cada cual conoce sus propios problemas mejor que nadie.",
@@ -1411,6 +1545,7 @@
         },
         {
           "original": "Más vale ponerse una vez colorado que ciento amarillo",
+          "clave": "colorado",
           "variantes": [
             "Más vale ponerse una vez rojo que cien veces amarillo"
           ],
@@ -1424,6 +1559,7 @@
       "refranes": [
         {
           "original": "Nunca es tarde si la dicha es buena",
+          "clave": "dicha",
           "variantes": [],
           "pedante": "Ningún momento resulta extemporáneo cuando la ventura que llega es favorable.",
           "significado": "Lo bueno se agradece aunque llegue con retraso.",
@@ -1431,6 +1567,7 @@
         },
         {
           "original": "La ocasión hace al ladrón",
+          "clave": "ocasión",
           "variantes": [],
           "pedante": "La oportunidad engendra al sustractor de bienes ajenos.",
           "significado": "Las circunstancias favorables empujan a hacer lo que no se debe.",
@@ -1441,6 +1578,7 @@
         },
         {
           "original": "No se puede repicar y andar en la procesión",
+          "clave": "repicar",
           "variantes": [
             "No se puede estar en misa y repicando"
           ],
@@ -1454,6 +1592,7 @@
       "refranes": [
         {
           "original": "Querer es poder",
+          "clave": "poder",
           "variantes": [],
           "pedante": "La voluntad firme equivale, a efectos prácticos, a la capacidad de ejecución.",
           "significado": "Con verdadera voluntad se consigue casi todo.",
@@ -1464,6 +1603,7 @@
         },
         {
           "original": "Lo que el agua trae, el agua lleva",
+          "clave": "trae",
           "variantes": [],
           "pedante": "Aquello que el líquido elemento aporta, el líquido elemento retira.",
           "significado": "Lo que se gana fácilmente se pierde con la misma facilidad.",
@@ -1471,6 +1611,7 @@
         },
         {
           "original": "A quien no está hecho a bragas, las costuras le hacen llagas",
+          "clave": "bragas",
           "variantes": [
             "Al que no está hecho a bragas, las costuras le hacen llagas"
           ],
@@ -1484,6 +1625,7 @@
       "refranes": [
         {
           "original": "En abril, aguas mil",
+          "clave": "abril",
           "variantes": [],
           "pedante": "Durante el cuarto mes del año se registran precipitaciones en cantidad de cuatro cifras.",
           "significado": "Abril suele ser un mes muy lluvioso.",
@@ -1494,6 +1636,7 @@
         },
         {
           "original": "El roce hace el cariño",
+          "clave": "roce",
           "variantes": [],
           "pedante": "La fricción continuada engendra el afecto.",
           "significado": "El trato frecuente acaba creando cariño.",
@@ -1501,6 +1644,7 @@
         },
         {
           "original": "Por san Blas, la cigüeña verás",
+          "clave": "Blas",
           "variantes": [],
           "pedante": "En la festividad del obispo de Sebaste avistarás a la zancuda migratoria.",
           "significado": "A primeros de febrero (san Blas es el día 3) vuelven las cigüeñas.",
@@ -1512,6 +1656,7 @@
       "refranes": [
         {
           "original": "La curiosidad mató al gato",
+          "clave": "curiosidad",
           "variantes": [],
           "pedante": "El afán indagatorio provocó el fallecimiento de un pequeño felino doméstico.",
           "significado": "Meterse donde no le llaman a uno puede salir caro.",
@@ -1522,6 +1667,7 @@
         },
         {
           "original": "Juego de manos, juego de villanos",
+          "clave": "villanos",
           "variantes": [],
           "pedante": "El entretenimiento con las extremidades superiores es propio de gente vil.",
           "significado": "Los juegos a golpes acaban mal y son de mala educación.",
@@ -1529,6 +1675,7 @@
         },
         {
           "original": "Cada cosa a su tiempo y los nabos en adviento",
+          "clave": "nabos",
           "variantes": [],
           "pedante": "Cada asunto en su momento, y las raíces blancas en las semanas previas a la Natividad.",
           "significado": "Todo tiene su momento adecuado.",
@@ -1540,6 +1687,7 @@
       "refranes": [
         {
           "original": "Las paredes oyen",
+          "clave": "paredes",
           "variantes": [],
           "pedante": "Los tabiques poseen capacidad auditiva.",
           "significado": "Hay que tener cuidado con lo que se dice, porque alguien puede estar escuchando.",
@@ -1550,6 +1698,7 @@
         },
         {
           "original": "Quien tuvo, retuvo",
+          "clave": "retuvo",
           "variantes": [
             "Quien tuvo retuvo y guardó para la vejez"
           ],
@@ -1559,6 +1708,7 @@
         },
         {
           "original": "Allá van leyes do quieren reyes",
+          "clave": "leyes",
           "variantes": [],
           "pedante": "Hacia donde desean los monarcas se dirigen las normas jurídicas.",
           "significado": "Los poderosos acomodan las leyes a su conveniencia.",
@@ -1570,6 +1720,7 @@
       "refranes": [
         {
           "original": "Lo que mal empieza, mal acaba",
+          "clave": "empieza",
           "variantes": [],
           "pedante": "Aquello que se inicia de forma deficiente concluye de forma igualmente deficiente.",
           "significado": "Un mal comienzo suele traer un mal final.",
@@ -1577,6 +1728,7 @@
         },
         {
           "original": "La experiencia es la madre de la ciencia",
+          "clave": "experiencia",
           "variantes": [],
           "pedante": "La práctica acumulada es la progenitora del conocimiento.",
           "significado": "Lo vivido enseña más que cualquier teoría.",
@@ -1584,6 +1736,7 @@
         },
         {
           "original": "Buey viejo, surco derecho",
+          "clave": "Buey",
           "variantes": [],
           "pedante": "Bóvido castrado de edad avanzada, zanja de labranza rectilínea.",
           "significado": "La experiencia hace bien el trabajo.",
@@ -1595,6 +1748,7 @@
       "refranes": [
         {
           "original": "De noche, todos los gatos son pardos",
+          "clave": "gatos",
           "variantes": [],
           "pedante": "En ausencia de luz solar, la totalidad de los felinos presenta un pelaje de tono terroso.",
           "significado": "Con poca luz no se notan los defectos ni las diferencias.",
@@ -1605,6 +1759,7 @@
         },
         {
           "original": "Quien canta su mal espanta",
+          "clave": "espanta",
           "variantes": [],
           "pedante": "El que entona melodías ahuyenta sus pesares.",
           "significado": "Cantar ayuda a olvidar las penas.",
@@ -1612,6 +1767,7 @@
         },
         {
           "original": "Cada gallo canta en su muladar",
+          "clave": "gallo",
           "variantes": [],
           "pedante": "Cada ave de corral entona su canto sobre su propio estercolero.",
           "significado": "Cada uno se crece en su terreno.",
@@ -1623,6 +1779,7 @@
       "refranes": [
         {
           "original": "El que algo quiere, algo le cuesta",
+          "clave": "cuesta",
           "variantes": [],
           "pedante": "Quien ambiciona un bien debe satisfacer por él un precio.",
           "significado": "Para conseguir algo hay que esforzarse.",
@@ -1633,6 +1790,7 @@
         },
         {
           "original": "El que con lobos anda, a aullar se enseña",
+          "clave": "lobos",
           "variantes": [],
           "pedante": "Quien transita en compañía de cánidos salvajes aprende a emitir sus alaridos.",
           "significado": "Se acaba pareciendo a aquellos con quienes uno se junta.",
@@ -1640,6 +1798,7 @@
         },
         {
           "original": "Quien da primero, da dos veces",
+          "clave": "primero",
           "variantes": [],
           "pedante": "El que golpea en primer lugar golpea por partida doble.",
           "significado": "Adelantarse a los demás da ventaja.",
@@ -1651,6 +1810,7 @@
       "refranes": [
         {
           "original": "Una imagen vale más que mil palabras",
+          "clave": "imagen",
           "variantes": [
             "Más vale una imagen que mil palabras"
           ],
@@ -1663,6 +1823,7 @@
         },
         {
           "original": "Cuando seas padre comerás huevos",
+          "clave": "huevos",
           "variantes": [],
           "pedante": "Cuando alcances la condición de progenitor, ingerirás productos ovíparos.",
           "significado": "Hay privilegios que solo llegan con la edad o la posición.",
@@ -1670,6 +1831,7 @@
         },
         {
           "original": "Contra el vicio de pedir, la virtud de no dar",
+          "clave": "vicio",
           "variantes": [],
           "pedante": "Frente al hábito de solicitar, la cualidad de no entregar.",
           "significado": "A quien pide demasiado, lo mejor es no darle.",
@@ -1681,6 +1843,7 @@
       "refranes": [
         {
           "original": "Hoy por ti, mañana por mí",
+          "clave": "ti",
           "variantes": [],
           "pedante": "En la presente jornada actúo en tu beneficio; en la siguiente, se invertirán los papeles.",
           "significado": "Hay que ayudar, porque mañana podemos necesitar ayuda.",
@@ -1688,6 +1851,7 @@
         },
         {
           "original": "En todas partes cuecen habas",
+          "clave": "habas",
           "variantes": [],
           "pedante": "En cualquier lugar se someten a ebullición legumbres de la especie Vicia faba.",
           "significado": "Los mismos problemas y defectos se dan en todos sitios.",
@@ -1695,6 +1859,7 @@
         },
         {
           "original": "Cada uno habla de la feria según le va en ella",
+          "clave": "feria",
           "variantes": [],
           "pedante": "Cada individuo opina del mercado conforme a la suerte que ha corrido en él.",
           "significado": "Cada cual juzga las cosas según su propia experiencia.",
@@ -1706,6 +1871,7 @@
       "refranes": [
         {
           "original": "Más vale ser cabeza de ratón que cola de león",
+          "clave": "ratón",
           "variantes": [],
           "pedante": "Es preferible ocupar el extremo anterior de un pequeño roedor que el posterior de un gran felino.",
           "significado": "Mejor mandar en algo pequeño que ser el último en algo grande.",
@@ -1713,6 +1879,7 @@
         },
         {
           "original": "Haz lo que yo diga, pero no lo que yo haga",
+          "clave": "diga",
           "variantes": [
             "Haz lo que yo digo, no lo que yo hago"
           ],
@@ -1725,6 +1892,7 @@
         },
         {
           "original": "No hay boda sin tornaboda",
+          "clave": "boda",
           "variantes": [],
           "pedante": "No existe enlace nupcial sin la jornada que le sucede.",
           "significado": "Tras la alegría viene a menudo algún disgusto.",
@@ -1736,6 +1904,7 @@
       "refranes": [
         {
           "original": "Cuatro ojos ven más que dos",
+          "clave": "Cuatro",
           "variantes": [],
           "pedante": "Dos pares de órganos visuales perciben más que un único par.",
           "significado": "Entre varios se ve mejor un asunto que uno solo.",
@@ -1746,6 +1915,7 @@
         },
         {
           "original": "Con pan y vino se anda el camino",
+          "clave": "camino",
           "variantes": [],
           "pedante": "Provisto de hogaza y caldo de uva se recorre la senda.",
           "significado": "Bien alimentado, cualquier tarea se hace más llevadera.",
@@ -1753,6 +1923,7 @@
         },
         {
           "original": "Unos tienen la fama y otros cardan la lana",
+          "clave": "lana",
           "variantes": [
             "Unos cardan la lana y otros llevan la fama"
           ],
@@ -1766,6 +1937,7 @@
       "refranes": [
         {
           "original": "Afortunado en el juego, desgraciado en amores",
+          "clave": "Afortunado",
           "variantes": [],
           "pedante": "Quien goza de ventura en los naipes padece infortunio en los asuntos del corazón.",
           "significado": "No se puede tener suerte en todo.",
@@ -1776,6 +1948,7 @@
         },
         {
           "original": "Gato con guantes no caza ratones",
+          "clave": "guantes",
           "variantes": [],
           "pedante": "El felino provisto de manoplas no captura roedores.",
           "significado": "Con demasiados miramientos no se consigue nada.",
@@ -1786,6 +1959,7 @@
         },
         {
           "original": "Viejo que se cura, cien años dura",
+          "clave": "cura",
           "variantes": [],
           "pedante": "El anciano que se cuida perdura un siglo.",
           "significado": "Cuidándose, se vive mucho.",
@@ -1797,6 +1971,7 @@
       "refranes": [
         {
           "original": "Lo prometido es deuda",
+          "clave": "prometido",
           "variantes": [],
           "pedante": "Todo compromiso verbalmente adquirido constituye una obligación pendiente de liquidación.",
           "significado": "Hay que cumplir lo que se promete.",
@@ -1804,6 +1979,7 @@
         },
         {
           "original": "Amor con amor se paga",
+          "clave": "Amor",
           "variantes": [],
           "pedante": "El afecto se abona con afecto.",
           "significado": "El cariño hay que corresponderlo con cariño (y, en broma, un desaire con otro).",
@@ -1811,6 +1987,7 @@
         },
         {
           "original": "Dádivas quebrantan peñas",
+          "clave": "Dádivas",
           "variantes": [],
           "pedante": "Los obsequios resquebrajan las rocas.",
           "significado": "Con regalos se ablanda hasta al más duro.",
@@ -1822,6 +1999,7 @@
       "refranes": [
         {
           "original": "Bien está lo que bien acaba",
+          "clave": "acaba",
           "variantes": [
             "Bien está lo que bien termina"
           ],
@@ -1834,6 +2012,7 @@
         },
         {
           "original": "Cuando la limosna es grande, hasta el santo desconfía",
+          "clave": "limosna",
           "variantes": [],
           "pedante": "Ante un donativo cuantioso, incluso el bienaventurado alberga sospechas.",
           "significado": "Si una oferta es demasiado buena, conviene sospechar.",
@@ -1841,6 +2020,7 @@
         },
         {
           "original": "Al hierro caliente, batir de repente",
+          "clave": "batir",
           "variantes": [],
           "pedante": "Al metal incandescente, golpearlo sin dilación.",
           "significado": "Hay que aprovechar el momento oportuno.",
@@ -1855,6 +2035,7 @@
       "refranes": [
         {
           "original": "La unión hace la fuerza",
+          "clave": "unión",
           "variantes": [],
           "pedante": "La agregación de individuos genera una potencia superior a la de sus partes aisladas.",
           "significado": "Juntos se consigue lo que solos no.",
@@ -1865,6 +2046,7 @@
         },
         {
           "original": "En martes, ni te cases ni te embarques",
+          "clave": "cases",
           "variantes": [
             "En martes ni te cases ni te embarques, ni de tu casa te apartes"
           ],
@@ -1874,6 +2056,7 @@
         },
         {
           "original": "A buenas horas, mangas verdes",
+          "clave": "mangas",
           "variantes": [],
           "pedante": "En momento oportuno, prendas de color esmeralda.",
           "significado": "Se dice de lo que llega cuando ya no sirve. Las mangas verdes eran los cuadrilleros de la Santa Hermandad, que solían llegar tarde.",
@@ -1885,6 +2068,7 @@
       "refranes": [
         {
           "original": "Las prisas no son buenas consejeras",
+          "clave": "prisas",
           "variantes": [
             "La prisa no es buena consejera"
           ],
@@ -1894,6 +2078,7 @@
         },
         {
           "original": "Dime de qué presumes y te diré de qué careces",
+          "clave": "presumes",
           "variantes": [],
           "pedante": "Manifiéstame aquello de lo que haces ostentación y te revelaré aquello de lo que estás desprovisto.",
           "significado": "Quien presume mucho de algo suele no tenerlo.",
@@ -1901,6 +2086,7 @@
         },
         {
           "original": "El casado casa quiere",
+          "clave": "casado",
           "variantes": [],
           "pedante": "El que ha contraído matrimonio requiere vivienda propia.",
           "significado": "Los recién casados necesitan vivir independientes.",
@@ -1912,6 +2098,7 @@
       "refranes": [
         {
           "original": "Tras la tempestad viene la calma",
+          "clave": "tempestad",
           "variantes": [
             "Después de la tempestad viene la calma"
           ],
@@ -1924,6 +2111,7 @@
         },
         {
           "original": "No hay que vender la piel del oso antes de cazarlo",
+          "clave": "oso",
           "variantes": [
             "No vendas la piel del oso antes de cazarlo"
           ],
@@ -1936,6 +2124,7 @@
         },
         {
           "original": "De la mar el mero y de la tierra el carnero",
+          "clave": "mero",
           "variantes": [],
           "pedante": "Del océano, el serránido; de los campos, el ovino macho.",
           "significado": "Es una alabanza de lo mejor que se puede comer en cada medio.",
@@ -1947,6 +2136,7 @@
       "refranes": [
         {
           "original": "El que espera desespera",
+          "clave": "espera",
           "variantes": [],
           "pedante": "Quien aguarda acaba por perder la esperanza.",
           "significado": "La espera se hace larga y angustiosa.",
@@ -1954,6 +2144,7 @@
         },
         {
           "original": "Sarna con gusto no pica",
+          "clave": "Sarna",
           "variantes": [
             "Sarna con gusto no pica, y si pica no mortifica"
           ],
@@ -1963,6 +2154,7 @@
         },
         {
           "original": "Ruin sea quien por ruin se tenga",
+          "clave": "Ruin",
           "variantes": [],
           "pedante": "Sea vil aquel que como vil se considere.",
           "significado": "Nadie debe tenerse en menos de lo que vale.",
@@ -1974,6 +2166,7 @@
       "refranes": [
         {
           "original": "Pan para hoy, hambre para mañana",
+          "clave": "hambre",
           "variantes": [],
           "pedante": "Sustento en la jornada presente y carestía en la siguiente.",
           "significado": "Una solución momentánea que trae problemas después.",
@@ -1981,6 +2174,7 @@
         },
         {
           "original": "Las cosas de palacio van despacio",
+          "clave": "palacio",
           "variantes": [],
           "pedante": "Los asuntos de la residencia real avanzan con lentitud.",
           "significado": "Los trámites oficiales y burocráticos son lentos.",
@@ -1988,6 +2182,7 @@
         },
         {
           "original": "El muerto al hoyo y el vivo al bollo",
+          "clave": "hoyo",
           "variantes": [],
           "pedante": "El finado a la fosa y el superviviente al panecillo.",
           "significado": "La vida sigue y los vivos olvidan pronto a los muertos.",
@@ -1999,6 +2194,7 @@
       "refranes": [
         {
           "original": "Barriga llena, corazón contento",
+          "clave": "Barriga",
           "variantes": [],
           "pedante": "Con el abdomen satisfecho, el órgano cardíaco experimenta júbilo.",
           "significado": "Bien comido, uno está a gusto.",
@@ -2006,6 +2202,7 @@
         },
         {
           "original": "Del plato a la boca se pierde la sopa",
+          "clave": "plato",
           "variantes": [],
           "pedante": "En el trayecto del recipiente a la cavidad bucal se extravía el caldo.",
           "significado": "Hasta el último momento algo seguro puede fallar.",
@@ -2016,6 +2213,7 @@
         },
         {
           "original": "Una cosa es predicar y otra dar trigo",
+          "clave": "trigo",
           "variantes": [],
           "pedante": "Una actividad es pronunciar sermones y otra distinta entregar cereal.",
           "significado": "Es fácil aconsejar y difícil hacer.",
@@ -2027,6 +2225,7 @@
       "refranes": [
         {
           "original": "Quien tiene un amigo tiene un tesoro",
+          "clave": "amigo",
           "variantes": [],
           "pedante": "El poseedor de un vínculo de camaradería dispone de un caudal de valor incalculable.",
           "significado": "La amistad verdadera vale muchísimo.",
@@ -2034,6 +2233,7 @@
         },
         {
           "original": "Cada mochuelo a su olivo",
+          "clave": "mochuelo",
           "variantes": [],
           "pedante": "Que cada pequeña rapaz nocturna regrese a su árbol oleícola.",
           "significado": "Es hora de que cada uno se vaya a su casa.",
@@ -2041,6 +2241,7 @@
         },
         {
           "original": "Del agua mansa líbreme Dios, que de la brava me libro yo",
+          "clave": "mansa",
           "variantes": [],
           "pedante": "De las aguas sosegadas que me proteja el Altísimo, que de las turbulentas me protejo por mí mismo.",
           "significado": "Hay que desconfiar de quien parece tranquilo: los callados son los más peligrosos.",
@@ -2052,6 +2253,7 @@
       "refranes": [
         {
           "original": "Cuando el gato no está, los ratones bailan",
+          "clave": "bailan",
           "variantes": [
             "Cuando el gato no está, los ratones hacen fiesta"
           ],
@@ -2064,6 +2266,7 @@
         },
         {
           "original": "Dios da pan a quien no tiene dientes",
+          "clave": "dientes",
           "variantes": [],
           "pedante": "El Creador concede hogazas a quien carece de piezas dentales.",
           "significado": "La suerte suele tocarle a quien no sabe o no puede aprovecharla.",
@@ -2071,6 +2274,7 @@
         },
         {
           "original": "A la vejez, viruelas",
+          "clave": "viruelas",
           "variantes": [],
           "pedante": "En la senectud, erupciones pustulosas.",
           "significado": "Se dice de quien hace a destiempo, ya mayor, cosas propias de la juventud.",
@@ -2082,6 +2286,7 @@
       "refranes": [
         {
           "original": "No hay rosa sin espinas",
+          "clave": "rosa",
           "variantes": [],
           "pedante": "No existe ejemplar del rosal desprovisto de aguijones.",
           "significado": "Todo lo bueno tiene también su parte mala.",
@@ -2092,6 +2297,7 @@
         },
         {
           "original": "A mal paso, darle prisa",
+          "clave": "paso",
           "variantes": [],
           "pedante": "Ante un tránsito desagradable, acelerar la marcha.",
           "significado": "Lo que es desagradable conviene pasarlo cuanto antes.",
@@ -2099,6 +2305,7 @@
         },
         {
           "original": "Al enemigo que huye, puente de plata",
+          "clave": "enemigo",
           "variantes": [],
           "pedante": "Al adversario en fuga, pasarela de metal precioso.",
           "significado": "Al rival que se retira conviene facilitarle la salida.",
@@ -2110,6 +2317,7 @@
       "refranes": [
         {
           "original": "El mundo es un pañuelo",
+          "clave": "pañuelo",
           "variantes": [],
           "pedante": "El planeta posee las dimensiones de una pieza de tela para sonarse la nariz.",
           "significado": "Se dice al encontrarse por casualidad con un conocido en un sitio inesperado.",
@@ -2120,6 +2328,7 @@
         },
         {
           "original": "Por el hilo se saca el ovillo",
+          "clave": "hilo",
           "variantes": [],
           "pedante": "Tirando de la hebra se obtiene la madeja entera.",
           "significado": "A partir de un pequeño indicio se llega a conocer todo el asunto.",
@@ -2127,6 +2336,7 @@
         },
         {
           "original": "Cada uno estornuda como Dios le ayuda",
+          "clave": "estornuda",
           "variantes": [],
           "pedante": "Cada individuo expulsa el aire por la nariz conforme le asiste la divinidad.",
           "significado": "Cada cual hace las cosas como puede.",

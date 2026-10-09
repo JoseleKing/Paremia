@@ -150,7 +150,7 @@ test('casillaVecina recorre los huecos libres', () => {
 test('lo escrito en el esqueleto se da por bueno con la lógica de siempre', () => {
   for (const r of todos) {
     const e = L.esqueleto(r.original);
-    const orden = L.ordenPistas(r.original);
+    const orden = L.ordenPistas(r);
     for (const n of [0, 1, 3]) {
       const destapadas = orden.slice(0, n);
       const tecleado = e.filter((_, i) => !destapadas.includes(i)).map((p) => L.normalizar(p.letras)).join('');
@@ -160,14 +160,24 @@ test('lo escrito en el esqueleto se da por bueno con la lógica de siempre', () 
   }
 });
 
-test('orden de pistas: estable, completo y nunca empieza por la primera palabra', () => {
+test('orden de pistas: estable, completo, la clave en tercer lugar y casi nunca empieza por la primera palabra', () => {
   for (const r of todos) {
-    const a = L.ordenPistas(r.original);
-    const b = L.ordenPistas(r.original);
+    const a = L.ordenPistas(r);
+    const b = L.ordenPistas(r);
     assert.deepEqual(a, b);
     assert.deepEqual([...a].sort((x, y) => x - y), a.map((_, i) => i));
-    assert.notEqual(a[0], 0, r.original);
+    const palabras = L.esqueleto(r.original).map((p) => L.normalizar(p.letras));
+    assert.ok(palabras.includes(L.normalizar(r.clave)), `${r.original}: la clave «${r.clave}» no está en el refrán`);
+    assert.equal(palabras[a[2]], L.normalizar(r.clave), r.original);
+    const unicas = palabras.filter((p, i) => i > 0 && palabras.indexOf(p) === palabras.lastIndexOf(p) && p !== L.normalizar(r.clave));
+    if (unicas.length > 1) assert.notEqual(a[0], 0, r.original);
   }
+});
+
+test('orden de pistas: la segunda es una palabra con contenido', () => {
+  assert.deepEqual(L.ordenPistas(buscar('Ver para creer')), [1, 0, 2]);
+  const r = buscar('Más vale tarde que nunca');
+  assert.deepEqual(L.ordenPistas(r).slice(1, 3), [4, 2]);
 });
 
 test('puntuación por refrán y por partida', () => {

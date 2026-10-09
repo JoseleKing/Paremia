@@ -255,22 +255,50 @@
     };
   }
 
-  // Índices de las palabras en el orden en que se destapan. La primera pista
-  // nunca es la primera palabra.
-  function ordenPistas(original) {
-    var n = esqueleto(original).length;
-    var orden = [];
-    for (var i = 0; i < n; i++) orden.push(i);
-    var azar = aleatorioConSemilla(hashTexto(normalizar(original)));
+  // Palabras que por sí solas no ayudan a reconocer un refrán.
+  var PALABRAS_VACIAS = (
+    'a al algo ante antes como con contra cual cuando de del do donde dos el ella ellos en es ' +
+    'esa ese hace hay la las le lo los mas me mi mucho muy ni no nos o otra otro otros para pero ' +
+    'poco por que quien se sea si sin sobre son su sus tal tan tanto te tiene tu tus un una uno ' +
+    'unos vale y ya yo'
+  ).split(' ');
+
+  // Índices de las palabras en el orden en que se destapan:
+  // 1.ª pista, una palabra al azar (la primera del refrán, solo si no queda otra);
+  // 2.ª, una de las importantes (la más larga que no sea una palabra vacía);
+  // 3.ª, la `clave` del refrán, la que lo delata sin dudas; luego, el resto al azar.
+  function ordenPistas(refran) {
+    var palabras = esqueleto(refran.original).map(function (p) { return normalizar(p.letras); });
+    var n = palabras.length;
+    var azar = aleatorioConSemilla(hashTexto(normalizar(refran.original)));
+    var resto = [];
+    for (var i = 0; i < n; i++) resto.push(i);
     for (i = n - 1; i > 0; i--) {
       var j = Math.floor(azar() * (i + 1));
-      var t = orden[i]; orden[i] = orden[j]; orden[j] = t;
+      var t = resto[i]; resto[i] = resto[j]; resto[j] = t;
     }
-    if (n > 1 && orden[0] === 0) {
-      var k = 1 + Math.floor(azar() * (n - 1));
-      orden[0] = orden[k]; orden[k] = 0;
+    function sacar(i) { resto.splice(resto.indexOf(i), 1); return i; }
+
+    var clave = palabras.lastIndexOf(normalizar(refran.clave));
+    if (clave !== -1) sacar(clave);
+    // Las palabras repetidas («diente por diente», «mal empieza, mal acaba») se
+    // dejan para después: destapar una sola confunde al escribir la otra.
+    var candidatas = resto.filter(function (i) { return palabras.indexOf(palabras[i]) === palabras.lastIndexOf(palabras[i]); });
+    if (!candidatas.length) candidatas = resto.filter(function (i) { return clave === -1 || palabras[i] !== palabras[clave]; });
+    function masLarga(lista) {
+      return lista.reduce(function (mejor, i) {
+        return mejor === -1 || palabras[i].length > palabras[mejor].length ? i : mejor;
+      }, -1);
     }
-    return orden;
+    var segunda = masLarga(candidatas.filter(function (i) { return PALABRAS_VACIAS.indexOf(palabras[i]) === -1; }));
+    if (segunda === -1) segunda = masLarga(candidatas);
+    if (segunda !== -1) { sacar(segunda); candidatas.splice(candidatas.indexOf(segunda), 1); }
+    var primera = candidatas.filter(function (i) { return i !== 0; })[0];
+    if (primera === undefined) primera = candidatas[0];
+    if (primera === undefined) primera = resto[0];
+    if (primera !== undefined) sacar(primera);
+
+    return [primera, segunda, clave].filter(function (i) { return i !== undefined && i !== -1; }).concat(resto);
   }
 
   // ---------------------------------------------------------------------------
@@ -618,7 +646,7 @@
       '<ul class="reglas__lista">' +
       '<li>Bajo el texto verás el <b>esqueleto</b> del refrán: una casilla por palabra, con un hueco por letra.</li>' +
       '<li>Toca el esqueleto y escribe el refrán: las letras irán llenando los huecos y las palabras destapadas se saltan solas. Para corregir, toca cualquier hueco y escribe desde ahí. No importan las tildes, las mayúsculas ni alguna errata.</li>' +
-      '<li><b>Pista: desvelar una palabra</b> te enseña una palabra del refrán, pero el refrán vale un punto menos.</li>' +
+      '<li><b>Pista: desvelar una palabra</b> te enseña una palabra del refrán, cada vez más reveladora (la tercera lo delata), pero el refrán vale un punto menos.</li>' +
       '<li>Comprobar un refrán que no es el bueno también resta un punto. Al tercer fallo, el refrán se da por perdido (0 puntos).</li>' +
       '<li>Cada refrán vale 3 puntos y nunca baja de 1 si lo aciertas. Si te rindes, 0.</li>' +
       '</ul>' +
@@ -631,7 +659,7 @@
     if (i === -1) { pantallaResultado(); return; }
     var refran = diaDeContenido(dias, hoy).refranes[i];
     var r = partida.refranes[i];
-    var orden = ordenPistas(refran.original);
+    var orden = ordenPistas(refran);
     var total = partida.refranes.length;
     subtitulo('Día ' + hoy + ' · Refrán ' + NUMERALES[i] + ' de ' + NUMERALES[total - 1]);
 
