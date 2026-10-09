@@ -11,7 +11,8 @@
      window.almanaqueHecho({ aciertos: 2, total: 3, racha: 5 }); // ● ● ○ · racha 5
      window.almanaqueHecho({ texto: 'Resuelto' });               // texto libre y corto
    Se guarda en localStorage (todos los juegos comparten origen con Almanaque), así que
-   llega aunque el jugador no vuelva con la mano ☜.
+   llega aunque el jugador no vuelva con la mano ☜. También se apunta el día jugado, para
+   la racha común que muestra la portada.
    Botón de volver junto a «Compartir resultado»: el juego pone en su pantalla final
      <a data-almanaque-volver hidden href="https://joseleking.github.io/Almanaque/">…</a>
    con el estilo que quiera. Este script lo muestra y le da el mismo destino que la
@@ -28,6 +29,7 @@
   var CLAVE_JUEGO = 'almanaque:juego';
   var CLAVE_HECHO = 'almanaque:hecho';
   var CLAVE_RESULTADOS = 'almanaque:resultados';
+  var CLAVE_DIAS = 'almanaque:dias';
   var juego = null;
 
   function leer(clave) {
@@ -105,10 +107,24 @@
     } catch (e) { /* sin almacenamiento */ }
   }
 
+  // Días con alguna partida terminada (AAAA-MM-DD): de aquí sale la racha de la portada.
+  function apuntarDia() {
+    try {
+      var dias = null;
+      try { dias = JSON.parse(window.localStorage.getItem(CLAVE_DIAS) || '[]'); } catch (e) { /* corrupto */ }
+      if (!Array.isArray(dias)) dias = [];
+      if (dias.indexOf(claveDeHoy()) !== -1) return;
+      dias.push(claveDeHoy());
+      dias.sort();
+      window.localStorage.setItem(CLAVE_DIAS, JSON.stringify(dias));
+    } catch (e) { /* sin almacenamiento */ }
+  }
+
   // El juego avisa de que la partida de hoy está terminada (y, si quiere, de cómo ha ido).
   window.almanaqueHecho = function (resultado) {
     guardar(CLAVE_HECHO, hoy());
     guardarResultado(resultado);
+    apuntarDia();
     actualizarEnlace();
   };
 
