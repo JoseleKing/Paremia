@@ -17,7 +17,7 @@
      <a data-almanaque-volver hidden href="https://joseleking.github.io/Almanaque/">…</a>
    con el estilo que quiera. Este script lo muestra y le da el mismo destino que la
    mano ☜. Puede pintarse en cualquier momento: el script vigila la página.
-   Siguiente juego: la franja ofrece siempre a la derecha «Siguiente: Periplo ☞», que lleva
+   Siguiente juego: la franja ofrece siempre a la derecha «Periplo ☞», que lleva
    al siguiente juego de Almanaque que aún no se ha hecho hoy (en el orden de games.json,
    que se lee de Almanaque; sin conexión, o con todo hecho, no sale). Con la partida de hoy
    terminada, el script pone además, justo encima de cada botón de volver, un botón
@@ -359,7 +359,6 @@
     var nombre = document.createElement('span');
     nombre.className = 'almanaque-siguiente__nombre';
     var texto = document.createElement('span');
-    texto.appendChild(document.createTextNode('Siguiente: '));
     texto.appendChild(nombre);
     siguiente.appendChild(texto);
     siguiente.appendChild(mano('☞'));
