@@ -17,6 +17,11 @@
      <a data-almanaque-volver hidden href="https://joseleking.github.io/Almanaque/">…</a>
    con el estilo que quiera. Este script lo muestra y le da el mismo destino que la
    mano ☜. Puede pintarse en cualquier momento: el script vigila la página.
+   Siguiente juego: la franja ofrece siempre a la derecha «Siguiente: Periplo ☞», que lleva
+   al siguiente juego de Almanaque que aún no se ha hecho hoy (en el orden de games.json,
+   que se lee de Almanaque; sin conexión, o con todo hecho, no sale). Con la partida de hoy
+   terminada, el script pone además, justo encima de cada botón de volver, un botón
+   «Siguiente juego: Periplo ☞» con las mismas clases, así que toma el estilo del juego.
    Id del juego: Almanaque abre cada juego con ?desde=almanaque&juego=<id> y el id se
    recuerda mientras siga abierta la pestaña; si no, sale de la ruta (/Periplo/ → periplo).
    Copia de referencia: se guarda en el repo de Almanaque, en para-los-juegos/.
@@ -25,9 +30,13 @@
 (function () {
   'use strict';
 
-  var ALMANAQUE = 'https://joseleking.github.io/Almanaque/';
+  var WEB = 'https://joseleking.github.io/';
+  // En local (todos los repos servidos desde el mismo puerto), los enlaces se quedan en local.
+  var BASE = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname) ? window.location.origin + '/' : WEB;
+  var ALMANAQUE = BASE + 'Almanaque/';
   var CLAVE_JUEGO = 'almanaque:juego';
   var CLAVE_HECHO = 'almanaque:hecho';
+  var CLAVE_HECHOS = 'almanaque:hechos';
   var CLAVE_RESULTADOS = 'almanaque:resultados';
   var CLAVE_DIAS = 'almanaque:dias';
   var juego = null;
@@ -107,6 +116,38 @@
     } catch (e) { /* sin almacenamiento */ }
   }
 
+  // Hojas hechas hoy: la misma lista que lleva la portada, que así marca la hoja aunque
+  // no se vuelva con la mano ☜.
+  function hechosHoy() {
+    try {
+      var datos = JSON.parse(window.localStorage.getItem(CLAVE_HECHOS) || 'null');
+      if (datos && datos.fecha === claveDeHoy() && Array.isArray(datos.ids)) return datos.ids;
+    } catch (e) { /* sin almacenamiento o datos corruptos */ }
+    return [];
+  }
+
+  function apuntarHecho() {
+    var id = idDelJuego();
+    if (!id) return;
+    var ids = hechosHoy();
+    if (ids.indexOf(id) !== -1) return;
+    ids.push(id);
+    try {
+      window.localStorage.setItem(CLAVE_HECHOS, JSON.stringify({ fecha: claveDeHoy(), ids: ids }));
+    } catch (e) { /* sin almacenamiento */ }
+  }
+
+  // Juegos con resultado hoy: también cuentan como hechos.
+  function conResultadoHoy() {
+    try {
+      var datos = JSON.parse(window.localStorage.getItem(CLAVE_RESULTADOS) || 'null');
+      if (datos && datos.fecha === claveDeHoy() && datos.juegos && typeof datos.juegos === 'object') {
+        return Object.keys(datos.juegos);
+      }
+    } catch (e) { /* sin almacenamiento o datos corruptos */ }
+    return [];
+  }
+
   // Días con alguna partida terminada (AAAA-MM-DD): de aquí sale la racha de la portada.
   function apuntarDia() {
     try {
@@ -124,6 +165,7 @@
   window.almanaqueHecho = function (resultado) {
     guardar(CLAVE_HECHO, hoy());
     guardarResultado(resultado);
+    apuntarHecho();
     apuntarDia();
     actualizarEnlace();
   };
@@ -131,7 +173,7 @@
   // Los botones de volver siguen ocultos hasta que este script los activa, aunque el estilo
   // del juego les dé display.
   var estiloOculto = document.createElement('style');
-  estiloOculto.textContent = '[data-almanaque-volver][hidden]{display:none!important}';
+  estiloOculto.textContent = '[data-almanaque-volver][hidden],[data-almanaque-siguiente][hidden]{display:none!important}';
   document.head.appendChild(estiloOculto);
 
   // La mano lleva ?hecho=<id> solo si el juego ha avisado hoy en esta pestaña.
@@ -145,6 +187,82 @@
     var enlace = document.getElementById('almanaque-volver');
     if (enlace) enlace.href = destino();
     activarBotones();
+    actualizarSiguiente();
+  }
+
+  /* Siguiente juego pendiente de hoy */
+
+  var juegos = null; // lista de games.json, cuando llega
+
+  function cargarJuegos() {
+    if (!window.fetch) return;
+    window.fetch(ALMANAQUE + 'games.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (lista) {
+        if (!Array.isArray(lista)) return;
+        juegos = lista.filter(function (j) {
+          var estado = String(j && j.estado || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          return j && j.id && j.nombre && j.url && estado !== 'proximamente';
+        });
+        actualizarSiguiente();
+      })
+      .catch(function () { /* sin conexión: no se ofrece */ });
+  }
+
+  // El primero sin hacer hoy tras este juego, en el orden de Almanaque (y vuelta al principio).
+  function siguientePendiente() {
+    var id = idDelJuego();
+    if (!juegos || !id) return null;
+    var hechos = hechosHoy().concat(conResultadoHoy(), [id]);
+    var actual = -1;
+    for (var i = 0; i < juegos.length; i++) if (juegos[i].id === id) actual = i;
+    for (var paso = 1; paso <= juegos.length; paso++) {
+      var j = juegos[(actual + paso) % juegos.length];
+      if (hechos.indexOf(j.id) === -1) return j;
+    }
+    return null;
+  }
+
+  function direccionDe(j) {
+    try {
+      var url = new URL(j.url.indexOf(WEB) === 0 ? BASE + j.url.slice(WEB.length) : j.url, ALMANAQUE);
+      url.searchParams.set('desde', 'almanaque');
+      url.searchParams.set('juego', j.id);
+      return url.href;
+    } catch (e) {
+      return j.url;
+    }
+  }
+
+  // La franja lo ofrece siempre; los botones de la pantalla final, solo con la partida de
+  // hoy terminada en esta pestaña.
+  function actualizarSiguiente() {
+    var j = siguientePendiente();
+    var enlace = document.getElementById('almanaque-siguiente');
+    if (enlace) {
+      enlace.hidden = !j;
+      var franja = document.getElementById('almanaque-franja');
+      if (franja) franja.classList.toggle('almanaque-franja--siguiente', !!j);
+      if (j) {
+        enlace.href = direccionDe(j);
+        // Solo si cambia: escribirlo otra vez despertaría al vigilante de la página sin fin.
+        var nombre = enlace.querySelector('.almanaque-siguiente__nombre');
+        if (nombre.textContent !== j.nombre) nombre.textContent = j.nombre;
+        enlace.setAttribute('aria-label', 'Siguiente juego: ' + j.nombre);
+      }
+    }
+    var hecho = leer(CLAVE_HECHO) === hoy();
+    var botones = document.querySelectorAll('[data-almanaque-siguiente]');
+    for (var i = 0; i < botones.length; i++) {
+      botones[i].hidden = !(j && hecho);
+      if (j) {
+        botones[i].href = direccionDe(j);
+        // Con la mano ☞, como la ☜ del botón de volver.
+        var texto = 'Siguiente juego: ' + j.nombre + ' ☞';
+        if (botones[i].textContent !== texto) botones[i].textContent = texto;
+        botones[i].setAttribute('aria-label', 'Siguiente juego: ' + j.nombre);
+      }
+    }
   }
 
   // Muestra los botones de volver que haya puesto el juego y les da destino.
@@ -158,28 +276,54 @@
         boton.almanaqueActivo = true;
         boton.addEventListener('click', function () { this.href = destino(); });
       }
+      if (!boton.almanaqueSiguiente || !boton.almanaqueSiguiente.isConnected) {
+        boton.almanaqueSiguiente = crearBotonSiguiente(boton);
+      }
     }
+    actualizarSiguiente();
+  }
+
+  // Botón «Siguiente juego» de la pantalla final, con el mismo aspecto que el de volver.
+  function crearBotonSiguiente(volver) {
+    var boton = document.createElement('a');
+    boton.className = volver.className;
+    boton.setAttribute('data-almanaque-siguiente', '');
+    boton.hidden = true;
+    boton.addEventListener('click', function () { actualizarSiguiente(); });
+    volver.parentNode.insertBefore(boton, volver);
+    return boton;
   }
 
   function mostrar() {
-    if (document.getElementById('almanaque-volver')) return;
+    if (document.getElementById('almanaque-franja')) return;
 
     var estilo = document.createElement('style');
     estilo.textContent =
-      '#almanaque-volver{display:flex;align-items:center;gap:.45em;box-sizing:border-box;width:100%;' +
-      'margin:0;padding:.55rem max(1rem,env(safe-area-inset-right)) .55rem max(1rem,env(safe-area-inset-left));' +
+      '#almanaque-franja{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.4em 1em;' +
+      'box-sizing:border-box;width:100%;margin:0;' +
+      'padding:.55rem max(1rem,env(safe-area-inset-right)) .55rem max(1rem,env(safe-area-inset-left));' +
       'padding-top:max(.55rem,env(safe-area-inset-top));' +
       'font:inherit;font-size:1.05rem;line-height:1.2;letter-spacing:.06em;font-variant:small-caps;' +
-      'color:inherit;text-decoration:none;opacity:.78;position:relative;z-index:1;' +
-      'border-bottom:1px solid currentColor;border-bottom-color:color-mix(in srgb,currentColor 18%,transparent);' +
-      '-webkit-tap-highlight-color:transparent}' +
-      '#almanaque-volver:hover,#almanaque-volver:focus-visible{opacity:1}' +
-      '#almanaque-volver:focus-visible{outline:2px solid currentColor;outline-offset:-4px}' +
-      '#almanaque-volver .almanaque-volver__mano{font-size:1.8em;line-height:.8;font-variant:normal;' +
+      'color:inherit;position:relative;z-index:1;' +
+      'border-bottom:1px solid currentColor;border-bottom-color:color-mix(in srgb,currentColor 18%,transparent)}' +
+      '#almanaque-volver,#almanaque-siguiente{display:flex;align-items:center;gap:.45em;min-width:0;' +
+      'white-space:nowrap;color:inherit;text-decoration:none;opacity:.78;-webkit-tap-highlight-color:transparent}' +
+      '#almanaque-siguiente{margin-left:auto}' +
+      '#almanaque-siguiente[hidden]{display:none}' +
+      '#almanaque-volver:hover,#almanaque-volver:focus-visible,' +
+      '#almanaque-siguiente:hover,#almanaque-siguiente:focus-visible{opacity:1}' +
+      '#almanaque-volver:focus-visible,#almanaque-siguiente:focus-visible{outline:2px solid currentColor;outline-offset:2px}' +
+      '#almanaque-franja .almanaque-volver__mano{font-size:1.8em;line-height:.8;font-variant:normal;' +
       'transition:transform .18s ease}' +
       '#almanaque-volver:hover .almanaque-volver__mano{transform:translateX(-3px)}' +
-      '@media (prefers-reduced-motion:reduce){#almanaque-volver .almanaque-volver__mano{transition:none}}';
+      '#almanaque-siguiente:hover .almanaque-volver__mano{transform:translateX(3px)}' +
+      // En pantallas estrechas, con las dos manos, «Regresar al» se cae para que quepan.
+      '@media (max-width:36rem){.almanaque-franja--siguiente .almanaque-volver__largo{display:none}}' +
+      '@media (prefers-reduced-motion:reduce){#almanaque-franja .almanaque-volver__mano{transition:none}}';
     document.head.appendChild(estilo);
+
+    var franja = document.createElement('div');
+    franja.id = 'almanaque-franja';
 
     var enlace = document.createElement('a');
     enlace.id = 'almanaque-volver';
@@ -188,19 +332,48 @@
     // Se recalcula al tocar por si la pestaña ha pasado la medianoche.
     enlace.addEventListener('click', function () { enlace.href = destino(); });
 
-    var mano = document.createElement('span');
-    mano.className = 'almanaque-volver__mano';
-    mano.setAttribute('aria-hidden', 'true');
-    mano.textContent = '☜';
+    var largo = document.createElement('span');
+    largo.className = 'almanaque-volver__largo';
+    largo.textContent = 'Regresar al ';
 
-    enlace.appendChild(mano);
-    enlace.appendChild(document.createTextNode('Regresar al Almanaque'));
-    document.body.insertBefore(enlace, document.body.firstChild);
+    enlace.appendChild(mano('☜'));
+    enlace.appendChild(largo);
+    enlace.appendChild(document.createTextNode('Almanaque'));
+
+    var siguiente = document.createElement('a');
+    siguiente.id = 'almanaque-siguiente';
+    siguiente.hidden = true;
+    var nombre = document.createElement('span');
+    nombre.className = 'almanaque-siguiente__nombre';
+    var texto = document.createElement('span');
+    texto.appendChild(document.createTextNode('Siguiente: '));
+    texto.appendChild(nombre);
+    siguiente.appendChild(texto);
+    siguiente.appendChild(mano('☞'));
+    // Por si otro juego se ha terminado en otra pestaña o ha pasado la medianoche.
+    siguiente.addEventListener('click', function () { actualizarSiguiente(); });
+
+    franja.appendChild(enlace);
+    franja.appendChild(siguiente);
+    document.body.insertBefore(franja, document.body.firstChild);
+  }
+
+  function mano(signo) {
+    var span = document.createElement('span');
+    span.className = 'almanaque-volver__mano';
+    span.setAttribute('aria-hidden', 'true');
+    span.textContent = signo;
+    return span;
   }
 
   function empezar() {
     mostrar();
     activarBotones();
+    cargarJuegos();
+    // Al volver a la pestaña, otro juego puede haberse hecho entretanto.
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') actualizarSiguiente();
+    });
     // La pantalla final suele pintarse después: se activan los botones nuevos al aparecer.
     if (window.MutationObserver) {
       new MutationObserver(function (cambios) {
