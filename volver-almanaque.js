@@ -27,9 +27,11 @@
    sello del día; en la pantalla final no sale botón de siguiente, sino el mismo sello
    «Almanaque completo» de la portada, debajo de cada botón de volver (sin botón, al final
    de la página), que también lleva a la portada. En el juego que acaba el almanaque, al
-   llamar a almanaqueHecho, cae confeti con los colores de los juegos y a la vez se
-   estampa el sello (si la pantalla final se abre un poco después, al verse) (una vez al día, apuntado en almanaque:confeti; con movimiento
-   reducido, ni confeti ni golpe: el sello sale quieto).
+   llamar a almanaqueHecho, se abre por encima de todo (también de la pantalla final del
+   juego, aunque se abra después) una pantalla de almanaque completo: el sello se estampa
+   en ella, cae confeti con los colores de los juegos y «Ver la partida» la cierra (una
+   vez al día, apuntado en almanaque:confeti; con movimiento reducido, sin confeti y con
+   el sello quieto).
    Id del juego: Almanaque abre cada juego con ?desde=almanaque&juego=<id> y el id se
    recuerda en la pestaña para la ruta de ese juego; si no, sale de la ruta (/Periplo/ → periplo).
    Copia de referencia: se guarda en el repo de Almanaque, en para-los-juegos/.
@@ -315,8 +317,6 @@
   /* Sello de almanaque completo */
 
   var selloSuelto = null; // al final de la página, para los juegos sin botón de volver
-  var selloPendiente = false; // hay que estamparlo en cuanto se vea
-  var vigiaSellos = null;
 
   // El sello de la portada, debajo de cada botón de volver de la pantalla final (o al final
   // de la página si el juego no tiene ninguno). Se crean una vez y solo se mueven si hace
@@ -340,8 +340,7 @@
       if (volver.length && selloSuelto.parentNode) selloSuelto.parentNode.removeChild(selloSuelto);
       else cajas.push(selloSuelto);
     }
-    var hoy = new Date();
-    var fecha = hoy.getDate() + ' · ' + romano(hoy.getMonth() + 1) + ' · ' + romano(hoy.getFullYear());
+    var fecha = fechaDeHoy();
     for (var c = 0; c < cajas.length; c++) {
       cajas[c].hidden = !mostrarlo;
       if (!mostrarlo) continue;
@@ -349,8 +348,12 @@
       sello.href = destino();
       var linea = sello.querySelector('.almanaque-sello__fecha');
       if (linea.textContent !== fecha) linea.textContent = fecha;
-      if (selloPendiente) vigilarSello(sello);
     }
+  }
+
+  function fechaDeHoy() {
+    var hoy = new Date();
+    return hoy.getDate() + ' · ' + romano(hoy.getMonth() + 1) + ' · ' + romano(hoy.getFullYear());
   }
 
   function crearSello() {
@@ -366,40 +369,98 @@
     return caja;
   }
 
-  // Cae a la vez que el confeti. Muchos juegos abren la pantalla final un poco después de
-  // avisar: cada sello espera a verse en pantalla para dar el golpe. Si el primero que ya
-  // se pinta queda fuera de la pantalla, antes se acerca.
-  function estamparSello() {
-    selloPendiente = true;
-    var sellos = document.querySelectorAll('.almanaque-sello-caja:not([hidden]) .almanaque-sello');
-    for (var i = 0; i < sellos.length; i++) {
-      if (!sellos[i].getClientRects().length) continue;
-      var caja = sellos[i].getBoundingClientRect();
-      if ((caja.bottom > window.innerHeight || caja.top < 0) && sellos[i].scrollIntoView) {
-        sellos[i].scrollIntoView({ block: 'center' });
-      }
-      break;
-    }
-    for (var j = 0; j < sellos.length; j++) vigilarSello(sellos[j]);
+  /* Pantalla de almanaque completo */
+
+  var pantalla = null; // el diálogo, mientras está en la página
+  var vigiaDialogos = null;
+
+  // Una hoja sobre la partida con el sello, que se estampa y lleva a la portada, y un botón
+  // para cerrarla y ver la partida. Es un diálogo modal: así va en la capa de encima, como
+  // las pantallas finales de los juegos.
+  function abrirPantalla(conMovimiento) {
+    pantalla = document.createElement('dialog');
+    pantalla.id = 'almanaque-completo';
+    pantalla.setAttribute('aria-labelledby', 'almanaque-completo-titulo');
+
+    var hoja = document.createElement('div');
+    hoja.className = 'almanaque-completo__hoja';
+    // El papel y la tinta del juego: el diálogo trae los suyos del navegador.
+    var cuerpo = window.getComputedStyle(document.body);
+    var papel = cuerpo.backgroundColor;
+    if (/^(transparent|rgba\(0, 0, 0, 0\))$/.test(papel)) papel = window.getComputedStyle(document.documentElement).backgroundColor;
+    if (/^(transparent|rgba\(0, 0, 0, 0\))$/.test(papel)) papel = document.documentElement.getAttribute('data-theme') === 'dark' ? '#1d1916' : '#fbf7ef';
+    hoja.style.backgroundColor = papel;
+    hoja.style.color = cuerpo.color;
+
+    var titulo = trozo('almanaque-completo__titulo', '¡Enhorabuena!');
+    titulo.id = 'almanaque-completo-titulo';
+    hoja.appendChild(titulo);
+
+    var caja = crearSello();
+    var sello = caja.firstChild;
+    sello.classList.add('almanaque-sello--grande');
+    sello.href = destino();
+    sello.querySelector('.almanaque-sello__fecha').textContent = fechaDeHoy();
+    if (conMovimiento) sello.classList.add('almanaque-sello--estampar');
+    hoja.appendChild(caja);
+
+    var texto = document.createElement('p');
+    texto.className = 'almanaque-completo__texto';
+    texto.textContent = 'Has hecho las ' + juegos.length + ' hojas de hoy. Toca el sello para volver a la portada.';
+    hoja.appendChild(texto);
+
+    var cerrar = document.createElement('button');
+    cerrar.type = 'button';
+    cerrar.className = 'almanaque-completo__cerrar';
+    cerrar.textContent = 'Ver la partida';
+    cerrar.addEventListener('click', cerrarPantalla);
+    hoja.appendChild(cerrar);
+
+    pantalla.appendChild(hoja);
+    // Tocar fuera de la hoja también la cierra.
+    pantalla.addEventListener('click', function (e) { if (e.target === pantalla) cerrarPantalla(); });
+    pantalla.addEventListener('close', function () {
+      // subirPantalla la cierra y la vuelve a abrir: el aviso de cierre llega ya abierta.
+      if (pantalla && !pantalla.open) quitarPantalla();
+    });
+    document.body.appendChild(pantalla);
+    if (pantalla.showModal) pantalla.showModal();
+    else pantalla.setAttribute('open', '');
+    vigilarDialogos();
   }
 
-  function vigilarSello(sello) {
-    if (sello.almanaqueVigilado) return;
-    sello.almanaqueVigilado = true;
-    if (!window.IntersectionObserver) {
-      sello.classList.add('almanaque-sello--estampar');
-      return;
-    }
-    if (!vigiaSellos) {
-      vigiaSellos = new IntersectionObserver(function (vistos) {
-        for (var i = 0; i < vistos.length; i++) {
-          if (!vistos[i].isIntersecting) continue;
-          vistos[i].target.classList.add('almanaque-sello--estampar');
-          vigiaSellos.unobserve(vistos[i].target);
-        }
-      });
-    }
-    vigiaSellos.observe(sello);
+  function cerrarPantalla() {
+    if (!pantalla) return;
+    if (pantalla.close) pantalla.close();
+    else quitarPantalla();
+  }
+
+  function quitarPantalla() {
+    if (!pantalla) return;
+    if (pantalla.parentNode) pantalla.parentNode.removeChild(pantalla);
+    pantalla = null;
+    if (vigiaDialogos) { vigiaDialogos.disconnect(); vigiaDialogos = null; }
+  }
+
+  // Muchos juegos abren su pantalla final un poco después de avisar, y el último diálogo
+  // abierto queda encima: en cuanto se abre otro, la pantalla vuelve a subir. Sin repetir
+  // la entrada ni el golpe del sello.
+  function vigilarDialogos() {
+    if (!window.MutationObserver || !pantalla.showModal) return;
+    vigiaDialogos = new MutationObserver(function (cambios) {
+      if (!pantalla || !pantalla.open) return;
+      for (var i = 0; i < cambios.length; i++) {
+        var otro = cambios[i].target;
+        if (otro !== pantalla && otro.tagName === 'DIALOG' && otro.open) { subirPantalla(); return; }
+      }
+    });
+    vigiaDialogos.observe(document.body, { attributes: true, attributeFilter: ['open'], subtree: true });
+  }
+
+  function subirPantalla() {
+    pantalla.classList.add('almanaque-completo--quieta');
+    pantalla.close();
+    pantalla.showModal();
   }
 
   /* Confeti de almanaque completo */
@@ -410,27 +471,29 @@
       if (window.localStorage.getItem(CLAVE_CONFETI) === claveDeHoy()) return;
       window.localStorage.setItem(CLAVE_CONFETI, claveDeHoy());
     } catch (e) { return; /* sin almacenamiento no se sabría si ya se ha celebrado */ }
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!window.requestAnimationFrame) return;
-    estamparSello();
+    var quieto = !window.requestAnimationFrame ||
+      !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    abrirPantalla(!quieto);
+    if (quieto) return;
     var colores = [];
     for (var c = 0; c < juegos.length; c++) {
       if (/^#[0-9a-f]{3,8}$/i.test(juegos[c].color || '')) colores.push(juegos[c].color);
     }
     if (!colores.length) colores = ['#a33a2a', '#2b2420', '#c9a227', '#2e7d8c'];
-    lanzarConfeti(colores);
+    // Dentro de la pantalla, para que caiga por encima de ella.
+    lanzarConfeti(colores, pantalla);
   }
 
   // Papelitos disparados desde las dos esquinas de abajo, que suben, se frenan y caen
   // revoloteando. Un lienzo encima de todo que no recibe toques y se retira al acabar.
-  function lanzarConfeti(colores) {
+  function lanzarConfeti(colores, contenedor) {
     var lienzo = document.createElement('canvas');
     var ctx = lienzo.getContext && lienzo.getContext('2d');
     if (!ctx) return;
     lienzo.setAttribute('aria-hidden', 'true');
     lienzo.style.cssText = 'position:fixed;inset:0;left:0;top:0;width:100%;height:100%;' +
       'pointer-events:none;z-index:2147483000';
-    document.body.appendChild(lienzo);
+    contenedor.appendChild(lienzo);
 
     var ancho, alto, escala = window.devicePixelRatio || 1;
     function medir() {
@@ -587,8 +650,35 @@
       '60%{opacity:.92;transform:rotate(-4deg);animation-timing-function:ease-out}' +
       '72%{transform:rotate(-4deg) scale(1.07,.9)}86%{transform:rotate(-4deg) scale(.98,1.02)}' +
       '100%{opacity:.92;transform:rotate(-4deg)}}' +
+      // Pantalla de almanaque completo: la partida se oscurece y encima va una hoja del juego.
+      '#almanaque-completo{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;' +
+      'margin:0;padding:1rem;box-sizing:border-box;border:0;background:rgba(20,14,10,.6);color:inherit;' +
+      'font:inherit;overflow:auto;z-index:2147482000}' +
+      '#almanaque-completo[open]{display:flex;align-items:center;justify-content:center;' +
+      'animation:almanaque-completo-entrar .3s ease-out both}' +
+      '#almanaque-completo::backdrop{background:transparent}' +
+      '.almanaque-completo__hoja{box-sizing:border-box;width:100%;max-width:23rem;margin:auto;' +
+      'padding:1.8rem 1.4rem 1.5rem;border-radius:6px;text-align:center;line-height:1.4;' +
+      'box-shadow:0 18px 50px rgba(0,0,0,.35);animation:almanaque-completo-hoja .4s cubic-bezier(.2,.8,.3,1) both}' +
+      '.almanaque-completo__titulo{display:block;font-variant:small-caps;font-size:1.15rem;letter-spacing:.12em;opacity:.8}' +
+      '.almanaque-completo__hoja .almanaque-sello-caja{margin:1.3rem 0 1.2rem}' +
+      '.almanaque-completo__hoja .almanaque-sello--estampar{animation-delay:.2s}' +
+      // Girado, el sello ocupa algo más que su caja: se deja margen a los lados.
+      '.almanaque-sello--grande{max-width:calc(100% - 2.5rem);box-sizing:border-box;padding:.55rem 1.2rem .6rem;border-width:6px}' +
+      '.almanaque-sello--grande .almanaque-sello__titulo{font-size:1.5rem}' +
+      '.almanaque-sello--grande .almanaque-sello__fecha{font-size:.95rem}' +
+      '.almanaque-completo__texto{margin:0 0 1.2rem;font-size:.95rem;opacity:.8}' +
+      '.almanaque-completo__cerrar{font:inherit;font-variant:small-caps;letter-spacing:.08em;font-size:1rem;' +
+      'color:inherit;background:none;border:1px solid currentColor;border-radius:999px;padding:.45rem 1.3rem;' +
+      'cursor:pointer;opacity:.75;-webkit-tap-highlight-color:transparent}' +
+      '.almanaque-completo__cerrar:hover,.almanaque-completo__cerrar:focus-visible{opacity:1}' +
+      '.almanaque-completo__cerrar:focus-visible{outline:2px solid currentColor;outline-offset:2px}' +
+      // Al volver a subirla por encima de otro diálogo, ni entrada ni golpe otra vez.
+      '.almanaque-completo--quieta,.almanaque-completo--quieta *{animation:none!important}' +
+      '@keyframes almanaque-completo-entrar{from{opacity:0}to{opacity:1}}' +
+      '@keyframes almanaque-completo-hoja{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}' +
       '@media (prefers-reduced-motion:reduce){#almanaque-franja .almanaque-volver__mano{transition:none}' +
-      '.almanaque-sello--estampar{animation:none}}';
+      '.almanaque-sello--estampar,#almanaque-completo[open],.almanaque-completo__hoja{animation:none}}';
     document.head.appendChild(estilo);
 
     var franja = document.createElement('div');
