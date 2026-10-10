@@ -23,7 +23,7 @@
    terminada, el script pone además, justo encima de cada botón de volver, un botón
    «Siguiente juego: Periplo ☞» con las mismas clases, así que toma el estilo del juego.
    Id del juego: Almanaque abre cada juego con ?desde=almanaque&juego=<id> y el id se
-   recuerda mientras siga abierta la pestaña; si no, sale de la ruta (/Periplo/ → periplo).
+   recuerda en la pestaña para la ruta de ese juego; si no, sale de la ruta (/Periplo/ → periplo).
    Copia de referencia: se guarda en el repo de Almanaque, en para-los-juegos/.
    Cada juego incluye su propia copia con:
    <script src="volver-almanaque.js" defer></script> */
@@ -35,11 +35,11 @@
   var BASE = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname) ? window.location.origin + '/' : WEB;
   var ALMANAQUE = BASE + 'Almanaque/';
   var CLAVE_JUEGO = 'almanaque:juego';
-  var CLAVE_HECHO = 'almanaque:hecho';
   var CLAVE_HECHOS = 'almanaque:hechos';
   var CLAVE_RESULTADOS = 'almanaque:resultados';
   var CLAVE_DIAS = 'almanaque:dias';
   var juego = null;
+  var terminadoAqui = false; // el juego ha llamado a almanaqueHecho en esta página
 
   function leer(clave) {
     try { return window.sessionStorage.getItem(clave); } catch (e) { return null; }
@@ -60,12 +60,20 @@
     }
   } catch (e) { /* navegador antiguo: se ignora */ }
 
-  if (juego) guardar(CLAVE_JUEGO, juego);
-  else juego = leer(CLAVE_JUEGO);
+  // El id se recuerda en la pestaña junto con la ruta del juego que lo recibió: si luego se
+  // entra en otro juego sin ?juego=, no se toma por el anterior.
+  function ruta() {
+    var partes = window.location.pathname.split('/').filter(Boolean);
+    return partes.length ? partes[0].toLowerCase() : '';
+  }
 
-  function hoy() {
-    var d = new Date();
-    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  if (juego) {
+    guardar(CLAVE_JUEGO, JSON.stringify({ ruta: ruta(), id: juego }));
+  } else {
+    try {
+      var recordado = JSON.parse(leer(CLAVE_JUEGO) || 'null');
+      if (recordado && recordado.ruta === ruta() && typeof recordado.id === 'string') juego = recordado.id;
+    } catch (e) { /* valor antiguo o corrupto: se ignora */ }
   }
 
   // Misma forma de fecha que usa la portada (AAAA-MM-DD).
@@ -76,9 +84,7 @@
 
   // Sin id de Almanaque, sale de la ruta: /Periplo/ → periplo.
   function idDelJuego() {
-    if (juego) return juego;
-    var partes = window.location.pathname.split('/').filter(Boolean);
-    return partes.length ? partes[0].toLowerCase() : null;
+    return juego || ruta() || null;
   }
 
   function numero(n) {
@@ -163,7 +169,7 @@
 
   // El juego avisa de que la partida de hoy está terminada (y, si quiere, de cómo ha ido).
   window.almanaqueHecho = function (resultado) {
-    guardar(CLAVE_HECHO, hoy());
+    terminadoAqui = true;
     guardarResultado(resultado);
     apuntarHecho();
     apuntarDia();
@@ -176,10 +182,17 @@
   estiloOculto.textContent = '[data-almanaque-volver][hidden],[data-almanaque-siguiente][hidden]{display:none!important}';
   document.head.appendChild(estiloOculto);
 
-  // La mano lleva ?hecho=<id> solo si el juego ha avisado hoy en esta pestaña.
+  // Partida de hoy terminada en este juego: avisó en esta página, o su hoja ya consta como
+  // hecha hoy. Que se haya terminado otro juego en la pestaña no cuenta.
+  function hechoHoy() {
+    var id = idDelJuego();
+    return !!id && (terminadoAqui || hechosHoy().indexOf(id) !== -1);
+  }
+
+  // La mano lleva ?hecho=<id> solo con la partida de hoy terminada en este juego.
   function destino() {
     var id = idDelJuego();
-    if (!id || leer(CLAVE_HECHO) !== hoy()) return ALMANAQUE;
+    if (!hechoHoy()) return ALMANAQUE;
     return ALMANAQUE + '?hecho=' + encodeURIComponent(id);
   }
 
@@ -235,7 +248,7 @@
   }
 
   // La franja lo ofrece siempre; los botones de la pantalla final, solo con la partida de
-  // hoy terminada en esta pestaña.
+  // hoy terminada en este juego.
   function actualizarSiguiente() {
     var j = siguientePendiente();
     var enlace = document.getElementById('almanaque-siguiente');
@@ -251,7 +264,7 @@
         enlace.setAttribute('aria-label', 'Siguiente juego: ' + j.nombre);
       }
     }
-    var hecho = leer(CLAVE_HECHO) === hoy();
+    var hecho = hechoHoy();
     var botones = document.querySelectorAll('[data-almanaque-siguiente]');
     for (var i = 0; i < botones.length; i++) {
       botones[i].hidden = !(j && hecho);
